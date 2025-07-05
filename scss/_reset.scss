@@ -1,0 +1,1769 @@
+@use "./abstracts/index"as *;
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    font-family: inherit;
+    font-size: 100%;
+    font-style: inherit;
+    font-weight: inherit;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+/* Elements
+-------------------------------------------------------------- */
+
+html {
+    margin-right: 0 !important;
+    scroll-behavior: smooth;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: $font-main;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    letter-spacing: -0.32px;
+    color: var(--main);
+    background-color: var(--white);
+
+    &::-webkit-scrollbar {
+        width: 5px;
+        height: 1px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: var(--primary);
+        border-radius: 5px;
+    }
+
+    @include res(xl) {
+        padding-bottom: 68px;
+    }
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    transform: scale(1);
+    vertical-align: middle;
+    -ms-interpolation-mode: bicubic;
+}
+
+.row {
+    margin-right: -15px;
+    margin-left: -15px;
+
+    >* {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+
+ul,
+li {
+    list-style-type: none;
+    margin-bottom: 0;
+    padding-left: 0;
+    list-style: none;
+}
+
+table {
+    width: 100%;
+    overflow-x: auto;
+    table-layout: auto;
+    border-collapse: collapse;
+
+}
+
+thead {
+    background-color: var(--line-8);
+}
+
+tbody {
+    tr {
+        &:nth-child(even) {
+            background-color: var(--line-8);
+        }
+    }
+}
+
+tr {
+    th {
+        &:not(:first-child) {
+            border-left: 1px solid var(--white);
+        }
+    }
+}
+
+td,
+th {
+    padding: 10px 14px;
+}
+
+.container {
+    max-width: 1548px;
+    width: 100%;
+    margin: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.container-2 {
+    max-width: 1790px;
+    width: 100%;
+    margin: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.container-3 {
+    max-width: 1750px;
+    width: 100%;
+    margin: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.container-4 {
+    max-width: 1358px;
+    width: 100%;
+    margin: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.container-5 {
+    max-width: 1854px;
+    width: 100%;
+    margin: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.container-6 {
+    max-width: 1290px;
+    width: 100%;
+    margin: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.container-7 {
+    max-width: 1614px;
+    width: 100%;
+    margin: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.container-full {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0px 15px;
+
+    @include res(xxxl, min) {
+        padding-left: 48px;
+        padding-right: 48px;
+    }
+}
+
+.container-full-2 {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0px 15px;
+
+    @include res(xxl, min) {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+}
+
+.container-full-3 {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0px 15px;
+
+    @include res(xxl, min) {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    @include res(xxxl, min) {
+        padding-left: 62px;
+        padding-right: 62px;
+    }
+}
+
+.container-full-4 {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0px 15px;
+
+    @include res(xxl, min) {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    @include res(xxxl, min) {
+        padding-left: 48px;
+        padding-right: 48px;
+    }
+}
+
+.container-layout-right {
+    width: calc(100vw - ((100vw - 1548px) / 2) - 4px);
+    margin-right: unset;
+    max-width: 100%;
+    margin-left: auto;
+    padding-left: 15px;
+}
+
+.container-layout-right-2 {
+    width: calc(100vw - (100vw - 1012px) / 2);
+    margin-right: unset;
+    max-width: 100%;
+    margin-left: auto;
+    padding-left: 15px;
+}
+
+.container-layout-right-3 {
+    width: calc(100vw - (100vw - 646px) / 2);
+    margin-right: unset;
+    max-width: 100%;
+    margin-left: auto;
+    padding-left: 15px;
+}
+
+.container-layout-right-4 {
+    width: calc(100vw - (100vw - 1636px) / 2);
+    margin-right: unset;
+    max-width: 100%;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+
+    >* {
+        margin-right: -15px;
+    }
+}
+
+.container-layout-left {
+    width: calc(100vw - ((100vw - 1548px) / 2) - 4px);
+    margin-left: unset;
+    max-width: 100%;
+    margin-right: auto;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.slider-layout-right {
+    width: calc(100vw - (100vw - 1548px) / 2);
+    margin-right: unset;
+    max-width: 100%;
+    margin-left: auto;
+    padding: 0 15px;
+
+    .swiper {
+        margin-right: -15px;
+    }
+}
+
+.cus-width {
+    max-width: 1518px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+svg path {
+    @include transition3();
+}
+
+
+button {
+    background: transparent;
+    border: 0;
+    display: inline-flex;
+    @include transition3;
+    color: var(--main);
+}
+
+/* Since FF19 lowers the opacity of the placeholder by default */
+
+:-ms-input-placeholder {
+    color: var(--secondary-2);
+}
+
+/* Typography
+-------------------------------------------------------------- */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+    font-family: $font-main;
+    text-rendering: optimizeLegibility;
+    font-weight: 500;
+    margin-bottom: 0;
+    letter-spacing: 0;
+}
+
+h1,
+.h1 {
+    font-size: clamp(32px, 5vw, 60px);
+    line-height: clamp(40px, 6vw, 72px);
+}
+
+h2,
+.h2 {
+    font-size: clamp(30px, 3vw, 48px);
+    line-height: clamp(40px, 3.5vw, 60px);
+}
+
+h3,
+.h3 {
+    font-size: clamp(24px, 2vw, 36px);
+    line-height: clamp(32px, 2.5vw, 44px);
+}
+
+.text-lg {
+    font-size: clamp(24px, 2.5vw, 28px);
+    line-height: clamp(30px, 3vw, 32px);
+}
+
+.text-lg-2 {
+    font-size: clamp(20px, 2.8vw, 32px);
+    line-height: clamp(28px, 3.5vw, 42px);
+}
+
+h4,
+.h4 {
+    font-size: clamp(18px, 2vw, 24px);
+    line-height: clamp(26px, 2.5vw, 32px);
+}
+
+h5 {
+    font-size: 20px;
+    line-height: 30px;
+}
+
+.h5 {
+    font-size: clamp(18px, 3vw, 20px);
+    line-height: clamp(28px, 3.5vw, 30px);
+}
+
+h6,
+.h6 {
+    font-size: 18px;
+    line-height: 28px;
+}
+
+.text-hero {
+    font-size: clamp(36px, 6vw, 72px);
+    line-height: clamp(48px, 7vw, 90px);
+    letter-spacing: 0px;
+}
+
+.text-hero-2 {
+    font-size: clamp(28px, 4vw, 48px);
+    line-height: 130%;
+    letter-spacing: 0px;
+}
+
+.text-caption {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0px;
+}
+
+.text-caption-2 {
+    font-size: 14px !important;
+    line-height: 28px !important;
+    letter-spacing: 0px;
+}
+
+.text-caption-3 {
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: 0px;
+}
+
+.text-xs {
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0px;
+}
+
+.text-body {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.32px;
+}
+
+.font-main {
+    font-family: $font-main;
+}
+
+.font-2 {
+    font-family: $font-2;
+}
+
+.font-3 {
+    font-family: $font-3;
+}
+
+.font-4 {
+    font-family: $font-4;
+}
+
+.font-5 {
+    font-family: $font-5;
+}
+
+b,
+strong {
+    font-weight: bolder;
+}
+
+video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.fs-10 {
+    font-size: 10px;
+}
+
+.fs-12 {
+    font-size: 12px !important;
+}
+
+.fs-14 {
+    font-size: 14px;
+}
+
+.fs-16 {
+    font-size: 16px;
+}
+
+.fs-20 {
+    font-size: 20px;
+}
+
+.fs-18 {
+    font-size: 18px;
+}
+
+.fs-32 {
+    font-size: 32px !important;
+}
+
+.fs-35 {
+    font-size: 35px;
+}
+
+
+.lh-19 {
+    line-height: 19px !important;
+}
+
+.lh-20 {
+    line-height: 20px !important;
+}
+
+.lh-28 {
+    line-height: 28px !important;
+}
+
+.lh-32 {
+    line-height: 32px !important;
+}
+
+.fs-24 {
+    font-size: 24px;
+}
+
+.text-primary {
+    color: var(--primary) !important;
+}
+
+.text-primary-2 {
+    color: var(--primary-2) !important;
+}
+
+.text-primary-3 {
+    color: var(--primary-3) !important;
+}
+
+.text-secondary {
+    color: var(--secondary) !important;
+}
+
+.text-secondary-4 {
+    color: var(--secondary-4) !important;
+}
+
+.text-white-2 {
+    color: var(--white-2) !important;
+}
+
+.text-main {
+    color: var(--main) !important;
+}
+
+.text-main-3 {
+    color: var(--main-3) !important;
+}
+
+.text-main-4 {
+    color: var(--main-4) !important;
+}
+
+.text-main-5 {
+    color: var(--main-5) !important;
+}
+
+.text-main-6 {
+    color: var(--main-6) !important;
+}
+
+.text-main-8 {
+    color: var(--main-8) !important;
+}
+
+.text-main-9 {
+    color: var(--main-9) !important;
+}
+
+.text-main-10 {
+    color: var(--main-10) !important;
+}
+
+.text-main-12 {
+    color: var(--main-12) !important;
+}
+
+.text-star {
+    color: #E69600 !important;
+}
+
+.bg-black-2 {
+    background-color: var(--black-2);
+}
+
+.bg-surface {
+    background-color: var(--bg);
+}
+
+.bg-surface-2 {
+    background-color: var(--bg-14) !important;
+}
+
+.bg-olive-brown {
+    background-color: var(--bg-2);
+}
+
+.bg-dark-black {
+    background-color: var(--bg-3);
+}
+
+.bg-dark-olive {
+    background-color: var(--bg-5);
+}
+
+.bg-dark-brown {
+    background-color: var(--bg-8) !important;
+}
+
+.bg-dark-brown-2 {
+    background-color: var(--bg-13) !important;
+}
+
+.bg-dark-tan {
+    background-color: var(--bg-20) !important;
+}
+
+
+.bg-light-gray {
+    background-color: var(--bg-12) !important;
+}
+
+.bg-light-peach {
+    background-color: var(--bg-19) !important;
+}
+
+.bg-light-peach-2 {
+    background-color: var(--bg-21) !important;
+}
+
+.bg-light-peach-3 {
+    background: var(--bg-25) !important;
+}
+
+.bg-main {
+    background-color: var(--main);
+}
+
+.bg-main-2 {
+    background-color: var(--main-2);
+}
+
+.bg-primary {
+    background-color: var(--primary) !important;
+}
+
+.bg-primary-2 {
+    background-color: var(--primary-2) !important;
+}
+
+.bg-linear {
+    background: var(--linear-1);
+}
+
+.bg-linear-light-brown {
+    background: var(--linear-2);
+}
+
+.bg-linear-dark-brown {
+    background: var(--linear-3);
+}
+
+.bg-linear-golden-cream {
+    background: var(--linear-4);
+}
+
+.bg-linear-golden-cream-2 {
+    background: var(--linear-5);
+}
+
+.bg-earth-brown {
+    background: var(--bg-22);
+}
+
+.bg-line {
+    background-color: var(--line);
+}
+
+.line {
+    border: 1px solid var(--line) !important;
+}
+
+.line-2 {
+    border: 1px solid var(--line-8);
+}
+
+.line-bt-2 {
+    border: 1px solid var(--line-2);
+}
+
+.line-bt {
+    border-bottom: 1px solid var(--line);
+}
+
+.line-y {
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+}
+
+.text-stroke-white {
+    -webkit-text-stroke: 2px var(--white);
+    color: transparent;
+}
+
+a {
+    @include transition3;
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-block;
+    font-family: $font-main;
+    color: var(--main);
+
+    &:focus,
+    &:hover {
+        text-decoration: none;
+        outline: 0;
+    }
+}
+
+.link {
+    @include transition3;
+
+    &:hover {
+        color: var(--primary) !important;
+    }
+}
+
+.link-secondary {
+    @include transition3;
+
+    &:hover {
+        color: var(--secondary) !important;
+    }
+}
+
+.link-secondary-2 {
+    @include transition3;
+
+    &:hover {
+        color: var(--secondary-2) !important;
+    }
+}
+
+.grid-2 {
+    @include grid(2, 1fr);
+}
+
+.grid-3 {
+    @include grid(3, 1fr);
+}
+
+.grid-4 {
+    @include grid(4, 1fr);
+}
+
+.grid-6 {
+    @include grid(6, 1fr);
+}
+
+.gap-4 {
+    gap: 4px !important;
+}
+
+.gap-5 {
+    gap: 5px !important;
+}
+
+.gap-6 {
+    gap: 6px !important;
+}
+
+.gap-8 {
+    gap: 8px;
+}
+
+.gap-10 {
+    gap: 10px !important;
+}
+
+.gap-12 {
+    gap: 12px !important;
+}
+
+.gap-15 {
+    gap: 15px;
+}
+
+.gap-16 {
+    gap: 16px;
+}
+
+.gap-20 {
+    gap: 20px;
+}
+
+.gap-24 {
+    gap: 24px !important;
+}
+
+.gap-30 {
+    gap: 30px !important;
+}
+
+.gap-x-10 {
+    column-gap: 10px !important;
+}
+
+.border-primary {
+    border: 1px solid var(--primary) !important;
+}
+
+.border-bt-primary {
+    border-bottom: 1px solid var(--primary);
+}
+
+.border-bt-13 {
+    border-bottom: 1px solid var(--line-13);
+}
+
+.border-bt {
+    border-bottom: 1px solid var(--line);
+}
+
+.radius-3 {
+    border-radius: 3px !important;
+}
+
+.radius-5 {
+    border-radius: 5px !important;
+}
+
+.radius-10 {
+    border-radius: 10px !important;
+}
+
+.radius-12 {
+    border-radius: 12px !important;
+}
+
+.radius-16 {
+    border-radius: 16px !important;
+}
+
+.radius-20 {
+    border-radius: 20px !important;
+}
+
+.radius-60 {
+    border-radius: 60px !important;
+}
+
+.rounded-full {
+    border-radius: 999px !important;
+}
+
+.flat-spacing {
+    padding-top: 100px;
+    padding-bottom: 100px;
+
+    @include res(llg) {
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+
+    @include res(md) {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+}
+
+.flat-spacing-2 {
+    padding-top: 54px;
+    padding-bottom: 54px;
+}
+
+.flat-spacing-3 {
+    padding-top: 120px;
+    padding-bottom: 120px;
+
+    @include res(xl) {
+        padding-top: 100px;
+        padding-bottom: 100px;
+    }
+
+    @include res(llg) {
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+
+    @include res(md) {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+}
+
+.flat-spacing-4 {
+    padding-top: 160px;
+    padding-bottom: 160px;
+
+    @include res(xl) {
+        padding-top: 100px;
+        padding-bottom: 100px;
+    }
+
+    @include res(llg) {
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+
+    @include res(md) {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+}
+
+.flat-spacing-5 {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.flat-spacing-6 {
+    padding-top: 100px;
+    padding-bottom: 120px;
+
+    @include res(xl) {
+        padding-top: 100px;
+        padding-bottom: 100px;
+    }
+
+    @include res(llg) {
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+
+    @include res(md) {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+}
+
+.flat-spacing-7 {
+    padding-top: 100px;
+    padding-bottom: 80px;
+
+    @include res(llg) {
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+
+    @include res(md) {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+}
+
+.flat-spacing-8 {
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.flat-spacing-9 {
+    padding-top: 80px;
+    padding-bottom: 80px;
+
+    @include res(md) {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+}
+
+.flat-spacing-10 {
+    padding-top: 100px;
+    padding-bottom: 100px;
+
+    @include res(llg) {
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+
+    @include res(md) {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+}
+
+.flat-spacing-11 {
+    padding-top: 64px;
+    padding-bottom: 64px;
+
+    @include res(md) {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+}
+
+.flat-spacing-12 {
+    padding-top: 120px;
+    padding-bottom: 100px;
+
+    @include res(xl) {
+        padding-top: 100px;
+        padding-bottom: 100px;
+    }
+
+    @include res(llg) {
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+
+    @include res(md) {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+}
+
+.flat-spacing-13 {
+    padding-top: 48px;
+    padding-bottom: 48px;
+}
+
+.flat-spacing-14 {
+    padding-top: 100px;
+    padding-bottom: 160px;
+
+    @include res(xl) {
+        padding-top: 100px;
+        padding-bottom: 100px;
+    }
+
+    @include res(llg) {
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+
+    @include res(md) {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+}
+
+.flat-spacing-15 {
+    padding-top: 90px;
+    padding-bottom: 90px;
+
+    @include res(llg) {
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+
+    @include res(md) {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+}
+
+.flat-spacing-16 {
+    padding-top: 63px;
+    padding-bottom: 63px;
+}
+
+.flat-spacing-17 {
+    padding-top: 172px;
+    padding-bottom: 172px;
+
+    @include res(xl) {
+        padding-top: 100px;
+        padding-bottom: 100px;
+    }
+
+    @include res(llg) {
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+
+    @include res(md) {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+}
+
+[data-grid="grid-1"] {
+    display: grid;
+    gap: 30px;
+    grid-template-columns: 1fr;
+}
+
+[data-grid="grid-2"] {
+    display: grid;
+    gap: 30px;
+    grid-template-columns: 1fr 1fr;
+}
+
+[data-grid="grid-3"] {
+    display: grid;
+    gap: 30px;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+[data-grid="grid-4"] {
+    display: grid;
+    gap: 30px;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+[data-grid="grid-5"] {
+    display: grid;
+    gap: 30px;
+    grid-template-columns: repeat(5, 1fr);
+}
+
+[data-grid="grid-6"] {
+    display: grid;
+    gap: 30px;
+    grid-template-columns: repeat(6, 1fr);
+}
+
+[data-grid="grid-7"] {
+    display: grid;
+    gap: 30px;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+.grid-template-columns-2 {
+    grid-template-columns: 1fr 1fr;
+}
+
+.tf-row-flex {
+    display: flex;
+    flex-direction: row;
+    column-gap: 30px;
+    row-gap: 30px;
+}
+
+.tf-grid-layout {
+    display: grid;
+    column-gap: 15px;
+    row-gap: 30px;
+
+    &.tf-col-2 {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    &.tf-col-3 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    &.tf-col-4 {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    &.tf-col-5 {
+        grid-template-columns: repeat(5, 1fr);
+    }
+
+    &.tf-col-6 {
+        grid-template-columns: repeat(6, 1fr);
+    }
+
+    &.tf-col-7 {
+        grid-template-columns: repeat(7, 1fr);
+    }
+
+    .wd-full {
+        grid-column: 1 / -1;
+    }
+
+    .wd-2-cols {
+        grid-column: span 2;
+    }
+
+
+    @include res(sm, min) {
+        &.sm-col-2 {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        &.sm-col-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        &.sm-col-4 {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        &.sm-col-5 {
+            grid-template-columns: repeat(5, 1fr);
+        }
+
+        &.sm-col-6 {
+            grid-template-columns: repeat(6, 1fr);
+        }
+
+        &.sm-col-7 {
+            grid-template-columns: repeat(7, 1fr);
+        }
+    }
+
+    @include res(md, min) {
+        &.md-col-2 {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        &.md-col-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        &.md-col-4 {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        &.md-col-5 {
+            grid-template-columns: repeat(5, 1fr);
+        }
+
+        &.md-col-6 {
+            grid-template-columns: repeat(6, 1fr);
+        }
+
+        &.md-col-7 {
+            grid-template-columns: repeat(7, 1fr);
+        }
+    }
+
+    @include res(lg, min) {
+        column-gap: 30px;
+
+        &.lg-col-2 {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        &.lg-col-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        &.lg-col-4 {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        &.lg-col-5 {
+            grid-template-columns: repeat(5, 1fr);
+        }
+
+        &.lg-col-6 {
+            grid-template-columns: repeat(6, 1fr);
+        }
+
+        &.lg-col-7 {
+            grid-template-columns: repeat(7, 1fr);
+        }
+    }
+
+    @include res(xl, min) {
+        row-gap: 64px;
+
+        &.column-gap-xl-64 {
+            gap: 64px;
+        }
+
+        &.xl-col-2 {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        &.xl-col-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        &.xl-col-4 {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        &.xl-col-5 {
+            grid-template-columns: repeat(5, 1fr);
+        }
+
+        &.xl-col-6 {
+            grid-template-columns: repeat(6, 1fr);
+        }
+
+        &.xl-col-7 {
+            grid-template-columns: repeat(7, 1fr);
+        }
+    }
+
+    @include res(xxl, min) {
+        &.xxl-col-2 {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        &.xxl-col-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        &.xxl-col-4 {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        &.xxl-col-5 {
+            grid-template-columns: repeat(5, 1fr);
+        }
+
+        &.xxl-col-6 {
+            grid-template-columns: repeat(6, 1fr);
+        }
+
+        &.xxl-col-7 {
+            grid-template-columns: repeat(7, 1fr);
+        }
+    }
+}
+
+.overflow-unset {
+    overflow: unset !important;
+}
+
+.sticky-top {
+    position: sticky !important;
+    z-index: 50;
+    top: 15px;
+    @include transition3;
+}
+
+.wmax {
+    width: max-content !important;
+}
+
+.cursor-not-allowed {
+    cursor: not-allowed;
+}
+
+.cursor-auto {
+    cursor: auto;
+}
+
+
+
+.z-5 {
+    z-index: 5 !important;
+}
+
+.text-line-clamp-1 {
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    display: -webkit-box !important;
+    overflow: hidden;
+}
+
+.text-line-clamp-2 {
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    overflow: hidden;
+}
+
+.aspect-ratio-0 {
+    aspect-ratio: 0 !important;
+}
+
+.aspect-ratio-1 {
+    aspect-ratio: 1/1 !important;
+}
+
+#scroll-top {
+    position: fixed;
+    display: block;
+    width: 48px;
+    height: 48px;
+    line-height: 50px;
+    border-radius: 4px;
+    z-index: 1;
+    border-radius: 50%;
+    opacity: 0;
+    visibility: hidden;
+    cursor: pointer;
+    overflow: hidden;
+    z-index: 100;
+    background-color: var(--main);
+    border: 0;
+    bottom: 92px;
+    right: 20px;
+    padding: 0;
+    @include flex(center, center);
+    @include transition3;
+
+    &.show {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    &.type-1 {
+        bottom: 140px;
+    }
+
+    &:hover {
+        transform: translateY(-5px);
+        background-color: var(--primary);
+    }
+}
+
+/* Preload 
+------------------------------------------- */
+.preload-container {
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 99999999999;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.spinner {
+    width: 60px;
+    height: 60px;
+    border: 3px solid transparent;
+    border-top: 3px solid var(--primary);
+    border-radius: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.br-line {
+    width: 100%;
+    height: 1px;
+
+    &.type-vertical {
+        height: 24px;
+        width: 1px;
+    }
+
+    &.w-22 {
+        width: 22px;
+    }
+
+    &.w-12 {
+        width: 12px;
+    }
+
+}
+
+.opacity-10 {
+    opacity: 0.1 !important;
+}
+
+.simpleParallax {
+    height: 100%;
+    width: 100%;
+
+    img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+}
+
+.backdrop-ft-unset {
+    backdrop-filter: unset !important;
+}
+
+.mb-24 {
+    margin-bottom: 24px;
+}
+
+.mt-30 {
+    margin-top: 30px;
+}
+
+.lt-sp-nor {
+    letter-spacing: -0.32px;
+}
+
+.lt-sp-t2 {
+    letter-spacing: -0.76px !important;
+}
+
+.letter-space-0 {
+    letter-spacing: 0px !important;
+}
+
+.tf-swiper {
+    .swiper-slide {
+        height: auto;
+
+        >* {
+            height: 100%;
+        }
+
+    }
+}
+
+.mb_48 {
+    margin-bottom: 48px !important;
+}
+
+.mb_32 {
+    margin-bottom: 32px !important;
+}
+
+.mb_10 {
+    margin-bottom: 10px !important;
+}
+
+.mb_16 {
+    margin-bottom: 16px !important;
+}
+
+.mb_15 {
+    margin-bottom: 15px !important;
+}
+
+.mb_xxl-60 {
+    @include res(xxl, min) {
+        margin-bottom: 60px !important;
+    }
+}
+
+.text-vertical {
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+}
+
+.py-20 {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.py-10 {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+}
+
+@include res(xl, min) {
+    .gap-xl-64 {
+        gap: 64px !important;
+    }
+}
+
+.cs-pointer {
+    cursor: pointer;
+}
+
+.mb_12 {
+    margin-bottom: 12px !important;
+}
+
+.mb-15 {
+    margin-bottom: 15px !important;
+}
+
+.max-width_1 {
+    max-width: 1424px;
+    width: 100%;
+}
+
+#goTop {
+    position: fixed;
+    padding: 0;
+    bottom: 90px;
+    right: 20px;
+    width: 38px;
+    height: 38px;
+    background: var(--white);
+    color: black;
+    font-size: 20px;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+    border: none;
+    border-radius: 1px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+    box-shadow: 0px 4px 20px 0px #0000001a;
+    z-index: 1000;
+    @include flex(center, center);
+
+    .border-progress {
+        position: absolute;
+        top: -1px;
+        left: -1px;
+        width: calc(100% + 2px);
+        height: calc(100% + 2px);
+        border-radius: 3px;
+        border: 1px solid #AE873E;
+        mask-image: conic-gradient(#AE873E var(--progress-angle, 0deg), transparent 0);
+        -webkit-mask-image: conic-gradient(#AE873E var(--progress-angle, 0deg), transparent 0);
+        content: "";
+        z-index: 1;
+        @include transition3;
+    }
+
+    &.show {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .icon {
+        font-size: 24px;
+        @include transition3;
+        color: var(--primary);
+    }
+
+    .icon-arrow-right-2 {
+        transform: rotate(-90deg);
+    }
+
+    &.pos1 {
+        bottom: 140px;
+        right: 15px;
+    }
+
+    @include res(lg, min) {
+        right: 40px;
+    }
+}
+
+.sw-iconbox {
+    @include res(xxxl, min) {
+        padding-left: 11px;
+        padding-right: 11px;
+    }
+}
+
+.text-trans-none {
+    text-transform: none !important;
+}
+
+@include res(xl, min) {
+    .fs_xl-49 {
+        font-size: 49px !important;
+    }
+
+    .px-xl_30 {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+
+}
+
+@include res(xxl, min) {
+    .pe-xxl-30 {
+        padding-right: 30px;
+    }
+
+    .ps-xxl-30 {
+        padding-left: 30px;
+    }
+
+    .px-xxl_15 {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+}
+
+.vertical-text {
+    transform: rotate(90deg);
+    transform-origin: left top;
+    white-space: nowrap;
+    display: inline-block;
+}
