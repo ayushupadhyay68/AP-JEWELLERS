@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="a" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 164.12 125.81">
+  <defs>
+    <style>
+      .b {
+        isolation: isolate;
+      }
+    </style>
+  </defs>
+  <g class="b">
+    <image width="512" height="445" transform="translate(-.04 3.16) scale(.27)" xlink:href="ap-logo1.png"/>
+  </g>
+  <image width="512" height="361" transform="translate(86.88 4.38) scale(.14)" xlink:href="ap-logo2.png"/>
+</svg>
