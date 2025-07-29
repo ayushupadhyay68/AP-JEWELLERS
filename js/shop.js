@@ -11,24 +11,21 @@
     -------------------------------------------------------------------------*/
     var filterProducts = function () {
         const filters = {
-            availability: null,
-            categories: [],
+            categories: [], // Only coins and biscuits
+            purity: [], // 18KT, 20KT, 22KT, 24KT
             materials: [],
             colors: [],
-            prices: null,
+            prices: null, // Below 10k, 10k-20k, 20k-30k, 30k-40k, 40k-50k, 50k & above
             size: null,
+            weight: null // 1gm, 2gm, 4gm, 8gm, 10gm, 20gm, 50gm
         };
+
         $(".size-check").on("click", function () {
             filters.size = $(this).find(".size").text().trim();
             applyFilters();
             updateMetaFilter();
         });
-        $('input[name="availability"]').change(function () {
-            filters.availability = $(this).attr("id") === "inStock" ? "In stock" : "Out of stock";
-            applyFilters();
-            updateMetaFilter();
-        });
-
+ 
         $('input[name="category"]').change(function () {
             const categoryId = $(this).attr("id");
             let categoryLabel = $(this).next("label").find("span").first().text().trim();
@@ -37,6 +34,21 @@
                 filters.categories.push({ id: categoryId, label: categoryLabel });
             } else {
                 filters.categories = filters.categories.filter((category) => category.id !== categoryId);
+            }
+
+            applyFilters();
+            updateMetaFilter();
+        });
+
+        // Purity filter (18KT, 20KT, 22KT, 24KT)
+        $('input[name="purity"]').change(function () {
+            const purityId = $(this).attr("id");
+            let purityLabel = $(this).next("label").find("span").first().text().trim();
+
+            if ($(this).is(":checked")) {
+                filters.purity.push({ id: purityId, label: purityLabel });
+            } else {
+                filters.purity = filters.purity.filter((purity) => purity.id !== purityId);
             }
 
             applyFilters();
@@ -70,9 +82,20 @@
             applyFilters();
             updateMetaFilter();
         });
+
+        // Updated price filters for Indian currency
         $('input[name="price"]').change(function () {
             const priceId = $(this).attr("id");
             filters.prices = priceId;
+            applyFilters();
+            updateMetaFilter();
+        });
+
+        // Weight filter (1gm, 2gm, 4gm, 8gm, 10gm, 20gm, 50gm)
+        $('input[name="weight"]').change(function () {
+            const weightId = $(this).attr("id");
+            let weightLabel = $(this).next("label").find("span").first().text().trim();
+            filters.weight = weightId ? { id: weightId, label: weightLabel } : null;
             applyFilters();
             updateMetaFilter();
         });
@@ -82,16 +105,16 @@
                 const metaFilterShop = $(this);
                 const appliedFilters = metaFilterShop.find("#applied-filters");
                 appliedFilters.empty();
-
-                if (filters.availability) {
-                    appliedFilters.append(
-                        `<span class="filter-tag remove-tag" data-filter="availability">${filters.availability} <span class="icon icon-close"></span></span>`
-                    );
-                }
-
+ 
                 filters.categories.forEach((category) => {
                     appliedFilters.append(
                         `<span class="filter-tag remove-tag" data-filter="category" data-value="${category.id}">${category.label} <span class="icon icon-close"></span></span>`
+                    );
+                });
+
+                filters.purity.forEach((purity) => {
+                    appliedFilters.append(
+                        `<span class="filter-tag remove-tag" data-filter="purity" data-value="${purity.id}">${purity.label} <span class="icon icon-close"></span></span>`
                     );
                 });
 
@@ -125,6 +148,12 @@
                     );
                 }
 
+                if (filters.weight) {
+                    appliedFilters.append(
+                        `<span class="filter-tag remove-tag" data-filter="weight" data-value="${filters.weight.id}">${filters.weight.label} <span class="icon icon-close"></span></span>`
+                    );
+                }
+
                 const hasFiltersApplied = appliedFilters.children().length > 0;
                 metaFilterShop.toggle(hasFiltersApplied);
             });
@@ -138,14 +167,14 @@
         $(document).on("click", ".remove-tag", function () {
             const filterType = $(this).data("filter");
             const filterValue = $(this).data("value");
-
-            if (filterType === "availability") {
-                filters.availability = null;
-                $('input[name="availability"]').prop("checked", false);
-            }
+ 
             if (filterType === "category") {
                 filters.categories = filters.categories.filter((category) => category.id !== filterValue);
                 $(`input[name="category"][id="${filterValue}"]`).prop("checked", false);
+            }
+            if (filterType === "purity") {
+                filters.purity = filters.purity.filter((purity) => purity.id !== filterValue);
+                $(`input[name="purity"][id="${filterValue}"]`).prop("checked", false);
             }
             if (filterType === "material") {
                 filters.materials = filters.materials.filter((material) => material.id !== filterValue);
@@ -163,23 +192,29 @@
                 filters.size = null;
                 $(".size-check").removeClass("active");
             }
+            if (filterType === "weight") {
+                filters.weight = null;
+                $('input[name="weight"]').prop("checked", false);
+            }
 
             applyFilters();
             updateMetaFilter();
         });
 
         $("#remove-all,#reset-filter").click(function () {
-            filters.availability = null;
-            filters.categories = [];
+             filters.categories = [];
+            filters.purity = [];
             filters.materials = [];
             filters.colors = [];
             filters.prices = null;
             filters.size = null;
-            $('input[name="availability"]').prop("checked", false);
+            filters.weight = null;
             $('input[name="category"]').prop("checked", false);
+            $('input[name="purity"]').prop("checked", false);
             $('input[name="material"]').prop("checked", false);
             $('input[name="color"]').prop("checked", false);
             $('input[name="price"]').prop("checked", false);
+            $('input[name="weight"]').prop("checked", false);
             $(".size-check").removeClass("active");
             applyFilters();
             updateMetaFilter();
@@ -192,7 +227,8 @@
             $(".wrapper-shop .card_product--V01, .wrapper-shop .tempo").each(function () {
                 const product = $(this);
                 let showProduct = true;
-                const priceNew = parseFloat(product.find(".price-new").text().replace(/[$,]/g, "")) || null;
+                const priceNew = parseFloat(product.find(".price-new").text().replace(/[₹,]/g, "")) || null;
+                const productWeight = product.attr("data-weight");
 
                 if (filters.size) {
                     const sizeValue = product.attr("data-size");
@@ -200,71 +236,84 @@
                         showProduct = false;
                     }
                 }
-
-                if (filters.availability) {
-                    const availabilityStatus = product.data("availability");
-                    if (filters.availability !== availabilityStatus) {
-                        showProduct = false;
-                    }
-                }
-
+ 
                 if (filters.categories.length > 0) {
                     const categoryId = product.attr("data-category");
                     if (!filters.categories.some((category) => category.id === categoryId)) {
                         showProduct = false;
                     }
                 }
+
+                if (filters.purity.length > 0) {
+                    const purityId = product.attr("data-purity");
+                    if (!filters.purity.some((purity) => purity.id === purityId)) {
+                        showProduct = false;
+                    }
+                }
+
                 if (filters.materials.length > 0) {
                     const materialId = product.attr("data-material");
                     if (!filters.materials.some((material) => material.id === materialId)) {
                         showProduct = false;
                     }
                 }
+
                 if (filters.colors.length > 0) {
                     const colorId = product.attr("data-color");
                     if (!filters.colors.some((color) => color.id === colorId)) {
                         showProduct = false;
                     }
                 }
+
                 if (filters.prices) {
                     if (priceNew === null || isNaN(priceNew)) {
                         showProduct = false;
                     } else {
                         switch (filters.prices) {
-                            case "u-500":
-                                if (priceNew >= 500) showProduct = false;
+                            case "u-10k":
+                                if (priceNew >= 10000) showProduct = false;
                                 break;
-                            case "u-1000":
-                                if (priceNew >= 1000) showProduct = false;
+                            case "10k-20k":
+                                if (priceNew < 10000 || priceNew >= 20000) showProduct = false;
                                 break;
-                            case "u-2000":
-                                if (priceNew >= 2000) showProduct = false;
+                            case "20k-30k":
+                                if (priceNew < 20000 || priceNew >= 30000) showProduct = false;
                                 break;
-                            case "up-2000":
-                                if (priceNew < 2000) showProduct = false;
+                            case "30k-40k":
+                                if (priceNew < 30000 || priceNew >= 40000) showProduct = false;
+                                break;
+                            case "40k-50k":
+                                if (priceNew < 40000 || priceNew >= 50000) showProduct = false;
+                                break;
+                            case "50k-up":
+                                if (priceNew < 50000) showProduct = false;
                                 break;
                         }
+                    }
+                }
+
+                // Weight filter logic (1gm, 2gm, 4gm, 8gm, 10gm, 20gm, 50gm)
+                if (filters.weight) {
+                    if (!productWeight || productWeight !== filters.weight.id) {
+                        showProduct = false;
                     }
                 }
 
                 product.toggle(showProduct);
 
                 if (showProduct) {
-                    visibleProductCountGrid++;
-                    // if (product.hasClass("grid")) {
-                    // } else if (product.hasClass("style-list")) {
-                    //     visibleProductCountList++;
-                    // }
+                     visibleProductCountGrid++;
                 }
             });
 
             if (
-                filters.availability ||
-                filters.categories.length > 0 ||
+                 filters.categories.length > 0 ||
+                filters.purity.length > 0 ||
                 filters.materials.length > 0 ||
                 filters.colors.length > 0 ||
                 filters.prices ||
-                filters.size
+                filters.size ||
+                filters.weight
             ) {
                 $("#product-count-grid").hide();
             } else {
@@ -296,9 +345,7 @@
         let isListActive = $(".sw-layout-list").hasClass("active");
         let originalProductsList = $("#listLayout .card_product--V01").clone();
         let originalProductsGrid = $("#gridLayout .card_product--V01").clone();
-        // let paginationList = $("#listLayout .wg-pagination").clone();
-        // let paginationGrid = $("#gridLayout .wg-pagination").clone();
-
+  
         $(".select-item").on("click", function () {
             const sortValue = $(this).data("sort-value");
             $(".select-item").removeClass("active");
@@ -344,14 +391,14 @@
             if (sortValue === "price-low-high") {
                 products.sort(
                     (a, b) =>
-                        parseFloat($(a).find(".price-new").text().replace(/[$,]/g, "")) -
-                        parseFloat($(b).find(".price-new").text().replace(/[$,]/g, ""))
+                        parseFloat($(a).find(".price-new").text().replace(/[₹,]/g, "")) -
+                        parseFloat($(b).find(".price-new").text().replace(/[₹,]/g, ""))
                 );
             } else if (sortValue === "price-high-low") {
                 products.sort(
                     (a, b) =>
-                        parseFloat($(b).find(".price-new").text().replace(/[$,]/g, "")) -
-                        parseFloat($(a).find(".price-new").text().replace(/[$,]/g, ""))
+                        parseFloat($(b).find(".price-new").text().replace(/[₹,]/g, "")) -
+                        parseFloat($(a).find(".price-new").text().replace(/[₹,]/g, ""))
                 );
             } else if (sortValue === "a-z") {
                 products.sort((a, b) =>
@@ -370,17 +417,7 @@
             }
             displayPagination(products, isListActive);
         }
-
-        // function displayPagination(products, isListActive) {
-        //     if (products.length >= 12) {
-        //         if (isListActive) {
-        //             $("#listLayout").append(paginationList.clone());
-        //         } else {
-        //             $("#gridLayout").append(paginationGrid.clone());
-        //         }
-        //     }
-        // }
-
+ 
         function setGridLayout(layoutClass) {
             $("#gridLayout").show().removeClass().addClass(`wrapper-shop tf-grid-layout ${layoutClass}`);
             $(".tf-view-layout-switch").removeClass("active");
@@ -512,6 +549,7 @@
             }
         });
     };
+
     /* Loading product 
     -------------------------------------------------------------------------*/
     var loadProduct = function () {
@@ -573,7 +611,7 @@
                 rect.top >= 0 &&
                 rect.left >= 0 &&
                 rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+                rect.right <= (windowWidth || document.documentElement.clientWidth)
             );
         }
 
@@ -586,4 +624,4 @@
         swLayoutShop();
         loadProduct();
     });
-})(jQuery);
+})(jQuery); 

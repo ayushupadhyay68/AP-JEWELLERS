@@ -31,7 +31,8 @@
  *Parallaxie
  *Update Compare Empty
  *Delete Wishlist
- *Preloader
+ *Preloader 
+
  */
 
 (function ($) {
@@ -1427,6 +1428,7 @@
         });
     };
 
+
     /* Subscribe Form 
     -------------------------------------------------------------------------*/
     var ajaxSubscribe = {
@@ -1559,6 +1561,65 @@
         });
     };
 
+
+    // Ap Jewellers Promse section
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                }
+            });
+        }, {
+            threshold: 0.4
+        });
+
+        const animatedSection = document.querySelector('.animate-on-scroll');
+        if (animatedSection) {
+            observer.observe(animatedSection);
+        }
+    });
+
+
+
+    // Gold Exchange Video
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const video = document.getElementById('exchangeVideo');
+        const playBtn = document.getElementById('playPauseBtn');
+
+        playBtn.addEventListener('click', () => {
+            if (video.paused) {
+                video.play();
+                playBtn.innerHTML = '❚❚';
+                playBtn.classList.add('hide');
+            } else {
+                video.pause();
+                playBtn.innerHTML = '▶';
+                playBtn.classList.remove('hide');
+            }
+        });
+
+        video.addEventListener('click', () => {
+            if (video.paused) {
+                video.play();
+                playBtn.innerHTML = '❚❚';
+                playBtn.classList.add('hide');
+            } else {
+                video.pause();
+                playBtn.innerHTML = '▶';
+                playBtn.classList.remove('hide');
+            }
+        });
+
+        video.addEventListener('ended', () => {
+            playBtn.innerHTML = '▶';
+            playBtn.classList.remove('hide');
+        });
+    });
+
+
     // Dom Ready
     $(function () {
         dropdownSelect();
@@ -1603,3 +1664,7 @@
         preloader();
     });
 })(jQuery);
+
+
+
+
