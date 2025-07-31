@@ -1581,6 +1581,137 @@
         }
     });
 
+    //Registration api
+    const registerForm = document.getElementById("registerForm");
+
+    registerForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(registerForm);
+        const password = formData.get("password");
+        const confirmPassword = formData.get("confirm_password");
+
+        if (password !== confirmPassword) {
+            alert("Passwords do not match!");
+            return;
+        }
+
+        const data = {
+            name: formData.get("name"),  // ✅ Use single name field
+            email: formData.get("email"),
+            password: password,
+            confirm_password: confirmPassword
+        };
+
+        try {
+            const res = await fetch("http://127.0.0.1:8000/api/register", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data)
+            });
+
+            const result = await res.json();
+
+            if (res.ok) {
+                alert("Registration successful!");
+                registerForm.reset();
+                const modal = bootstrap.Modal.getInstance(document.getElementById('register'));
+                modal.hide();
+            } else {
+                alert(result.message || "Registration failed.");
+            }
+
+        } catch (error) {
+            console.error("Error:", error);
+            alert("Something went wrong while registering.");
+        }
+    });
+    //Log in Api
+    document.addEventListener("DOMContentLoaded", function () {
+        const loginForm = document.querySelector(".form-log");
+
+        loginForm.addEventListener("submit", async function (e) {
+            e.preventDefault();
+
+            // Get email and password values
+            const email = loginForm.querySelector('input[type="text"]').value;
+            const password = loginForm.querySelector('input[type="password"]').value;
+
+            try {
+                const response = await fetch("http://127.0.0.1:8000/api/login", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        email: email,
+                        password: password,
+                    }),
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+
+                    // Optional: Save token to localStorage
+                    // localStorage.setItem("token", data.token);
+
+                    // ✅ Redirect to home or dashboard
+                    window.location.href = "../index.html"; // Change as needed
+                } else {
+                    const error = await response.json();
+                    alert("Login failed: " + (error.message || "Invalid credentials"));
+                }
+            } catch (err) {
+                console.error("Login error:", err);
+                alert("An error occurred. Please try again.");
+            }
+        });
+    });
+    //Log Out api
+    //Password reset api
+    document.getElementById('resetForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const emailInput = document.getElementById('resetEmail');
+        const messageP = document.getElementById('resetMessage');
+        const email = emailInput.value.trim();
+
+        messageP.textContent = ''; // clear previous messages
+
+        if (!email) {
+            messageP.style.color = 'red';
+            messageP.textContent = 'Please enter your email.';
+            return;
+        }
+
+        try {
+            const response = await fetch('http://127.0.0.1:8000/api/changepassword', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email }),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                messageP.style.color = 'green';
+                messageP.textContent = data.message || 'Reset link sent to your email.';
+                emailInput.value = ''; // clear input
+            } else {
+                messageP.style.color = 'red';
+                messageP.textContent = data.error || 'Something went wrong.';
+            }
+        } catch (error) {
+            messageP.style.color = 'red';
+            messageP.textContent = 'An error occurred. Please try again later.';
+            console.error('Reset password error:', error);
+        }
+    });
+    //Categories api
 
 
     // Gold Exchange Video
