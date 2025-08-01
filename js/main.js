@@ -1562,7 +1562,7 @@
     };
 
 
-    // Ap Jewellers Promse section
+    // Ap Jewellers Promsie section
 
     document.addEventListener("DOMContentLoaded", () => {
         const observer = new IntersectionObserver((entries) => {
@@ -1581,173 +1581,317 @@
         }
     });
 
-    //Registration api
-    const registerForm = document.getElementById("registerForm");
 
-    registerForm.addEventListener("submit", async (e) => {
-        e.preventDefault();
-
-        const formData = new FormData(registerForm);
-        const password = formData.get("password");
-        const confirmPassword = formData.get("confirm_password");
-
-        if (password !== confirmPassword) {
-            alert("Passwords do not match!");
-            return;
-        }
-
-        const data = {
-            name: formData.get("name"),  // ✅ Use single name field
-            email: formData.get("email"),
-            password: password,
-            confirm_password: confirmPassword
-        };
-
-        try {
-            const res = await fetch("http://127.0.0.1:8000/api/register", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(data)
+    document.addEventListener('DOMContentLoaded', function () {
+        // Password toggle functionality
+        document.querySelectorAll('.toggle-pass').forEach(toggle => {
+            toggle.addEventListener('click', function () {
+                const passwordField = this.parentElement.querySelector('.password-field');
+                const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordField.setAttribute('type', type);
+                this.classList.toggle('show-password');
             });
+        });
 
-            const result = await res.json();
-
-            if (res.ok) {
-                alert("Registration successful!");
-                registerForm.reset();
-                const modal = bootstrap.Modal.getInstance(document.getElementById('register'));
-                modal.hide();
-            } else {
-                alert(result.message || "Registration failed.");
-            }
-
-        } catch (error) {
-            console.error("Error:", error);
-            alert("Something went wrong while registering.");
-        }
-    });
-    //Log in Api
-    document.addEventListener("DOMContentLoaded", function () {
-        const loginForm = document.querySelector(".form-log");
-
-        loginForm.addEventListener("submit", async function (e) {
+        // Form submission
+        document.getElementById('registerForm').addEventListener('submit', async function (e) {
             e.preventDefault();
 
-            // Get email and password values
-            const email = loginForm.querySelector('input[type="text"]').value;
-            const password = loginForm.querySelector('input[type="password"]').value;
+            // Clear previous errors
+            document.querySelectorAll('.error-message').forEach(el => {
+                el.textContent = '';
+                el.style.display = 'none';
+            });
+            // document.getElementById('register-success').style.display = 'none';
+
+            // Get form values
+            const formData = {
+                name: document.getElementById('name').value.trim(),
+                email: document.getElementById('email').value.trim(),
+                password: document.getElementById('password').value,
+                password_confirmation: document.getElementById('confirm_password').value,
+                tc: document.getElementById('tc').checked
+            };
+
+            // Client-side validation
+            let isValid = true;
+
+            if (!formData.name) {
+                showError('nameError', 'Name is required');
+                isValid = false;
+            }
+
+            if (!formData.email) {
+                showError('emailError', 'Email is required');
+                isValid = false;
+            } else if (!/^\S+@\S+\.\S+$/.test(formData.email)) {
+                showError('emailError', 'Please enter a valid email');
+                isValid = false;
+            }
+
+            if (!formData.password) {
+                showError('passwordError', 'Password is required');
+                isValid = false;
+            } else if (formData.password.length < 6) {
+                showError('passwordError', 'Password must be at least 6 characters');
+                isValid = false;
+            }
+
+            if (formData.password !== formData.password_confirmation) {
+                showError('passwordError', 'Passwords do not match');
+                isValid = false;
+            }
+
+            if (!formData.tc) {
+                showError('tcError', 'You must accept the terms');
+                isValid = false;
+            }
+
+            if (!isValid) return;
 
             try {
-                const response = await fetch("http://127.0.0.1:8000/api/login", {
-                    method: "POST",
+                const response = await fetch('http://127.0.0.1:8000/api/register', {
+                    method: 'POST',
                     headers: {
-                        "Content-Type": "application/json",
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
                     },
-                    body: JSON.stringify({
-                        email: email,
-                        password: password,
-                    }),
+                    body: JSON.stringify(formData)
                 });
 
-                if (response.ok) {
-                    const data = await response.json();
+                const data = await response.json();
 
-                    // Optional: Save token to localStorage
-                    // localStorage.setItem("token", data.token);
-
-                    // ✅ Redirect to home or dashboard
-                    window.location.href = "../index.html"; // Change as needed
-                } else {
-                    const error = await response.json();
-                    alert("Login failed: " + (error.message || "Invalid credentials"));
+                if (!response.ok) {
+                    // Handle validation errors from server
+                    if (data.errors) {
+                        for (const [field, messages] of Object.entries(data.errors)) {
+                            const errorElement = document.getElementById(`${field}Error`);
+                            if (errorElement) {
+                                showError(`${field}Error`, messages.join(', '));
+                            }
+                        }
+                    }
+                    throw new Error(data.message || 'Registration failed');
                 }
-            } catch (err) {
-                console.error("Login error:", err);
-                alert("An error occurred. Please try again.");
+
+                // Success case
+                showSuccess('Registration successful!');
+
+                // Store token if available
+                if (data.token) {
+                    localStorage.setItem('authToken', data.token);
+                }
+
+                // Reset form
+                document.getElementById('registerForm').reset();
+
+                // Optionally redirect after delay
+                setTimeout(() => {
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('register'));
+                    if (modal) modal.hide();
+                }, 1500);
+
+            } catch (error) {
+                console.error('Error:', error);
+                showError('register-success', error.message);
             }
         });
-    });
-    //Log Out api
-    //Password reset api
-    document.getElementById('resetForm').addEventListener('submit', async (e) => {
-        e.preventDefault();
 
-        const emailInput = document.getElementById('resetEmail');
-        const messageP = document.getElementById('resetMessage');
-        const email = emailInput.value.trim();
-
-        messageP.textContent = ''; // clear previous messages
-
-        if (!email) {
-            messageP.style.color = 'red';
-            messageP.textContent = 'Please enter your email.';
-            return;
+        function showError(elementId, message) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.textContent = message;
+                element.style.display = 'block';
+                element.style.color = 'red';
+            }
         }
 
-        try {
-            const response = await fetch('http://127.0.0.1:8000/api/changepassword', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ email }),
+        function showSuccess(message) {
+            const element = document.getElementById('register-success');
+            element.textContent = message;
+            element.style.display = 'block';
+            element.style.color = 'green';
+        }
+    });
+
+    // javascript for cart funtionality
+    document.addEventListener('DOMContentLoaded', function () {
+        // Quantity adjustment functionality
+        document.querySelectorAll('.quantity-selector').forEach(selector => {
+            const minusBtn = selector.querySelector('.minus-btn');
+            const plusBtn = selector.querySelector('.plus-btn');
+            const input = selector.querySelector('.quantity-input');
+            const priceElement = selector.closest('.row').querySelector('.item-price');
+            const basePrice = parseFloat(priceElement.textContent.replace('₹', ''));
+
+            minusBtn.addEventListener('click', () => {
+                let value = parseInt(input.value);
+                if (value > 1) {
+                    input.value = value - 1;
+                    updatePrice();
+                    updateCartTotal();
+                }
             });
 
-            const data = await response.json();
+            plusBtn.addEventListener('click', () => {
+                let value = parseInt(input.value);
+                input.value = value + 1;
+                updatePrice();
+                updateCartTotal();
+            });
 
-            if (response.ok) {
-                messageP.style.color = 'green';
-                messageP.textContent = data.message || 'Reset link sent to your email.';
-                emailInput.value = ''; // clear input
-            } else {
-                messageP.style.color = 'red';
-                messageP.textContent = data.error || 'Something went wrong.';
+            input.addEventListener('change', () => {
+                if (input.value < 1) input.value = 1;
+                updatePrice();
+                updateCartTotal();
+            });
+
+            function updatePrice() {
+                const total = basePrice * parseInt(input.value);
+                priceElement.textContent = '₹' + total.toFixed(2);
             }
-        } catch (error) {
-            messageP.style.color = 'red';
-            messageP.textContent = 'An error occurred. Please try again later.';
-            console.error('Reset password error:', error);
+        });
+
+        // Empty cart functionality
+        document.querySelector('.empty-cart-btn').addEventListener('click', function () {
+            if (confirm('Are you sure you want to empty your cart?')) {
+                document.querySelector('.cart-items').innerHTML = '<div class="p-4 text-center"><p>Your cart is empty</p></div>';
+                document.querySelector('.cart-subtotal').textContent = '₹0.00';
+                document.querySelector('.offcanvas-title').textContent = 'Your Cart (0)';
+                // You would also need to update the free shipping progress here
+            }
+        });
+
+        // Remove item functionality
+        document.querySelectorAll('.remove-item').forEach(btn => {
+            btn.addEventListener('click', function () {
+                this.closest('.border-bottom').remove();
+                updateCartCount();
+                updateCartTotal();
+            });
+        });
+
+        // Helper functions
+        function updateCartTotal() {
+            let subtotal = 0;
+            document.querySelectorAll('.item-price').forEach(priceEl => {
+                subtotal += parseFloat(priceEl.textContent.replace('₹', ''));
+            });
+            document.querySelector('.cart-subtotal').textContent = '₹' + subtotal.toFixed(2);
+
+            // Update free shipping progress (example)
+            const progress = document.querySelector('.progress-bar');
+            const newWidth = Math.min((subtotal / 500) * 100, 100);
+            progress.style.width = newWidth + '%';
+
+            // Update the text
+            const remaining = 500 - subtotal;
+            if (remaining > 0) {
+                document.querySelector('.bg-light .fw-medium').textContent = `₹${subtotal.toFixed(2)}/₹500`;
+                document.querySelector('.bg-light span:first-child').textContent =
+                    `Only ₹${remaining.toFixed(2)} away from free shipping!`;
+            } else {
+                document.querySelector('.bg-light .fw-medium').textContent = `₹${subtotal.toFixed(2)}/₹500`;
+                document.querySelector('.bg-light span:first-child').textContent = 'You qualify for free shipping!';
+            }
+        }
+
+        function updateCartCount() {
+            const count = document.querySelectorAll('.border-bottom').length - 3; // subtract non-item borders
+            document.querySelector('.offcanvas-title').textContent = `Your Cart (${count})`;
         }
     });
-    //Categories api
 
+    document.addEventListener('DOMContentLoaded', function () {
+        // Cart functionality
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-    // Gold Exchange Video
+        // Update cart count
+        function updateCartCount() {
+            const count = cart.reduce((total, item) => total + item.quantity, 0);
+            document.querySelectorAll('.cart-count').forEach(el => {
+                el.textContent = count;
+                el.style.display = count > 0 ? 'block' : 'none';
+            });
+        }
 
-    document.addEventListener('DOMContentLoaded', () => {
-        const video = document.getElementById('exchangeVideo');
-        const playBtn = document.getElementById('playPauseBtn');
+        // Save cart
+        function saveCart() {
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+        }
 
-        playBtn.addEventListener('click', () => {
-            if (video.paused) {
-                video.play();
-                playBtn.innerHTML = '❚❚';
-                playBtn.classList.add('hide');
-            } else {
-                video.pause();
-                playBtn.innerHTML = '▶';
-                playBtn.classList.remove('hide');
+        // Add to cart
+        document.addEventListener('click', function (e) {
+            if (e.target.closest('.add-to-cart-btn')) {
+                const btn = e.target.closest('.add-to-cart-btn');
+                const product = {
+                    id: btn.dataset.id,
+                    name: btn.dataset.name,
+                    price: parseFloat(btn.dataset.price),
+                    image: btn.dataset.image,
+                    quantity: 1
+                };
+
+                const existingItem = cart.find(item => item.id === product.id);
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push(product);
+                }
+
+                btn.closest('.cart-control').classList.add('active');
+                saveCart();
+            }
+
+            // Quantity controls
+            if (e.target.closest('.plus-qty')) {
+                const controls = e.target.closest('.quantity-controls');
+                const productId = controls.closest('.cart-control').querySelector('.add-to-cart-btn').dataset.id;
+                const item = cart.find(item => item.id === productId);
+                if (item) {
+                    item.quantity += 1;
+                    controls.querySelector('.quantity').textContent = item.quantity;
+                    saveCart();
+                }
+            }
+
+            if (e.target.closest('.minus-qty')) {
+                const controls = e.target.closest('.quantity-controls');
+                const productId = controls.closest('.cart-control').querySelector('.add-to-cart-btn').dataset.id;
+                const item = cart.find(item => item.id === productId);
+                if (item) {
+                    item.quantity = Math.max(1, item.quantity - 1);
+                    controls.querySelector('.quantity').textContent = item.quantity;
+                    saveCart();
+                }
+            }
+
+            if (e.target.closest('.btn-remove')) {
+                const controls = e.target.closest('.quantity-controls');
+                const productId = controls.closest('.cart-control').querySelector('.add-to-cart-btn').dataset.id;
+                cart = cart.filter(item => item.id !== productId);
+                controls.closest('.cart-control').classList.remove('active');
+                saveCart();
             }
         });
 
-        video.addEventListener('click', () => {
-            if (video.paused) {
-                video.play();
-                playBtn.innerHTML = '❚❚';
-                playBtn.classList.add('hide');
-            } else {
-                video.pause();
-                playBtn.innerHTML = '▶';
-                playBtn.classList.remove('hide');
-            }
-        });
+        // Initialize cart buttons
+        function initCartButtons() {
+            document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+                const productId = btn.dataset.id;
+                const cartItem = cart.find(item => item.id === productId);
+                const cartControl = btn.closest('.cart-control');
 
-        video.addEventListener('ended', () => {
-            playBtn.innerHTML = '▶';
-            playBtn.classList.remove('hide');
-        });
+                if (cartItem) {
+                    cartControl.classList.add('active');
+                    cartControl.querySelector('.quantity').textContent = cartItem.quantity;
+                }
+            });
+            updateCartCount();
+        }
+
+        initCartButtons();
     });
 
 

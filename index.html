@@ -418,78 +418,35 @@
                         Find your signature look today.
                     </p>
                 </div>
-                <div dir="ltr" class="swiper tf-swiper max-width_1 wow fadeInUp" data-preview="4" data-tablet="4"
-                    data-mobile-sm="3" data-mobile="2" data-space-lg="64" data-space-md="30" data-space="15"
-                    data-pagination="2" data-pagination-sm="3" data-pagination-md="4" data-pagination-lg="6">
-                    <div class="swiper-wrapper">
-                        <!-- item 1 -->
-                        <div class="swiper-slide">
-                            <a class='box_collection--V01 style_2 hover-img' href='./pages/shop.html'>
-                                <div class="image img-style">
+                <div dir="ltr" class="tf-categories-swiper swiper max-width_1 wow fadeInUp" data-preview="2"
+                    data-tablet="2" data-mobile-sm="2" data-mobile="2" data-space-lg="64" data-space-md="30"
+                    data-space="15" data-pagination="2" data-pagination-sm="2" data-pagination-md="2"
+                    data-pagination-lg="2">
+                    <div class="tf-categories-wrapper swiper-wrapper">
+                        <!-- 24 KT Gold Biscuit -->
+                        <div class="tf-categories-slide swiper-slide">
+                            <a class='tf-categories-box style_2 tf-categories-hover' href='./pages/shop.html'>
+                                <div class="tf-categories-image">
                                     <img src="images/collections/biscuits/dev_qw34n.png"
                                         data-src="images/collections/biscuits/dev_qw34n.png" alt=""
-                                        class=" ls-is-cached lazyloaded">
+                                        class="ls-is-cached lazyloaded">
                                 </div>
-                                <h5 class="name-cls link fw-normal">24 KT Gold Biscuit</h5>
+                                <h5 class="tf-categories-name">24 KT Gold Biscuit</h5>
                             </a>
                         </div>
-                        <!-- item 2 -->
-                        <div class="swiper-slide">
-                            <a class='box_collection--V01 style_2 hover-img' href='./pages/shop.html'>
-                                <div class="image img-style">
+                        <!-- 22 KT Gold Coin -->
+                        <div class="tf-categories-slide swiper-slide">
+                            <a class='tf-categories-box style_2 tf-categories-hover' href='./pages/shop.html'>
+                                <div class="tf-categories-image">
                                     <img src="images/collections/COINS/gev73.png"
                                         data-src="images/collections/COINS/gev73.png" alt=""
-                                        class=" ls-is-cached lazyloaded">
+                                        class="ls-is-cached lazyloaded">
                                 </div>
-                                <h5 class="name-cls link fw-normal">24 KT Gold Coin</h5>
-                            </a>
-                        </div>
-                        <!-- item 3 -->
-                        <div class="swiper-slide">
-                            <a class='box_collection--V01 style_2 hover-img' href='./pages/shop.html'>
-                                <div class="image img-style">
-                                    <img src="images/collections/COINS/gev73.png"
-                                        data-src="images/collections/COINS/gev73.png" alt=""
-                                        class=" ls-is-cached lazyloaded">
-                                </div>
-                                <h5 class="name-cls link fw-normal">22 KT Gold Coin</h5>
-                            </a>
-                        </div>
-                        <!-- item 4 -->
-                        <div class="swiper-slide">
-                            <a class='box_collection--V01 style_2 hover-img' href='./pages/shop.html'>
-                                <div class="image img-style">
-                                    <img src="images/collections/biscuits/iim5d.png"
-                                        data-src="images/collections/cls-21.jpg" alt=""
-                                        class=" ls-is-cached lazyloaded">
-                                </div>
-                                <h5 class="name-cls link fw-normal">24 KT Gold Biscuit</h5>
-                            </a>
-                        </div>
-                        <!-- item 5 -->
-                        <div class="swiper-slide">
-                            <a class='box_collection--V01 style_2 hover-img' href='./pages/shop.html'>
-                                <div class="image img-style">
-                                    <img src="images/collections/COINS/gev73.png"
-                                        data-src="images/collections/COINS/gev73.png" alt=""
-                                        class=" ls-is-cached lazyloaded">
-                                </div>
-                                <h5 class="name-cls link fw-normal">18 KT Gold Coin</h5>
-                            </a>
-                        </div>
-                        <!-- item 6 -->
-                        <div class="swiper-slide">
-                            <a class='box_collection--V01 style_2 hover-img' href='./pages/shop.html'>
-                                <div class="image img-style">
-                                    <img src="images/collections/COINS/khcil.png"
-                                        data-src="images/collections/COINS/khcil.png" alt=""
-                                        class=" ls-is-cached lazyloaded">
-                                </div>
-                                <h5 class="name-cls link fw-normal">20 KT Gold Coin</h5>
+                                <h5 class="tf-categories-name">22 KT Gold Coin</h5>
                             </a>
                         </div>
                     </div>
-                    <div class="sw-dot-default tf-sw-pagination"></div>
+                    <div class="tf-categories-pagination sw-dot-default tf-sw-pagination"></div>
                 </div>
 
             </div>
@@ -594,12 +551,23 @@
                                                     <span class="tooltip">Add to Wishlist</span>
                                                 </a>
                                             </li>
-                                            <li>
-                                                <a href="#quickAdd" data-bs-toggle="modal"
-                                                    class="hover-tooltip tooltip-left box-icon">
+                                            <li class="cart-control">
+                                                <!-- Add to Cart Button -->
+                                                <a href="javascript:void(0);"
+                                                    class="hover-tooltip tooltip-left box-icon add-to-cart-btn"
+                                                    data-id="prod-1" data-name="1 GM Gold Coin" data-price="9747.00"
+                                                    data-image="images/collections/COINS/600105ZFCAAP00_1.jpg">
                                                     <span class="icon icon-shop-cart"></span>
-                                                    <span class="tooltip">Quick Add</span>
+                                                    <span class="tooltip">Add to Cart</span>
                                                 </a>
+                                                <!-- Quantity Controls -->
+                                                <div class="quantity-controls d-none">
+                                                    <button class="btn-qty minus-qty"><i
+                                                            class="icon-minus"></i></button>
+                                                    <span class="quantity">1</span>
+                                                    <button class="btn-qty plus-qty"><i class="icon-plus"></i></button>
+                                                    <button class="btn-remove"><i class="icon-trash"></i></button>
+                                                </div>
                                             </li>
                                             <li>
                                                 <a href="#quickView" data-bs-toggle="modal"
@@ -623,8 +591,8 @@
                                             1 GM Gold Coin
                                         </a>
                                         <div class="price-wrap style-white">
-                                            <span class="price-new h5 text-secondary-4">₹3,370.00</span>
-                                            <span class=" price fw-normal text-black">24 KT</span>
+                                            <span class="price-new h5 text-secondary-4">₹9,747.00</span>
+                                            <span class=" price fw-normal text-black">22 KT</span>
                                         </div>
                                     </div>
                                 </div>
@@ -649,12 +617,23 @@
                                                     <span class="tooltip">Add to Wishlist</span>
                                                 </a>
                                             </li>
-                                            <li>
-                                                <a href="#shoppingCart" data-bs-toggle="offcanvas"
-                                                    class="hover-tooltip tooltip-left box-icon">
+                                            <li class="cart-control">
+                                                <!-- Add to Cart Button -->
+                                                <a href="javascript:void(0);"
+                                                    class="hover-tooltip tooltip-left box-icon add-to-cart-btn"
+                                                    data-id="prod-1" data-name="1 GM Gold Coin" data-price="9747.00"
+                                                    data-image="images/collections/COINS/600105ZFCAAP00_1.jpg">
                                                     <span class="icon icon-shop-cart"></span>
                                                     <span class="tooltip">Add to Cart</span>
                                                 </a>
+                                                <!-- Quantity Controls -->
+                                                <div class="quantity-controls d-none">
+                                                    <button class="btn-qty minus-qty"><i
+                                                            class="icon-minus"></i></button>
+                                                    <span class="quantity">1</span>
+                                                    <button class="btn-qty plus-qty"><i class="icon-plus"></i></button>
+                                                    <button class="btn-remove"><i class="icon-trash"></i></button>
+                                                </div>
                                             </li>
                                             <li>
                                                 <a href="#quickView" data-bs-toggle="modal"
@@ -678,8 +657,8 @@
                                             2 GM Gold Coin
                                         </a>
                                         <div class="price-wrap style-white">
-                                            <span class="price-new h5 text-secondary-4">₹3,370.00</span>
-                                            <span class=" price fw-normal text-black">24 KT</span>
+                                            <span class="price-new h5 text-secondary-4">₹19,878.00</span>
+                                            <span class=" price fw-normal text-black">22 KT</span>
                                         </div>
                                     </div>
                                 </div>
@@ -704,12 +683,23 @@
                                                     <span class="tooltip">Add to Wishlist</span>
                                                 </a>
                                             </li>
-                                            <li>
-                                                <a href="#shoppingCart" data-bs-toggle="offcanvas"
-                                                    class="hover-tooltip tooltip-left box-icon">
+                                            <li class="cart-control">
+                                                <!-- Add to Cart Button -->
+                                                <a href="javascript:void(0);"
+                                                    class="hover-tooltip tooltip-left box-icon add-to-cart-btn"
+                                                    data-id="prod-1" data-name="1 GM Gold Coin" data-price="9747.00"
+                                                    data-image="images/collections/COINS/600105ZFCAAP00_1.jpg">
                                                     <span class="icon icon-shop-cart"></span>
                                                     <span class="tooltip">Add to Cart</span>
                                                 </a>
+                                                <!-- Quantity Controls -->
+                                                <div class="quantity-controls d-none">
+                                                    <button class="btn-qty minus-qty"><i
+                                                            class="icon-minus"></i></button>
+                                                    <span class="quantity">1</span>
+                                                    <button class="btn-qty plus-qty"><i class="icon-plus"></i></button>
+                                                    <button class="btn-remove"><i class="icon-trash"></i></button>
+                                                </div>
                                             </li>
                                             <li>
                                                 <a href="#quickView" data-bs-toggle="modal"
@@ -726,7 +716,6 @@
                                                 </a>
                                             </li>
                                         </ul>
-
                                     </div>
                                     <div class="card_product-info">
                                         <a class='name-product h5 fw-normal text-black link text-line-clamp-2'
@@ -734,15 +723,15 @@
                                             4 GM Gold Coin
                                         </a>
                                         <div class="price-wrap style-white">
-                                            <span class="price-new h5 text-secondary-4">₹2,499.00</span>
-                                            <span class=" price fw-normal text-black">24 KT</span>
+                                            <span class="price-new h5 text-secondary-4">₹38,452.00</span>
+                                            <span class=" price fw-normal text-black">22 KT</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <!-- item 4 -->
+                            <!-- item 4 (corrected) -->
                             <div class="swiper-slide">
-                                <div class="card_product--V01 type-space-35 ">
+                                <div class="card_product--V01 type-space-35">
                                     <div class="card_product-wrapper">
                                         <a href="./pages/product.html" class="product-img">
                                             <img src="images/collections/COINS/600105ZFCAAP00_1.jpg"
@@ -752,6 +741,47 @@
                                                 data-src="images/collections/COINS/600113ZEARAP00_1.jpg"
                                                 alt="Image Product" class="lazyload img-hover">
                                         </a>
+                                        <ul class="list-product-btn">
+                                            <li class="wishlist">
+                                                <a href="javascript:void(0);"
+                                                    class="hover-tooltip tooltip-left box-icon">
+                                                    <span class="icon icon-heart-2"></span>
+                                                    <span class="tooltip">Add to Wishlist</span>
+                                                </a>
+                                            </li>
+                                            <li class="cart-control">
+                                                <!-- Add to Cart Button -->
+                                                <a href="javascript:void(0);"
+                                                    class="hover-tooltip tooltip-left box-icon add-to-cart-btn"
+                                                    data-id="prod-1" data-name="1 GM Gold Coin" data-price="9747.00"
+                                                    data-image="images/collections/COINS/600105ZFCAAP00_1.jpg">
+                                                    <span class="icon icon-shop-cart"></span>
+                                                    <span class="tooltip">Add to Cart</span>
+                                                </a>
+                                                <!-- Quantity Controls -->
+                                                <div class="quantity-controls d-none">
+                                                    <button class="btn-qty minus-qty"><i
+                                                            class="icon-minus"></i></button>
+                                                    <span class="quantity">1</span>
+                                                    <button class="btn-qty plus-qty"><i class="icon-plus"></i></button>
+                                                    <button class="btn-remove"><i class="icon-trash"></i></button>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a href="#quickView" data-bs-toggle="modal"
+                                                    class="hover-tooltip tooltip-left box-icon quickview">
+                                                    <span class="icon icon-view"></span>
+                                                    <span class="tooltip">Quick View</span>
+                                                </a>
+                                            </li>
+                                            <li class="compare">
+                                                <a href="#compare" data-bs-toggle="modal" aria-controls="compare"
+                                                    class="hover-tooltip tooltip-left box-icon">
+                                                    <span class="icon icon-compare"></span>
+                                                    <span class="tooltip">Add to Compare</span>
+                                                </a>
+                                            </li>
+                                        </ul>
                                     </div>
                                     <div class="card_product-info">
                                         <a href="./pages/product.html"
@@ -759,8 +789,8 @@
                                             8 Gm Gold Coin
                                         </a>
                                         <div class="price-wrap style-white">
-                                            <span class="price-new h5 text-secondary-4">₹2,499.00</span>
-                                            <span class=" price fw-normal text-black">24 KT</span>
+                                            <span class="price-new h5 text-secondary-4">₹82,541.00</span>
+                                            <span class=" price fw-normal text-black">22 KT</span>
                                         </div>
                                     </div>
                                 </div>
@@ -785,12 +815,23 @@
                                                     <span class="tooltip">Add to Wishlist</span>
                                                 </a>
                                             </li>
-                                            <li>
-                                                <a href="#quickAdd" data-bs-toggle="modal"
-                                                    class="hover-tooltip tooltip-left box-icon">
+                                            <li class="cart-control">
+                                                <!-- Add to Cart Button -->
+                                                <a href="javascript:void(0);"
+                                                    class="hover-tooltip tooltip-left box-icon add-to-cart-btn"
+                                                    data-id="prod-1" data-name="1 GM Gold Coin" data-price="9747.00"
+                                                    data-image="images/collections/COINS/600105ZFCAAP00_1.jpg">
                                                     <span class="icon icon-shop-cart"></span>
-                                                    <span class="tooltip">Quick Add</span>
+                                                    <span class="tooltip">Add to Cart</span>
                                                 </a>
+                                                <!-- Quantity Controls -->
+                                                <div class="quantity-controls d-none">
+                                                    <button class="btn-qty minus-qty"><i
+                                                            class="icon-minus"></i></button>
+                                                    <span class="quantity">1</span>
+                                                    <button class="btn-qty plus-qty"><i class="icon-plus"></i></button>
+                                                    <button class="btn-remove"><i class="icon-trash"></i></button>
+                                                </div>
                                             </li>
                                             <li>
                                                 <a href="#quickView" data-bs-toggle="modal"
@@ -807,7 +848,6 @@
                                                 </a>
                                             </li>
                                         </ul>
-
                                     </div>
                                     <div class="card_product-info">
                                         <a class='name-product h5 fw-normal text-black link text-line-clamp-2'
@@ -815,8 +855,8 @@
                                             25 GM Gold Coin
                                         </a>
                                         <div class="price-wrap style-white">
-                                            <span class="price-new h5 text-secondary-4">₹3,370.00</span>
-                                            <span class=" price fw-normal text-black">24 KT</span>
+                                            <span class="price-new h5 text-secondary-4">₹2,53,598.00</span>
+                                            <span class=" price fw-normal text-black">22 KT</span>
                                         </div>
                                     </div>
                                 </div>
@@ -836,7 +876,7 @@
         <!-- /Best Seller -->
 
         <section class="checkmate-banner-wrapper fade-in">
-            <img src="images/banner/banner-88.png" alt="Checkmate Collection Banner" class="checkmate-banner-img"
+            <img src="images/banner/banner-881.png.jpg" alt="Checkmate Collection Banner" class="checkmate-banner-img"
                 style="width: 1600px; height: 500px;">
         </section>
 
@@ -951,7 +991,7 @@
                 <div class="editorial-item"><img src="images/banner/seal.webp" alt="Editorial 7"></div>
                 <div class="editorial-item"><img src="images/banner/when.jpg" alt="Editorial 2"></div>
                 <div class="editorial-item"><img src="images/banner/red.jpg" alt="Editorial 3"></div>
-                <div class="editorial-item"><img src="images/banner/banner-1.jpg" alt="Editorial 4"></div>
+                <!-- <div class="editorial-item"><img src="images/banner/banner-1.jpg" alt="Editorial 4"></div>
                 <div class="editorial-item"><img src="images/banner/banner-1.jpg" alt="Editorial 5"></div>
                 <div class="editorial-item"><img src="images/banner/banner-1.jpg" alt="Editorial 6"></div>
                 <div class="editorial-item"><img src="images/banner/banner-1.jpg" alt="Editorial 7"></div>
@@ -962,7 +1002,7 @@
                 <div class="editorial-item"><img src="images/banner/banner-1.jpg" alt="Editorial 5"></div>
                 <div class="editorial-item"><img src="images/banner/banner-1.jpg" alt="Editorial 6"></div>
                 <div class="editorial-item"><img src="images/banner/banner-1.jpg" alt="Editorial 7"></div>
-                <div class="editorial-item"><img src="images/banner/banner-1.jpg" alt="Editorial 7"></div>
+                <div class="editorial-item"><img src="images/banner/banner-1.jpg" alt="Editorial 7"></div> -->
             </div>
         </div>
     </section>
@@ -1441,79 +1481,57 @@
                     <form class="form-log" id="registerForm">
                         <div class="form-content">
                             <fieldset class="tf-field">
-                                <input class="tf-input" type="text" name="name" placeholder required>
+                                <input class="tf-input" type="text" name="name" id="name" required>
                                 <label class="tf-lable">Name *</label>
+                                <div class="error-message" id="nameError"></div>
                             </fieldset>
                             <fieldset class="tf-field">
-                                <input class="tf-input" type="email" name="email" placeholder required>
+                                <input class="tf-input" type="email" name="email" id="email" required>
                                 <label class="tf-lable">Email *</label>
+                                <div class="error-message" id="emailError"></div>
                             </fieldset>
                             <fieldset class="tf-field password-wrapper">
-                                <input class="tf-input password-field" type="password" name="password" placeholder
+                                <input class="tf-input password-field" type="password" name="password" id="password"
                                     required>
                                 <label class="tf-lable">Password *</label>
-                                <span class="toggle-pass icon-show-password"></span>
+                                <span class="toggle-pass"></span>
+                                <div class="error-message" id="passwordError"></div>
                             </fieldset>
                             <fieldset class="tf-field password-wrapper">
                                 <input class="tf-input password-field" type="password" name="confirm_password"
-                                    placeholder required>
+                                    id="confirm_password" required>
                                 <label class="tf-lable">Confirm Password *</label>
-                                <span class="toggle-pass icon-show-password"></span>
+                                <span class="toggle-pass"></span>
                             </fieldset>
                         </div>
 
                         <div class="bottom">
                             <div class="checkbox-wrap align-items-start">
-                                <input id="confirm" type="checkbox" class="tf-check flex-shrink-0">
-                                <label for="confirm" class="text-caption">
-                                    Yes, sign me up for the AP JEWELLERS Newsletter. I confirm I am over 16 years old.
+                                <input id="tc" type="checkbox" class="tf-check flex-shrink-0" required>
+                                <label for="tc" class="text-caption">
+                                    I agree to terms and conditions
                                 </label>
+                                <div class="error-message" id="tcError"></div>
                             </div>
                         </div>
 
                         <button type="submit" class="btn-submit tf-btn btn-fill-2 w-100">
                             REGISTER
                         </button>
+
+                        <div id="register-success" class="mt-3 text-center" style="display: none;"></div>
                     </form>
 
                     <div class="other-login">
                         <a href="#" class="tf-btn btn-fill-3 ic-abs w-100 fw-medium">
                             <span class="icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="12" cy="12" r="12" fill="#3B5998" />
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                        d="M15.1163 7.992L13.9867 7.99275C13.101 7.99275 12.9293 8.4135 12.9293 9.03075V10.3927H15.042L14.7667 12.5265H12.9293V18H10.7265V12.5265H8.8845V10.3927H10.7265V8.82C10.7265 6.99375 11.8417 6 13.47 6C14.25 6 14.9205 6.05775 15.1163 6.084V7.992ZM12 0C5.373 0 0 5.37225 0 12C0 18.627 5.373 24 12 24C18.6278 24 24 18.627 24 12C24 5.37225 18.6278 0 12 0Z"
-                                        fill="white" />
-                                </svg>
+                                <!-- Facebook SVG icon -->
                             </span>
                             Log in with Facebook
                         </a>
                         <a href="#" class="tf-btn style-2 ic-abs w-100 fw-medium">
                             <span class="icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <g>
-                                        <path
-                                            d="M23.0938 9.91258L13.3045 9.91211C12.8722 9.91211 12.5218 10.2625 12.5218 10.6947V13.822C12.5218 14.2542 12.8722 14.6046 13.3044 14.6046H18.8172C18.2135 16.1712 17.0869 17.4832 15.6494 18.3168L18 22.386C21.7707 20.2052 24 16.3789 24 12.0955C24 11.4857 23.9551 11.0497 23.8652 10.5587C23.7968 10.1858 23.473 9.91258 23.0938 9.91258Z"
-                                            fill="#167EE6" />
-                                        <path
-                                            d="M12 19.3037C9.30218 19.3037 6.94699 17.8297 5.68207 15.6484L1.61304 17.9938C3.68374 21.5826 7.56283 23.9994 12 23.9994C14.1768 23.9994 16.2307 23.4133 18 22.3919V22.3863L15.6494 18.3171C14.5742 18.9408 13.3299 19.3037 12 19.3037Z"
-                                            fill="#12B347" />
-                                        <path
-                                            d="M18 22.3932V22.3876L15.6494 18.3184C14.5741 18.9419 13.33 19.3049 12 19.3049V24.0006C14.1767 24.0006 16.2308 23.4145 18 22.3932Z"
-                                            fill="#0F993E" />
-                                        <path
-                                            d="M4.69566 12.0003C4.69566 10.6705 5.05856 9.42637 5.68205 8.3512L1.61302 6.00586C0.586031 7.76962 0 9.81797 0 12.0003C0 14.1826 0.586031 16.2309 1.61302 17.9947L5.68205 15.6494C5.05856 14.5742 4.69566 13.3301 4.69566 12.0003Z"
-                                            fill="#FFD500" />
-                                        <path
-                                            d="M12 4.69566C13.7593 4.69566 15.3753 5.32078 16.6375 6.36061C16.9489 6.61711 17.4014 6.59859 17.6867 6.31336L19.9024 4.09758C20.2261 3.77395 20.203 3.24422 19.8573 2.94431C17.7425 1.10967 14.991 0 12 0C7.56283 0 3.68374 2.41673 1.61304 6.00558L5.68207 8.35092C6.94699 6.16969 9.30218 4.69566 12 4.69566Z"
-                                            fill="#FF4B26" />
-                                        <path
-                                            d="M16.6374 6.36061C16.9488 6.61711 17.4015 6.59859 17.6866 6.31336L19.9024 4.09758C20.226 3.77395 20.2029 3.24422 19.8573 2.94431C17.7425 1.10962 14.991 0 12 0V4.69566C13.7592 4.69566 15.3752 5.32078 16.6374 6.36061Z"
-                                            fill="#D93F21" />
-                                    </g>
-                                </svg>
+                                <!-- Google SVG icon -->
                             </span>
                             Log in with Google
                         </a>
@@ -1522,6 +1540,7 @@
             </div>
         </div>
     </div>
+
     <!-- /Register -->
     <!-- Reset Password -->
     <div class="offcanvas offcanvas-end canvas-sidebar" id="reset">
@@ -1548,274 +1567,154 @@
     </div>
     <!-- /Reset Password -->
     <!-- Shopping Cart -->
-    <div class="offcanvas offcanvas-end popup-shopping-cart" id="shoppingCart">
-        <div class="canvas-wrapper">
-            <div class="canvas-header">
-                <h3 class="title fw-normal text-uppercase">shopping cart</h3>
-                <span class="icon-close link icon-close-popup" data-bs-dismiss="offcanvas"></span>
-            </div>
-            <div class="wrap list-file-delete">
-                <div class="tf-mini-cart-threshold">
-                    <h6 class="text fw-normal text-uppercase">Spend <span class="fw-medium">₹100</span> more to get
-                        <span class="fw-medium">Free
-                            Shipping</span>
-                    </h6>
-                    <div class="tf-progress-bar tf-progress-ship">
-                        <div class="value" style="width: 0%;" data-progress="75">
-                            <i class="icon icon-delivery"></i>
-                        </div>
-                    </div>
-                    <div class="tf-number-count">
-                        <p class="text-uppercase"><span class="prd-count">4</span> products</p>
+    <div class="offcanvas offcanvas-end shopping-cart-modal" tabindex="-1" id="shoppingCart" style="width: 40%;">
+        <div class="offcanvas-header border-bottom">
+            <h5 class="offcanvas-title fw-bold">Your Cart (3)</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
 
-                        <a href="javascript:void(0)" class="tf-btn-line style-line-2 clear-file-delete">
-                            <span class="text-body">
-                                Empty cart
-                            </span>
-                        </a>
+        <div class="offcanvas-body p-0">
+            <!-- Free Shipping Progress -->
+            <div class="p-3 bg-light">
+                <div class="d-flex justify-content-between small mb-1">
+                    <span>Only ₹100 away from free shipping!</span>
+                    <span class="fw-medium">₹390/₹500</span>
+                </div>
+                <div class="progress" style="height: 4px;">
+                    <div class="progress-bar bg-success" style="width: 75%"></div>
+                </div>
+            </div>
+
+            <!-- Cart Items (Scrollable) -->
+            <div class="cart-items" style="max-height: 50vh; overflow-y: auto;">
+                <!-- Item 1 -->
+                <div class="p-3 border-bottom">
+                    <div class="row g-2">
+                        <div class="col-3">
+                            <img src="images/products/product-24.jpg" class="img-fluid rounded" alt="Product">
+                        </div>
+                        <div class="col-9">
+                            <div class="d-flex justify-content-between">
+                                <h6 class="mb-1 fw-semibold">Crystal Birthstone Eternity Circle Charm</h6>
+                                <button class="btn btn-sm btn-link text-danger p-0 remove-item">
+                                    <i class="bi bi-x-lg"></i>
+                                </button>
+                            </div>
+                            <p class="text-muted small mb-2">Rose Gold / 50</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="quantity-selector d-flex align-items-center">
+                                    <button class="btn btn-sm btn-outline-secondary minus-btn">-</button>
+                                    <input type="number"
+                                        class="form-control form-control-sm quantity-input text-center mx-1" value="1"
+                                        min="1" style="width: 40px;">
+                                    <button class="btn btn-sm btn-outline-secondary plus-btn">+</button>
+                                </div>
+                                <span class="fw-semibold item-price">₹130.00</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="tf-mini-cart-wrap">
-                    <div class="tf-mini-cart-main">
-                        <div class="tf-mini-cart-sroll">
-                            <ul class="tf-mini-cart-items">
-                                <li class="tf-mini-cart-item file-delete">
-                                    <div class="tf-mini-cart-image">
-                                        <img src="images/products/product-24.jpg" alt="">
-                                    </div>
-                                    <div class="tf-mini-cart-info">
-                                        <a class='prd-name link' href='/./pages/product.html'>
-                                            Crystal Birthstone Eternity Circle Charm
-                                        </a>
-                                        <p class="type-select text-main-4">
-                                            Rose Gold / 50
-                                        </p>
-                                        <div class="prd-quantity">
-                                            <p class="text-caption">
-                                                Qty:
-                                            </p>
-                                            <div class="wg-quantity style-2">
-                                                <button class="btn-quantity minus-quantity"><i
-                                                        class="icon-minus"></i></button>
-                                                <input class="quantity-product" type="text" name="number" value="1">
-                                                <button class="btn-quantity plus-quantity"><i
-                                                        class="icon-plus"></i></button>
-                                            </div>
-                                        </div>
-                                        <a href="javascript:void(0)" class="tf-btn-line style-line-2 remove">
-                                            <span class="text-caption">
-                                                Remove
-                                            </span>
-                                        </a>
-                                    </div>
-                                    <p class="tf-mini-card-price h6 fw-normal">
-                                        ₹130.00
-                                    </p>
-                                </li>
-                                <li class="tf-mini-cart-item file-delete">
-                                    <div class="tf-mini-cart-image">
-                                        <img src="images/products/product-26.jpg" alt="">
-                                    </div>
-                                    <div class="tf-mini-cart-info">
-                                        <a class='prd-name link' href='/./pages/product.html'>
-                                            Ball Bracelet
-                                        </a>
-                                        <p class="type-select text-main-4">
-                                            Rose Gold / 50
-                                        </p>
-                                        <div class="prd-quantity">
-                                            <p class="text-caption">
-                                                Qty:
-                                            </p>
-                                            <div class="wg-quantity style-2">
-                                                <button class="btn-quantity minus-quantity"><i
-                                                        class="icon-minus"></i></button>
-                                                <input class="quantity-product" type="text" name="number" value="1">
-                                                <button class="btn-quantity plus-quantity"><i
-                                                        class="icon-plus"></i></button>
-                                            </div>
-                                        </div>
-                                        <a href="javascript:void(0)" class="tf-btn-line style-line-2 remove">
-                                            <span class="text-caption">
-                                                Remove
-                                            </span>
-                                        </a>
-                                    </div>
-                                    <p class="tf-mini-card-price h6 fw-normal">
-                                        ₹150.00
-                                    </p>
-                                </li>
-                                <li class="tf-mini-cart-item file-delete">
-                                    <div class="tf-mini-cart-image">
-                                        <img src="images/products/product-28.jpg" alt="">
-                                    </div>
-                                    <div class="tf-mini-cart-info">
-                                        <a class='prd-name link' href='/./pages/product.html'>
-                                            Engagement Ring in 18k Yellow Gold
-                                        </a>
-                                        <p class="type-select text-main-4">
-                                            Rose Gold / 50
-                                        </p>
-                                        <div class="prd-quantity">
-                                            <p class="text-caption">
-                                                Qty:
-                                            </p>
-                                            <div class="wg-quantity style-2">
-                                                <button class="btn-quantity minus-quantity"><i
-                                                        class="icon-minus"></i></button>
-                                                <input class="quantity-product" type="text" name="number" value="1">
-                                                <button class="btn-quantity plus-quantity"><i
-                                                        class="icon-plus"></i></button>
-                                            </div>
-                                        </div>
-                                        <a href="javascript:void(0)" class="tf-btn-line style-line-2 remove">
-                                            <span class="text-caption">
-                                                Remove
-                                            </span>
-                                        </a>
-                                    </div>
-                                    <p class="tf-mini-card-price h6 fw-normal">
-                                        ₹130.00
-                                    </p>
-                                </li>
-                            </ul>
+
+                <!-- Item 2 -->
+                <div class="p-3 border-bottom">
+                    <div class="row g-2">
+                        <div class="col-3">
+                            <img src="images/products/product-26.jpg" class="img-fluid rounded" alt="Product">
                         </div>
-                    </div>
-                    <div class="tf-mini-cart-bottom">
-                        <div class="tf-mini-cart-tool">
-                            <div class="tf-mini-cart-tool-btn btn-add-gift">
-                                <i class="icon icon-gift"></i>
-                                <p class="text-caption">Add gift wrap</p>
-                            </div>
-                            <div class="tf-mini-cart-tool-btn btn-add-note">
-                                <i class="icon icon-note"></i>
-                                <p class="text-caption">Order note</p>
-                            </div>
-                            <div class="tf-mini-cart-tool-btn btn-estimate-shipping">
-                                <i class="icon icon-delivery-3"></i>
-                                <p class="text-caption">Shipping</p>
-                            </div>
-                        </div>
-                        <div class="tf-mini-cart-bottom-wrap">
-                            <div class="tf-cart-totals-discounts">
-                                <h6 class="tf-cart-total-text fw-normal text-uppercase">total:</h6>
-                                <div class="tf-totals-total-value h6 fw-normal">₹390.00</div>
-                            </div>
-                            <div class="tf-mini-cart-view-checkout">
-                                <a href="shop-cart.html" class="tf-btn w-100 style-2">
-                                    <span class="fw-medium">
-                                        GO TO CART
-                                    </span>
-                                </a>
-                                <a href="checkout.html" class="tf-btn btn-fill animate-btn w-100">
-                                    <span class="fw-medium">
-                                        CHECKOUT
-                                    </span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tf-mini-cart-tool-openable add-gift">
-                        <div class="overlay tf-mini-cart-tool-close"></div>
-                        <form action="#" class="tf-mini-cart-tool-content">
-                            <div class="tf-mini-cart-tool-text h5 fw-normal text-uppercase">Add gift wrap</div>
-                            <div class="tf-mini-cart-tool-text1">The product will be wrapped carefully.
-                                Fee is only <span class="text text-main">₹10.00</span>. Do you want a
-                                gift wrap?</div>
-                            <div class="tf-cart-tool-btns">
-                                <button class="subscribe-button tf-btn w-100 btn-fill animate-btn" type="submit">
-                                    Add a Gift Wrap
+                        <div class="col-9">
+                            <div class="d-flex justify-content-between">
+                                <h6 class="mb-1 fw-semibold">Ball Bracelet</h6>
+                                <button class="btn btn-sm btn-link text-danger p-0 remove-item">
+                                    <i class="bi bi-x-lg"></i>
                                 </button>
-                                <button type="button"
-                                    class="tf-btn style-2 w-100 tf-mini-cart-tool-close">Cancel</button>
                             </div>
-                        </form>
-                    </div>
-                    <div class="tf-mini-cart-tool-openable add-note">
-                        <div class="overlay tf-mini-cart-tool-close"></div>
-                        <form action="#" class="tf-mini-cart-tool-content style-border">
-                            <label for="Cart-note" class="tf-mini-cart-tool-text h5 fw-normal text-uppercase">
-                                Order note
-                            </label>
-                            <textarea name="note" id="Cart-note" placeholder="Instruction for seller..."
-                                class="d-flex"></textarea>
-                            <div class="tf-cart-tool-btns">
-                                <button class="subscribe-button tf-btn w-100 btn-fill animate-btn" type="submit">
-                                    Save
-                                </button>
-                                <button type="button"
-                                    class="tf-btn style-2 w-100 tf-mini-cart-tool-close">Close</button>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="tf-mini-cart-tool-openable estimate-shipping">
-                        <div class="overlay tf-mini-cart-tool-close"></div>
-                        <form id="shipping-form" class="tf-mini-cart-tool-content style-border">
-                            <div class="tf-mini-cart-tool-text h5 fw-normal text-uppercase">Shipping estimates</div>
-                            <div class="field">
-                                <p class="text-sm">Country</p>
-                                <div class="tf-select">
-                                    <select class="w-100" id="shipping-country-form" name="address[country]"
-                                        data-default="">
-                                        <option value="Australia"
-                                            data-provinces='[["Australian Capital Territory","Australian Capital Territory"],["New South Wales","New South Wales"],["Northern Territory","Northern Territory"],["Queensland","Queensland"],["South Australia","South Australia"],["Tasmania","Tasmania"],["Victoria","Victoria"],["Western Australia","Western Australia"]]'>
-                                            Australia</option>
-                                        <option value="Austria" data-provinces='[]'>Austria</option>
-                                        <option value="Belgium" data-provinces='[]'>Belgium</option>
-                                        <option value="Canada"
-                                            data-provinces='[["Ontario","Ontario"],["Quebec","Quebec"]]'>Canada
-                                        </option>
-                                        <option value="Czech Republic" data-provinces='[]'>Czechia</option>
-                                        <option value="Denmark" data-provinces='[]'>Denmark</option>
-                                        <option value="Finland" data-provinces='[]'>Finland</option>
-                                        <option value="France" data-provinces='[]'>France</option>
-                                        <option value="Germany" data-provinces='[]'>Germany</option>
-                                        <option selected value="United States"
-                                            data-provinces='[["Alabama","Alabama"],["California","California"],["Florida","Florida"]]'>
-                                            United States</option>
-                                        <option value="United Kingdom"
-                                            data-provinces='[["England","England"],["Scotland","Scotland"],["Wales","Wales"],["Northern Ireland","Northern Ireland"]]'>
-                                            United Kingdom</option>
-                                        <option value="India" data-provinces='[]'>India</option>
-                                        <option value="Japan" data-provinces='[]'>Japan</option>
-                                        <option value="Mexico" data-provinces='[]'>Mexico</option>
-                                        <option value="South Korea" data-provinces='[]'>South Korea</option>
-                                        <option value="Spain" data-provinces='[]'>Spain</option>
-                                        <option value="Italy" data-provinces='[]'>Italy</option>
-                                        <option value="Vietnam"
-                                            data-provinces='[["Ha Noi","Ha Noi"],["Da Nang","Da Nang"],["Ho Chi Minh","Ho Chi Minh"]]'>
-                                            Vietnam</option>
-                                    </select>
+                            <p class="text-muted small mb-2">Rose Gold / 50</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="quantity-selector d-flex align-items-center">
+                                    <button class="btn btn-sm btn-outline-secondary minus-btn">-</button>
+                                    <input type="number"
+                                        class="form-control form-control-sm quantity-input text-center mx-1" value="1"
+                                        min="1" style="width: 40px;">
+                                    <button class="btn btn-sm btn-outline-secondary plus-btn">+</button>
                                 </div>
+                                <span class="fw-semibold item-price">₹150.00</span>
                             </div>
-                            <div class="field">
-                                <p class="text-sm">State/Province</p>
-                                <div class="tf-select">
-                                    <select id="shipping-province-form" name="address[province]"
-                                        data-default=""></select>
-                                </div>
-                            </div>
-                            <div class="field">
-                                <p class="text-sm">Zipcode</p>
-                                <input type="text" data-opend-focus placeholder="41000" id="zipcode" name="address[zip]"
-                                    value="">
-                            </div>
-                            <div id="zipcode-message" class="error" style="display: none;">
-                                We found one shipping rate available for undefined.
-                            </div>
-                            <div id="zipcode-success" class="success" style="display: none;">
-                                <p>We found one shipping rate available for your address:</p>
-                                <p class="standard">Standard at <span>₹0.00</span> USD</p>
-                            </div>
-                            <div class="tf-cart-tool-btns">
-                                <button class="tf-btn w-100 btn-fill animate-btn" type="submit">
-                                    Estimate
-                                </button>
-                                <div class="tf-mini-cart-tool-primary tf-btn style-2 w-100 tf-mini-cart-tool-close">
-                                    Close</div>
-                            </div>
-                        </form>
+                        </div>
                     </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="p-3 border-bottom">
+                    <div class="row g-2">
+                        <div class="col-3">
+                            <img src="images/products/product-28.jpg" class="img-fluid rounded" alt="Product">
+                        </div>
+                        <div class="col-9">
+                            <div class="d-flex justify-content-between">
+                                <h6 class="mb-1 fw-semibold">Engagement Ring in 18k Yellow Gold</h6>
+                                <button class="btn btn-sm btn-link text-danger p-0 remove-item">
+                                    <i class="bi bi-x-lg"></i>
+                                </button>
+                            </div>
+                            <p class="text-muted small mb-2">Rose Gold / 50</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="quantity-selector d-flex align-items-center">
+                                    <button class="btn btn-sm btn-outline-secondary minus-btn">-</button>
+                                    <input type="number"
+                                        class="form-control form-control-sm quantity-input text-center mx-1" value="1"
+                                        min="1" style="width: 40px;">
+                                    <button class="btn btn-sm btn-outline-secondary plus-btn">+</button>
+                                </div>
+                                <span class="fw-semibold item-price">₹130.00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Empty Cart Button -->
+            <div class="p-3 text-center">
+                <button class="btn btn-outline-danger btn-sm empty-cart-btn">
+                    <i class="bi bi-trash me-1"></i> Empty Cart
+                </button>
+            </div>
+
+            <!-- Cart Tools -->
+            <div class="p-3 border-top">
+                <div class="row g-2">
+                    <div class="col-4">
+                        <button class="btn btn-outline-secondary w-100 py-2 btn-sm cart-tool-btn">
+                            <i class="bi bi-gift fs-5 d-block mb-1"></i>
+                            <span class="small">Gift Wrap</span>
+                        </button>
+                    </div>
+                    <div class="col-4">
+                        <button class="btn btn-outline-secondary w-100 py-2 btn-sm cart-tool-btn">
+                            <i class="bi bi-pencil fs-5 d-block mb-1"></i>
+                            <span class="small">Add Note</span>
+                        </button>
+                    </div>
+                    <div class="col-4">
+                        <button class="btn btn-outline-secondary w-100 py-2 btn-sm cart-tool-btn">
+                            <i class="bi bi-truck fs-5 d-block mb-1"></i>
+                            <span class="small">Shipping</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cart Summary -->
+            <div class="p-3 bg-light border-top">
+                <div class="d-flex justify-content-between mb-2">
+                    <span>Subtotal</span>
+                    <span class="fw-semibold cart-subtotal">₹390.00</span>
+                </div>
+                <div class="d-flex justify-content-between mb-3">
+                    <span>Shipping</span>
+                    <span class="text-success">Free</span>
+                </div>
+                <div class="d-grid gap-2">
+                    <a href="pages/checkout.html"><button class="btn btn-primary checkout-btn">Checkout</button></a>
                 </div>
             </div>
         </div>
