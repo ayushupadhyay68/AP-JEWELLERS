@@ -453,6 +453,11 @@
         </section>
         <!-- /Category -->
         <!-- Banners Slideshow -->
+
+        <section class="checkmate-banner-wrapper fade-in">
+            <img src="images/banner/banner-881.png.jpg" alt="Checkmate Collection Banner" class="checkmate-banner-img"
+                style="width: 1600px; height: 500px;">
+        </section>
         <!-- Exchange your old Gold  -->
         <section class="exchange-program-section">
             <div class="exchange-heading">
@@ -875,10 +880,7 @@
         </section>
         <!-- /Best Seller -->
 
-        <section class="checkmate-banner-wrapper fade-in">
-            <img src="images/banner/banner-881.png.jpg" alt="Checkmate Collection Banner" class="checkmate-banner-img"
-                style="width: 1600px; height: 500px;">
-        </section>
+
 
 
         <!-- Banner whatsapp -->
@@ -1384,15 +1386,18 @@
                     <form class="form-log" id="loginForm" method="post">
                         <div class="form-content">
                             <fieldset class="tf-field">
-                                <input class="tf-input" type="email" name="email" placeholder="Email" required>
+                                <input class="tf-input" type="email" name="email" id="loginEmail" placeholder="Email"
+                                    required>
                                 <label class="tf-lable">Email *</label>
+                                <div class="error-message" id="emailError"></div>
                             </fieldset>
 
                             <fieldset class="tf-field password-wrapper">
                                 <input class="tf-input password-field" type="password" name="password"
-                                    placeholder="Password" required>
+                                    id="loginPassword" placeholder="Password" required>
                                 <label class="tf-lable">Password *</label>
                                 <span class="toggle-pass icon-show-password"></span>
+                                <div class="error-message" id="passwordError"></div>
                             </fieldset>
                         </div>
 
@@ -1405,6 +1410,8 @@
                         </div>
 
                         <button type="submit" class="btn-submit tf-btn btn-fill-2 w-100">LOG IN</button>
+
+                        <div id="loginMessage" class="mt-3 text-center" style="display: none;"></div>
                     </form>
 
                     <!-- OTHER LOGIN METHODS -->

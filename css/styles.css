@@ -19392,58 +19392,155 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
 
 /* Cart Controls */
 .list-product-btn .cart-control {
-    position: relative;
+  position: relative;
 }
 
 .list-product-btn .quantity-controls {
-    display: flex;
-    align-items: center;
-    background: white;
-    border-radius: 20px;
-    padding: 2px 5px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 20px;
+  padding: 2px 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .list-product-btn .btn-qty {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    border: 1px solid #ddd;
-    background: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    font-size: 10px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font-size: 10px;
 }
 
 .list-product-btn .quantity {
-    min-width: 15px;
-    text-align: center;
-    font-size: 12px;
+  min-width: 15px;
+  text-align: center;
+  font-size: 12px;
 }
 
 .list-product-btn .btn-remove {
-    background: none;
-    border: none;
-    color: #dc3545;
-    padding: 0 5px;
-    font-size: 12px;
+  background: none;
+  border: none;
+  color: #dc3545;
+  padding: 0 5px;
+  font-size: 12px;
 }
 
 /* State management */
 .list-product-btn .add-to-cart-btn {
-    display: block;
+  display: block;
 }
 
 .list-product-btn .quantity-controls {
-    display: none;
+  display: none;
 }
 
 .list-product-btn .cart-control.active .add-to-cart-btn {
-    display: none;
+  display: none;
 }
 
 .list-product-btn .cart-control.active .quantity-controls {
-    display: flex;
+  display: flex;
 }
+
+
+/* Applied filters styling */
+.applied-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.applied-filter {
+  background: #f5f5f5;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+/* Filter controls */
+.filter-group-check {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.size-check {
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ddd;
+  margin: 2px;
+}
+
+.size-check.active {
+  background: #000;
+  color: #fff;
+}
+
+/* Product visibility */
+.card_product--V01[style*="display: none"] {
+  display: none !important;
+}
+
+
+/* Style for clickable filter items */
+.filter-trigger {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filter-trigger:hover {
+  opacity: 0.8;
+}
+
+/* Highlight active filter */
+.box_collection--V01.active {
+  box-shadow: 0 0 0 2px #d4af37;
+}
+
+
+/* Center alignment styles */
+.tf-swiper .swiper-wrapper {
+  display: flex;
+  align-items: center;
+  /* Vertical centering */
+}
+
+.box_collection--V01 {
+  width: 100%;
+  max-width: 220px;
+  /* Control card width */
+  margin: 0 auto;
+  /* Horizontal centering */
+}
+
+/* Responsive image centering */
+.img-style {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Swiper adjustments for centered layout */
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Pagination centering */
+.tf-sw-pagination {
+  justify-content: center !important;
+  margin-top: 20px;
+}
+
+

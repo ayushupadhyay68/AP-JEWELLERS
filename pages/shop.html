@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <title>AP JEWELLERS - THE JEWELLERY BOUTIQUE</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
+
 
     <!-- font -->
     <link rel="stylesheet" href="../fonts/fonts.css">
@@ -239,80 +239,47 @@
                 <div class="swiper tf-swiper" data-preview="5" data-tablet="4" data-mobile-sm="3" data-mobile="2"
                     data-space-lg="30" data-space-md="20" data-space="15" data-pagination="2" data-pagination-sm="3"
                     data-pagination-md="4" data-pagination-lg="5">
-                    <div class="swiper-wrapper">
-                        <!-- item 1 -->
-                        <div class="swiper-slide">
-                            <div class="box_collection--V01 style_2 hover-img">
-                                <a href="shop.html" class="image img-style">
+                    <div class="swiper-wrapper justify-content-center"> <!-- Added justify-content-center here -->
+                        <!-- 22 KT Gold Coin -->
+                        <div class="swiper-slide d-flex justify-content-center"> <!-- Centered slide -->
+                            <div class="box_collection--V01 style_2 hover-img text-center"> <!-- Added text-center -->
+                                <a href="javascript:void(0);" class="image img-style filter-trigger d-block mx-auto"
+                                    data-filter-category="coins" data-filter-purity="22kt" style="max-width: 200px;">
+                                    <!-- Added max-width and mx-auto -->
                                     <img src="../images/collections/COINS/gev73.png"
-                                        data-src="../images/collections/COINS/gev73.png" alt="" class=" lazyload">
+                                        data-src="../images/collections/COINS/gev73.png" alt=""
+                                        class="lazyload img-fluid">
                                 </a>
-                                <a href="shop.html" class="name-cls link">
+                                <a href="javascript:void(0);" class="name-cls link filter-trigger d-block mt-2"
+                                    data-filter-category="coins" data-filter-purity="22kt">
                                     <span class="h5 fw-normal text-uppercase">
                                         22 KT Gold coin
                                     </span>
                                 </a>
                             </div>
                         </div>
-                        <!-- item 2 -->
-                        <div class="swiper-slide">
-                            <div class="box_collection--V01 style_2 hover-img">
-                                <a href="shop.html" class="image img-style">
-                                    <img src="../images/collections/COINS/khcil.png"
-                                        data-src="../images/collections/COINS/khcil.png" alt="" class=" lazyload">
-                                </a>
-                                <a href="shop.html" class="name-cls link">
-                                    <span class="h5 fw-normal text-uppercase">
-                                        24 KT Gold Coin
-                                    </span>
-                                </a>
-                            </div>
-                        </div>
-                        <!-- item 3 -->
-                        <div class="swiper-slide">
-                            <div class="box_collection--V01 style_2 hover-img">
-                                <a href="shop.html" class="image img-style">
+
+                        <!-- 24 KT Gold Biscuit -->
+                        <div class="swiper-slide d-flex justify-content-center"> <!-- Centered slide -->
+                            <div class="box_collection--V01 style_2 hover-img text-center"> <!-- Added text-center -->
+                                <a href="javascript:void(0);" class="image img-style filter-trigger d-block mx-auto"
+                                    data-filter-category="biscuits" data-filter-purity="24kt" style="max-width: 200px;">
+                                    <!-- Added max-width and mx-auto -->
                                     <img src="../images/collections/Biscuits/dev_qw34n.png"
                                         data-src="../images/collections/Biscuits/dev_qw34n.png" alt=""
-                                        class=" lazyload">
+                                        class="lazyload img-fluid">
                                 </a>
-                                <a href="shop.html" class="name-cls link">
-                                    <span class="h5 fw-normal text-uppercase">
-                                        22 KT Gold biscuit
-                                    </span>
-                                </a>
-                            </div>
-                        </div>
-                        <!-- item 4 -->
-                        <div class="swiper-slide">
-                            <div class="box_collection--V01 style_2 hover-img">
-                                <a href="shop.html" class="image img-style">
-                                    <img src="../images/collections/Biscuits/iim5d.png"
-                                        data-src="../images/collections/Biscuits/iim5d.png" alt="" class=" lazyload">
-                                </a>
-                                <a href="shop.html" class="name-cls link">
+                                <a href="javascript:void(0);" class="name-cls link filter-trigger d-block mt-2"
+                                    data-filter-category="biscuits" data-filter-purity="24kt">
                                     <span class="h5 fw-normal text-uppercase">
                                         24 KT Gold biscuit
                                     </span>
                                 </a>
                             </div>
                         </div>
-                        <!-- item 5 -->
-                        <div class="swiper-slide">
-                            <div class="box_collection--V01 style_2 hover-img">
-                                <a href="shop.html" class="image img-style">
-                                    <img src="../images/collections/cls-17.jpg"
-                                        data-src="../images/collections/cls-17.jpg" alt="" class=" lazyload">
-                                </a>
-                                <a href="shop.html" class="name-cls link">
-                                    <span class="h5 fw-normal text-uppercase">
-                                    Bangle
-                                    </span>
-                                </a>
-                            </div>
-                        </div>
                     </div>
-                    <div class="sw-dot-default d-flex d-xl-none tf-sw-pagination"></div>
+                    <div class="sw-dot-default d-flex d-xl-none tf-sw-pagination justify-content-center"></div>
+                    <!-- Centered pagination -->
                 </div>
             </div>
         </div>
@@ -384,8 +351,8 @@
                 <div class="wrapper-control-shop gridLayout-wrapper">
                     <div class="wrapper-shop tf-grid-layout tf-col-4" id="gridLayout">
                         <!-- Product 1 -->
-                        <div class="loadItem card_product--V01 grid" id="coin" data-category="coins" data-purity="24kt"
-                            data-weight="1g" data-material="gold" data-color="yellow" data-size="medium">
+                        <div class="loadItem card_product--V01 grid" data-category="coins" data-purity="22kt"
+                            data-weight="1" data-price="10850" data-material="gold" data-type="coin">
                             <div class="card_product-wrapper">
                                 <a href="product.html" class="product-img">
                                     <img src="../images/collections/COINS/600105ZFCAAP00_1.jpg"
@@ -434,13 +401,13 @@
                                 </a>
                                 <div class="price-wrap">
                                     <span class="price-new h5"> ₹ 10,850</span>
-                                    <span class="price fw-normal">24 KT</span>
+                                    <span class="price fw-normal">22 KT</span>
                                 </div>
                             </div>
                         </div>
                         <!-- Product 2 -->
-                        <div class="loadItem card_product--V01 grid" id="coin" data-category="bracelet"
-                            data-material="coin" data-size="5" data-weight="2g">
+                        <div class="loadItem card_product--V01 grid" data-category="coins" data-purity="22kt"
+                            data-weight="2" data-price="21665" data-material="gold" data-type="coin">
                             <div class="card_product-wrapper">
                                 <a href="product.html" class="product-img">
                                     <img src="../images/collections/COINS/600113ZEBAAP00_1.webp"
@@ -486,13 +453,13 @@
                                 </a>
                                 <div class="price-wrap">
                                     <span class="price-new h5"> ₹ 21,665</span>
-                                    <span class="price fw-normal">24 KT</span>
+                                    <span class="price fw-normal">22 KT</span>
                                 </div>
                             </div>
                         </div>
                         <!-- Product 3 -->
-                        <div class="loadItem card_product--V01 grid" id="coin" data-category="bracelet"
-                            data-material="sterling-silver" data-size="9" data-weight="4g">
+                        <div class="loadItem card_product--V01 grid" data-category="coins" data-purity="24kt"
+                            data-weight="4" data-price="55000" data-material="gold" data-type="coin">
                             <div class="card_product-wrapper">
                                 <a href="product.html" class="product-img">
                                     <img src="../images/collections/COINS/600105ZFCAAP00_1.jpg"
@@ -541,13 +508,13 @@
                                 </a>
                                 <div class="price-wrap">
                                     <span class="price-new h5"> ₹ 55,000</span>
-                                    <span class="price fw-normal">24 KT</span>
+                                    <span class="price fw-normal">22 KT</span>
                                 </div>
                             </div>
                         </div>
                         <!-- Product 4 -->
-                        <div class="loadItem card_product--V01 grid" id="coin" data-category="bracelet" data-size="8"
-                            data-weight="8g">
+                        <div class="loadItem card_product--V01 grid" data-category="coins" data-purity="24kt"
+                            data-weight="8" data-price="87000" data-material="gold" data-type="coin">
                             <div class="card_product-wrapper">
                                 <a href="product-notify-avaiable.html" class="product-img">
                                     <img src="../images/collections/COINS/600105ZFCAAP00_1.jpg"
@@ -570,23 +537,26 @@
                             </div>
                         </div>
                         <!-- Product 5 -->
-                               <div class="loadItem tempo box_image--V02 hover-img">
+                        <div class="loadItem tempo box_image--V02 hover-img">
                             <a class='box_image-image img-style' href='/pages/shop-collection-list'>
-                                <video autoplay muted loop playsinline class="lazyload" src="../images/coins video/A.P. Jewellers shines bright on Akshaya Tritiya with our dazzling gold coinbar festivities. Experience .mp4"></video>
+                                <video autoplay muted loop playsinline class="lazyload"
+                                    src="../images/coins video/A.P. Jewellers shines bright on Akshaya Tritiya with our dazzling gold coinbar festivities. Experience .mp4"></video>
                             </a>
                             <div class="box_image-content align-items-center text-center">
-                                <a class='title h3 fw-normal font-2 text-white link-secondary' href='/pages/shop-collection-list'>
+                                <a class='title h3 fw-normal font-2 text-white link-secondary'
+                                    href='/pages/shop-collection-list'>
                                     <span class="fst-italic">Gold</span> For All
                                 </a>
-                                <a class='tf-btn style-3 btn-fill-white animate-btn animate-dark' href='/pages/shop-collection-list'>
+                                <a class='tf-btn style-3 btn-fill-white animate-btn animate-dark'
+                                    href='/pages/shop-collection-list'>
                                     <span class="fw-medium text-uppercase">discover <span
                                             class="d-none d-sm-inline">now</span></span>
                                 </a>
                             </div>
                         </div>
                         <!-- Product 6 -->
-                        <div class="loadItem card_product--V01 grid" id="coin" data-category="bracelet"
-                            data-material="sterling-silver" data-size="6" data-weight="1g">
+                        <div class="loadItem card_product--V01 grid" data-category="coins" data-purity="22kt"
+                            data-weight="1" data-price="9995" data-material="gold" data-type="coin">
                             <div class="card_product-wrapper">
                                 <a href="product.html" class="product-img">
                                     <img src="../images/collections/COINS/600113ZEBAAP00_1.webp"
@@ -637,8 +607,8 @@
                             </div>
                         </div>
                         <!-- Product 7 -->
-                        <div class="loadItem card_product--V01 grid" id="coin" data-category="coin"
-                            data-material="sterling-silver" data-size="6" data-weight="2g">
+                        <div class="loadItem card_product--V01 grid" data-category="coins" data-purity="22kt"
+                            data-weight="2" data-price="19950" data-material="gold" data-type="coin">
                             <div class="card_product-wrapper">
                                 <a href="product.html" class="product-img">
                                     <img src="../images/products/product-18.jpg"
@@ -690,8 +660,8 @@
                             </div>
                         </div>
                         <!-- Product 8 -->
-                        <div class="loadItem card_product--V01 grid" id="coin" data-category="bracelet"
-                            data-material="gold" data-size="9" data-weight="4g">
+                        <div class="loadItem card_product--V01 grid" data-category="coins" data-purity="22kt"
+                            data-weight="4" data-price="40250" data-material="gold" data-type="coin">
                             <div class="card_product-wrapper">
                                 <a href="product.html" class="product-img">
                                     <img src="../images/products/product-20.jpg"
@@ -742,8 +712,8 @@
                             </div>
                         </div>
                         <!-- Product 9 -->
-                        <div class="loadItem card_product--V01 grid" id="coin" data-category="bracelet"
-                            data-material="sterling-silver" data-size="5" data-weight="8g">
+                        <div class="loadItem card_product--V01 grid" data-category="coins" data-purity="22kt"
+                            data-weight="8" data-price="81510" data-material="gold" data-type="coin">
                             <div class="card_product-wrapper">
                                 <a href="product.html" class="product-img">
                                     <img src="../images/products/product-22.jpg"
@@ -794,8 +764,8 @@
                             </div>
                         </div>
                         <!-- Product 10 -->
-                        <div class="loadItem card_product--V01 grid" data-availability="coin" data-category="bracelet"
-                            data-material="white-gold" data-size="7" data-weight="1g">
+                        <div class="loadItem card_product--V01 grid" data-category="biscuits" data-purity="24kt"
+                            data-weight="1" data-price="11490" data-material="gold" data-type="biscuit">
                             <div class="card_product-wrapper">
                                 <a href="product.html" class="product-img">
                                     <img src="../images/products/product-24.jpg"
@@ -846,8 +816,8 @@
                             </div>
                         </div>
                         <!-- Product 11 -->
-                        <div class="loadItem card_product--V01 grid" id="Biscuits" data-category="bracelet"
-                            data-material="sterling-silver" data-size="8" data-weight="2g">
+                        <div class="loadItem card_product--V01 grid" data-category="biscuits" data-purity="24kt"
+                            data-weight="2" data-price="1766" data-material="gold" data-type="biscuit">
                             <div class="card_product-wrapper">
                                 <a href="product.html" class="product-img">
                                     <img src="../images/products/product-26.jpg"
@@ -898,8 +868,8 @@
                             </div>
                         </div>
                         <!-- Product 12 -->
-                        <div class="loadItem card_product--V01 grid" id="Biscuits" data-category="coin"
-                            data-material="pink-gold" data-size="6" data-weight="5g">
+                        <div class="loadItem card_product--V01 grid" data-category="biscuits" data-purity="24kt"
+                            data-weight="5" data-price="1583" data-material="gold" data-type="biscuit">
                             <div class="card_product-wrapper">
                                 <a href="product.html" class="product-img">
                                     <img src="../images/products/product-28.jpg"
@@ -950,8 +920,8 @@
                             </div>
                         </div>
                         <!-- Product 13 -->
-                        <div class="loadItem card_product--V01 grid" id="biscuit" data-category="bracelet"
-                            data-material="white-gold" data-size="9" data-weight="10g">
+                        <div class="loadItem card_product--V01 grid" data-category="biscuits" data-purity="24kt"
+                            data-weight="10" data-price="142" data-material="gold" data-type="biscuit">
                             <div class="card_product-wrapper">
                                 <a href="product.html" class="product-img">
                                     <img src="../images/products/product-30.jpg"
@@ -1003,8 +973,8 @@
                             </div>
                         </div>
                         <!-- Product 14 -->
-                        <div class="loadItem card_product--V01 grid" data-availability="coin" data-category="bracelet"
-                            data-material="gold" data-size="5" data-weight="20g">
+                        <div class="loadItem card_product--V01 grid" data-category="biscuits" data-purity="24kt"
+                            data-weight="20" data-price="3210" data-material="gold" data-type="biscuit">
                             <div class="card_product-wrapper">
                                 <a href="product.html" class="product-img">
                                     <img src="../images/products/product-32.jpg"
@@ -1596,7 +1566,7 @@
                                 </ul>
                             </div>
                         </li>
-                       
+
                     </ul>
                 </div>
                 <div class="mb-other-content">
@@ -1636,7 +1606,7 @@
                     </ul>
                 </div>
             </div>
-           
+
         </div>
     </div>
     <!-- /Mobile Menu -->
@@ -1769,9 +1739,11 @@
                             <div class="checkbox-wrap align-items-start">
                                 <input id="confirm" type="checkbox" class="tf-check flex-shrink-0">
                                 <label for="confirm" class="text-caption">
-                                    Yes, sign me up for the AP JEWELLERS Newsletter. I confirm I am over 16 years old. I would
+                                    Yes, sign me up for the AP JEWELLERS Newsletter. I confirm I am over 16 years old. I
+                                    would
                                     like to receive digital
-                                    communications (email and SMS) from AP JEWELLERS about AP JEWELLERS products and exclusive offers.
+                                    communications (email and SMS) from AP JEWELLERS about AP JEWELLERS products and
+                                    exclusive offers.
                                 </label>
                             </div>
                         </div>
@@ -2605,7 +2577,8 @@
             <div class="tf-table-res-df">
                 <p class="title h5 fw-normal text-uppercase">Size chart</p>
                 <p class="sub text-main-4 mb-0">
-                    At AP JEWELLERS Jewelry, we want your jewelry to fit flawlessly. Use our size guide to ensure the perfect
+                    At AP JEWELLERS Jewelry, we want your jewelry to fit flawlessly. Use our size guide to ensure the
+                    perfect
                     match
                     for coins, bracelets, and necklaces.
                 </p>
@@ -2691,137 +2664,170 @@
                     </div>
                 </div>
 
+                <!-- Categories Filter -->
                 <div class="widget-facet">
                     <div class="facet-title h6 fw-normal" data-bs-target="#categories" role="button"
                         data-bs-toggle="collapse" aria-expanded="true" aria-controls="categories">
-                        <span class="h6 fw-normal text-uppercase">category</span>
+                        <span class="h6 fw-normal text-uppercase">Category</span>
                         <span class="icon ic-accordion-custom"></span>
                     </div>
                     <div id="categories" class="collapse show">
                         <ul class="collapse-body filter-group-check current-scrollbar">
                             <li class="list-item">
-                                <input type="checkbox" name="category" class="tf-check style-2" id="bracelet">
-                                <label for="bracelet" class="label">
-                                    <span>Coins</span><span class="count-wrap">[ <span class="count">20</span>
-                                        ]</span>
+                                <input type="checkbox" name="category" class="tf-check style-2" id="coins"
+                                    data-filter="category" value="coins">
+                                <label for="coins" class="label">
+                                    <span>Coins</span><span class="count-wrap">[<span class="count"
+                                            id="coins-count">8</span>]</span>
                                 </label>
                             </li>
                             <li class="list-item">
-                                <input type="checkbox" name="category" class="tf-check style-2" id="earring">
-                                <label for="earring" class="label">
-                                    <span>Biscuits</span><span class="count-wrap">[ <span class="count">20</span>
-                                        ]</span>
+                                <input type="checkbox" name="category" class="tf-check style-2" id="biscuits"
+                                    data-filter="category" value="biscuits">
+                                <label for="biscuits" class="label">
+                                    <span>Biscuits</span><span class="count-wrap">[<span class="count"
+                                            id="biscuits-count">5</span>]</span>
                                 </label>
                             </li>
-
                         </ul>
                     </div>
                 </div>
+
+                <!-- Purity Filter -->
                 <div class="widget-facet">
-                    <div class="facet-title h6 fw-normal" data-bs-target="#materials" role="button"
-                        data-bs-toggle="collapse" aria-expanded="true" aria-controls="materials">
+                    <div class="facet-title h6 fw-normal" data-bs-target="#purity" role="button"
+                        data-bs-toggle="collapse" aria-expanded="true" aria-controls="purity">
                         <span class="h6 fw-normal text-uppercase">Purity</span>
                         <span class="icon ic-accordion-custom"></span>
                     </div>
-                    <div id="materials" class="collapse show">
+                    <div id="purity" class="collapse show">
                         <ul class="collapse-body filter-group-check current-scrollbar">
                             <li class="list-item">
-                                <input type="checkbox" name="material" class="tf-check style-2" id="gold">
-                                <label for="gold" class="label">
-                                    <span>18 KT</span><span class="count-wrap">[ <span class="count">20</span> ]</span>
+                                <input type="checkbox" name="purity" class="tf-check style-2" id="18kt"
+                                    data-filter="purity" value="18kt">
+                                <label for="18kt" class="label">
+                                    <span>18 KT</span><span class="count-wrap">[<span class="count"
+                                            id="18kt-count">0</span>]</span>
                                 </label>
                             </li>
                             <li class="list-item">
-                                <input type="checkbox" name="material" class="tf-check style-2" id="sterling-silver">
-                                <label for="sterling-silver" class="label">
-                                    <span>20KT</span><span class="count-wrap">[ <span class="count">20</span>
-                                        ]</span>
+                                <input type="checkbox" name="purity" class="tf-check style-2" id="20kt"
+                                    data-filter="purity" value="20kt">
+                                <label for="20kt" class="label">
+                                    <span>20 KT</span><span class="count-wrap">[<span class="count"
+                                            id="20kt-count">0</span>]</span>
                                 </label>
                             </li>
                             <li class="list-item">
-                                <input type="checkbox" name="material" class="tf-check style-2" id="white-gold">
-                                <label for="white-gold" class="label">
-                                    <span>22 KT</span><span class="count-wrap">[ <span class="count">20</span>
-                                        ]</span>
+                                <input type="checkbox" name="purity" class="tf-check style-2" id="22kt"
+                                    data-filter="purity" value="22kt">
+                                <label for="22kt" class="label">
+                                    <span>22 KT</span><span class="count-wrap">[<span class="count"
+                                            id="22kt-count">4</span>]</span>
                                 </label>
                             </li>
                             <li class="list-item">
-                                <input type="checkbox" name="material" class="tf-check style-2" id="pink-gold">
-                                <label for="pink-gold" class="label">
-                                    <span>24 KT</span><span class="count-wrap">[ <span class="count">20</span>
-                                        ]</span>
+                                <input type="checkbox" name="purity" class="tf-check style-2" id="24kt"
+                                    data-filter="purity" value="24kt">
+                                <label for="24kt" class="label">
+                                    <span>24 KT</span><span class="count-wrap">[<span class="count"
+                                            id="24kt-count">9</span>]</span>
                                 </label>
                             </li>
                         </ul>
                     </div>
                 </div>
+
+                <!-- Price Filter -->
                 <div class="widget-facet">
                     <div class="facet-title h6 fw-normal" data-bs-target="#price" role="button"
                         data-bs-toggle="collapse" aria-expanded="true" aria-controls="price">
-                        <span class="h6 fw-normal text-uppercase">price</span>
+                        <span class="h6 fw-normal text-uppercase">Price</span>
                         <span class="icon ic-accordion-custom"></span>
                     </div>
                     <div id="price" class="collapse show">
                         <ul class="collapse-body filter-group-check current-scrollbar">
                             <li class="list-item">
-                                <input type="radio" name="price" class="tf-check style-2" id="u-10k">
+                                <input type="radio" name="price" class="tf-check style-2" id="u-10k" data-filter="price"
+                                    value="u-10k">
                                 <label for="u-10k" class="label">
-                                    <span>Under ₹10,000</span><span class="count-wrap">[ <span class="count">20</span>
-                                        ]</span>
+                                    <span>Under ₹10,000</span><span class="count-wrap">[<span class="count"
+                                            id="u-10k-count">3</span>]</span>
                                 </label>
                             </li>
                             <li class="list-item">
-                                <input type="radio" name="price" class="tf-check style-2" id="10k-20k">
+                                <input type="radio" name="price" class="tf-check style-2" id="10k-20k"
+                                    data-filter="price" value="10k-20k">
                                 <label for="10k-20k" class="label">
-                                    <span>₹10,000 - ₹20,000</span><span class="count-wrap">[ <span
-                                            class="count">20</span> ]</span>
+                                    <span>₹10,000 - ₹20,000</span><span class="count-wrap">[<span class="count"
+                                            id="10k-20k-count">2</span>]</span>
                                 </label>
                             </li>
                             <li class="list-item">
-                                <input type="radio" name="price" class="tf-check style-2" id="20k-30k">
+                                <input type="radio" name="price" class="tf-check style-2" id="20k-30k"
+                                    data-filter="price" value="20k-30k">
                                 <label for="20k-30k" class="label">
-                                    <span>₹20,000 - ₹30,000</span><span class="count-wrap">[ <span
-                                            class="count">20</span> ]</span>
+                                    <span>₹20,000 - ₹30,000</span><span class="count-wrap">[<span class="count"
+                                            id="20k-30k-count">1</span>]</span>
                                 </label>
                             </li>
                             <li class="list-item">
-                                <input type="radio" name="price" class="tf-check style-2" id="30k-40k">
+                                <input type="radio" name="price" class="tf-check style-2" id="30k-40k"
+                                    data-filter="price" value="30k-40k">
                                 <label for="30k-40k" class="label">
-                                    <span>₹30,000 - ₹40,000</span><span class="count-wrap">[ <span
-                                            class="count">20</span> ]</span>
+                                    <span>₹30,000 - ₹40,000</span><span class="count-wrap">[<span class="count"
+                                            id="30k-40k-count">2</span>]</span>
                                 </label>
                             </li>
                             <li class="list-item">
-                                <input type="radio" name="price" class="tf-check style-2" id="40k-50k">
+                                <input type="radio" name="price" class="tf-check style-2" id="40k-50k"
+                                    data-filter="price" value="40k-50k">
                                 <label for="40k-50k" class="label">
-                                    <span>₹40,000 - ₹50,000</span><span class="count-wrap">[ <span
-                                            class="count">20</span> ]</span>
+                                    <span>₹40,000 - ₹50,000</span><span class="count-wrap">[<span class="count"
+                                            id="40k-50k-count">1</span>]</span>
                                 </label>
                             </li>
                             <li class="list-item">
-                                <input type="radio" name="price" class="tf-check style-2" id="50k-up">
+                                <input type="radio" name="price" class="tf-check style-2" id="50k-up"
+                                    data-filter="price" value="50k-up">
                                 <label for="50k-up" class="label">
-                                    <span>Over ₹50,000</span><span class="count-wrap">[ <span class="count">20</span>
-                                        ]</span>
+                                    <span>Over ₹50,000</span><span class="count-wrap">[<span class="count"
+                                            id="50k-up-count">4</span>]</span>
                                 </label>
                             </li>
                         </ul>
                     </div>
                 </div>
+
+                <!-- Weight Filter (previously Size) -->
                 <div class="widget-facet">
-                    <div class="facet-title h6 fw-normal" data-bs-target="#size" role="button" data-bs-toggle="collapse"
-                        aria-expanded="true" aria-controls="size">
-                        <span class="h6 fw-normal text-uppercase">size</span>
+                    <div class="facet-title h6 fw-normal" data-bs-target="#weight" role="button"
+                        data-bs-toggle="collapse" aria-expanded="true" aria-controls="weight">
+                        <span class="h6 fw-normal text-uppercase">Weight (grams)</span>
                         <span class="icon ic-accordion-custom"></span>
                     </div>
-                    <div id="size" class="collapse show">
+                    <div id="weight" class="collapse show">
                         <div class="collapse-body filter-size-box flat-check-list">
-                            <div class="check-item size-item size-check"><span class="count size">5</span></div>
-                            <div class="check-item size-item size-check"><span class="count size">6</span></div>
-                            <div class="check-item size-item size-check"><span class="count size">7</span></div>
-                            <div class="check-item size-item size-check"><span class="count size">8</span></div>
-                            <div class="check-item size-item size-check"><span class="count size">9</span></div>
-                            <div class="check-item size-item size-check disabled"><span class="count size">10</span>
+                            <div class="check-item size-item size-check" data-value="1" data-filter="weight">
+                                <span class="count size">1</span>
+                            </div>
+                            <div class="check-item size-item size-check" data-value="2" data-filter="weight">
+                                <span class="count size">2</span>
+                            </div>
+                            <div class="check-item size-item size-check" data-value="4" data-filter="weight">
+                                <span class="count size">4</span>
+                            </div>
+                            <div class="check-item size-item size-check" data-value="5" data-filter="weight">
+                                <span class="count size">5</span>
+                            </div>
+                            <div class="check-item size-item size-check" data-value="8" data-filter="weight">
+                                <span class="count size">8</span>
+                            </div>
+                            <div class="check-item size-item size-check" data-value="10" data-filter="weight">
+                                <span class="count size">10</span>
+                            </div>
+                            <div class="check-item size-item size-check" data-value="20" data-filter="weight">
+                                <span class="count size">20</span>
                             </div>
                         </div>
                     </div>
@@ -2829,10 +2835,10 @@
             </div>
             <div class="canvas-bottom">
                 <button id="reset-filter" class="tf-btn btn-reset">
-                    <span class=" fw-medium">CLEAR ALL</span>
+                    <span class="fw-medium">CLEAR ALL</span>
                 </button>
                 <button type="button" class="tf-btn btn-fill animate-btn" data-bs-dismiss="offcanvas">
-                    <span class=" fw-medium">APPLY [100]</span>
+                    <span class="fw-medium">APPLY [<span id="visible-product-count">13</span>]</span>
                 </button>
             </div>
         </div>

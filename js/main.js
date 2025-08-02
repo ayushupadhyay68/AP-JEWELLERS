@@ -1714,6 +1714,142 @@
         }
     });
 
+    // login api
+    document.addEventListener('DOMContentLoaded', function () {
+        // Password toggle functionality
+        document.querySelectorAll('.toggle-pass').forEach(toggle => {
+            toggle.addEventListener('click', function () {
+                const passwordField = this.parentElement.querySelector('.password-field');
+                const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordField.setAttribute('type', type);
+                this.classList.toggle('icon-show-password');
+                this.classList.toggle('icon-hide-password');
+            });
+        });
+
+        // Login form submission
+        document.getElementById('loginForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            // Clear previous errors
+            document.querySelectorAll('.error-message').forEach(el => {
+                el.textContent = '';
+                el.style.display = 'none';
+            });
+            document.getElementById('loginMessage').style.display = 'none';
+
+            // Get form values
+            const email = document.getElementById('loginEmail').value.trim();
+            const password = document.getElementById('loginPassword').value;
+            const rememberMe = document.getElementById('remember').checked;
+
+            // Client-side validation
+            let isValid = true;
+
+            if (!email) {
+                showError('emailError', 'Email is required');
+                isValid = false;
+            } else if (!/^\S+@\S+\.\S+$/.test(email)) {
+                showError('emailError', 'Please enter a valid email');
+                isValid = false;
+            }
+
+            if (!password) {
+                showError('passwordError', 'Password is required');
+                isValid = false;
+            }
+
+            if (!isValid) return;
+
+            try {
+                // Show loading state
+                const submitBtn = document.querySelector('#loginForm button[type="submit"]');
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Logging in...';
+
+                // Call login function
+                const data = await login(email, password);
+
+                // Handle remember me functionality
+                if (rememberMe) {
+                    localStorage.setItem('rememberedEmail', email);
+                } else {
+                    localStorage.removeItem('rememberedEmail');
+                }
+
+                // Show success message
+                showMessage('loginMessage', 'Login successful! Redirecting...', 'success');
+
+                // Redirect after delay
+                setTimeout(() => {
+                    window.location.href = '/dashboard.html'; // Change to your desired redirect URL
+                }, 1500);
+
+            } catch (error) {
+                console.error('Login error:', error);
+                showMessage('loginMessage', error.message || 'Login failed. Please try again.', 'error');
+
+                // Reset button state
+                const submitBtn = document.querySelector('#loginForm button[type="submit"]');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'LOG IN';
+            }
+        });
+
+        // Pre-fill remembered email if exists
+        const rememberedEmail = localStorage.getItem('rememberedEmail');
+        if (rememberedEmail) {
+            document.getElementById('loginEmail').value = rememberedEmail;
+            document.getElementById('remember').checked = true;
+        }
+
+        // Helper functions
+        function showError(elementId, message) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.textContent = message;
+                element.style.display = 'block';
+                element.style.color = 'red';
+            }
+        }
+
+        function showMessage(elementId, message, type) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.textContent = message;
+                element.style.display = 'block';
+                element.style.color = type === 'success' ? 'green' : 'red';
+            }
+        }
+
+        // Authentication functions (from your provided code)
+        async function login(email, password) {
+            try {
+                const response = await fetch('http://127.0.0.1:8000/api/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) throw new Error(data.message || 'Login failed');
+
+                localStorage.setItem('authToken', data.token);
+                return data;
+            } catch (error) {
+                console.error('Login error:', error);
+                throw error;
+            }
+        }
+
+        // Other auth functions (getLoggedInUser, logout, changePassword) remain the same
+        // as in your provided code - they can be used elsewhere in your application
+    });
+
     // javascript for cart funtionality
     document.addEventListener('DOMContentLoaded', function () {
         // Quantity adjustment functionality
@@ -1894,6 +2030,838 @@
         initCartButtons();
     });
 
+    document.addEventListener('DOMContentLoaded', function () {
+        // Filter elements
+        const filterShop = document.getElementById('filterShop');
+        const appliedFiltersContainer = document.getElementById('applied-filters');
+        const productCountElement = document.getElementById('product-count-grid');
+        const resetFilterBtn = document.getElementById('reset-filter');
+        const applyFilterBtn = document.querySelector('.canvas-bottom .btn-fill');
+        const productGrid = document.querySelector('.wrapper-shop');
+
+        let currentFilters = {
+            categories: [],
+            purity: [],
+            priceRange: null,
+            weights: []
+        };
+
+        // Initialize filters
+        function initFilters() {
+            // Category filter
+            document.querySelectorAll('#categories input[type="checkbox"]').forEach(checkbox => {
+                checkbox.addEventListener('change', function () {
+                    const category = this.id;
+                    if (this.checked) {
+                        currentFilters.categories.push(category);
+                    } else {
+                        currentFilters.categories = currentFilters.categories.filter(c => c !== category);
+                    }
+                    updateAppliedFilters();
+                    filterProducts();
+                });
+            });
+
+            // Purity filter
+            document.querySelectorAll('#materials input[type="checkbox"]').forEach(checkbox => {
+                checkbox.addEventListener('change', function () {
+                    const purity = this.id;
+                    if (this.checked) {
+                        currentFilters.purity.push(purity);
+                    } else {
+                        currentFilters.purity = currentFilters.purity.filter(p => p !== purity);
+                    }
+                    updateAppliedFilters();
+                    filterProducts();
+                });
+            });
+
+            // Price filter
+            document.querySelectorAll('#price input[type="radio"]').forEach(radio => {
+                radio.addEventListener('change', function () {
+                    if (this.checked) {
+                        currentFilters.priceRange = this.id;
+                        updateAppliedFilters();
+                        filterProducts();
+                    }
+                });
+            });
+
+            // Weight filter - fixed version
+            document.querySelectorAll('#size .size-check').forEach(size => {
+                size.addEventListener('click', function () {
+                    // Get weight value from data-value attribute or text content
+                    const weightValue = this.getAttribute('data-value') ||
+                        this.textContent.trim().replace('g', '').trim();
+
+                    if (this.classList.contains('active')) {
+                        this.classList.remove('active');
+                        currentFilters.weights = currentFilters.weights.filter(w => w !== weightValue);
+                    } else {
+                        this.classList.add('active');
+                        currentFilters.weights.push(weightValue);
+                    }
+                    updateAppliedFilters();
+                    filterProducts();
+                });
+            });
+        }
+
+        // Update applied filters display
+        function updateAppliedFilters() {
+            appliedFiltersContainer.innerHTML = '';
+
+            // Add category filters
+            currentFilters.categories.forEach(category => {
+                const filter = document.createElement('span');
+                filter.className = 'applied-filter';
+                filter.textContent = `Category: ${category.charAt(0).toUpperCase() + category.slice(1)}`;
+                appliedFiltersContainer.appendChild(filter);
+            });
+
+            // Add purity filters
+            currentFilters.purity.forEach(purity => {
+                const filter = document.createElement('span');
+                filter.className = 'applied-filter';
+                filter.textContent = `Purity: ${purity.toUpperCase()}`;
+                appliedFiltersContainer.appendChild(filter);
+            });
+
+            // Add price filter
+            if (currentFilters.priceRange) {
+                const priceText = document.querySelector(`label[for="${currentFilters.priceRange}"] span`).textContent;
+                const filter = document.createElement('span');
+                filter.className = 'applied-filter';
+                filter.textContent = `Price: ${priceText}`;
+                appliedFiltersContainer.appendChild(filter);
+            }
+
+            // Add weight filters
+            currentFilters.weights.forEach(weight => {
+                const filter = document.createElement('span');
+                filter.className = 'applied-filter';
+                filter.textContent = `Weight: ${weight}g`;
+                appliedFiltersContainer.appendChild(filter);
+            });
+
+            // Update count text
+            const totalFilters = currentFilters.categories.length + currentFilters.purity.length +
+                (currentFilters.priceRange ? 1 : 0) + currentFilters.weights.length;
+            productCountElement.textContent = totalFilters > 0 ? `${totalFilters} Filters Applied` : 'No Filter Selected';
+        }
+
+        // Filter products based on current filters
+        function filterProducts() {
+            const productCards = productGrid.querySelectorAll('.loadItem.card_product--V01');
+            let visibleCount = 0;
+
+            productCards.forEach(card => {
+                const category = card.dataset.category;
+                const purity = card.dataset.purity;
+                const price = parseFloat(card.dataset.price) || 0;
+                const weight = card.dataset.weight;
+
+                // Check category filter
+                const categoryMatch = currentFilters.categories.length === 0 ||
+                    currentFilters.categories.includes(category);
+
+                // Check purity filter
+                const purityMatch = currentFilters.purity.length === 0 ||
+                    currentFilters.purity.includes(purity);
+
+                // Check price filter
+                let priceMatch = true;
+                if (currentFilters.priceRange) {
+                    switch (currentFilters.priceRange) {
+                        case 'u-10k': priceMatch = price < 10000; break;
+                        case '10k-20k': priceMatch = price >= 10000 && price < 20000; break;
+                        case '20k-30k': priceMatch = price >= 20000 && price < 30000; break;
+                        case '30k-40k': priceMatch = price >= 30000 && price < 40000; break;
+                        case '40k-50k': priceMatch = price >= 40000 && price < 50000; break;
+                        case '50k-up': priceMatch = price >= 50000; break;
+                    }
+                }
+
+                // Check weight filter - improved comparison
+                const weightMatch = currentFilters.weights.length === 0 ||
+                    currentFilters.weights.some(filterWeight => {
+                        // Normalize both values by removing 'g' and comparing numbers
+                        const cardWeightNum = parseFloat((weight || '').replace('g', '').trim());
+                        const filterWeightNum = parseFloat((filterWeight || '').replace('g', '').trim());
+                        return cardWeightNum === filterWeightNum;
+                    });
+
+                // Show/hide based on filters
+                if (categoryMatch && purityMatch && priceMatch && weightMatch) {
+                    card.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Update product count in apply button
+            applyFilterBtn.querySelector('span').textContent = `APPLY [${visibleCount}]`;
+
+            // Update collection counts if needed
+            updateCollectionCounts();
+        }
+
+        // Reset all filters
+        resetFilterBtn.addEventListener('click', function () {
+            // Uncheck all checkboxes
+            document.querySelectorAll('.tf-check').forEach(checkbox => {
+                checkbox.checked = false;
+            });
+
+            // Clear size selections
+            document.querySelectorAll('#size .size-check').forEach(size => {
+                size.classList.remove('active');
+            });
+
+            // Reset current filters
+            currentFilters = {
+                categories: [],
+                purity: [],
+                priceRange: null,
+                weights: []
+            };
+
+            updateAppliedFilters();
+            filterProducts();
+        });
+
+        // Update collection counts
+        function updateCollectionCounts() {
+            const coins22kt = document.querySelectorAll('.card_product--V01[data-category="coins"][data-purity="22kt"]:not([style*="display: none"])').length;
+            const biscuits24kt = document.querySelectorAll('.card_product--V01[data-category="biscuits"][data-purity="24kt"]:not([style*="display: none"])').length;
+
+            // Update counts in the swiper
+            document.querySelectorAll('.collection-count').forEach(el => {
+                if (el.dataset.category === 'coins' && el.dataset.purity === '22kt') {
+                    el.textContent = coins22kt;
+                }
+                if (el.dataset.category === 'biscuits' && el.dataset.purity === '24kt') {
+                    el.textContent = biscuits24kt;
+                }
+            });
+        }
+
+        // Handle collection item clicks
+        document.querySelectorAll('.filter-trigger').forEach(item => {
+            item.addEventListener('click', function () {
+                const category = this.getAttribute('data-filter-category');
+                const purity = this.getAttribute('data-filter-purity');
+
+                // Programmatically set the filter checkboxes
+                document.getElementById(category).checked = true;
+                document.getElementById(purity).checked = true;
+
+                // Trigger filter change events
+                document.getElementById(category).dispatchEvent(new Event('change'));
+                document.getElementById(purity).dispatchEvent(new Event('change'));
+
+                // Open the filter panel if not already open
+                const filterOffcanvas = new bootstrap.Offcanvas(document.getElementById('filterShop'));
+                filterOffcanvas.show();
+
+                // Scroll to products section if needed
+                document.querySelector('.wrapper-shop').scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Initialize filters
+        initFilters();
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        // Filter elements
+        const filterShop = document.getElementById('filterShop');
+        const appliedFiltersContainer = document.getElementById('applied-filters');
+        const productCountElement = document.getElementById('product-count-grid');
+        const resetFilterBtn = document.getElementById('reset-filter');
+        const applyFilterBtn = document.querySelector('.canvas-bottom .btn-fill');
+        const productGrid = document.getElementById('gridLayout');
+
+        let currentFilters = {
+            categories: [],
+            purity: [],
+            priceRange: null,
+            weights: []
+        };
+
+        // Initialize filters
+        function initFilters() {
+            // Category filter
+            document.querySelectorAll('#categories input[type="checkbox"]').forEach(checkbox => {
+                checkbox.addEventListener('change', function () {
+                    const category = this.id;
+                    if (this.checked) {
+                        currentFilters.categories.push(category);
+                    } else {
+                        currentFilters.categories = currentFilters.categories.filter(c => c !== category);
+                    }
+                    updateAppliedFilters();
+                    filterProducts();
+                });
+            });
+
+            // Purity filter
+            document.querySelectorAll('#materials input[type="checkbox"]').forEach(checkbox => {
+                checkbox.addEventListener('change', function () {
+                    const purity = this.id;
+                    if (this.checked) {
+                        currentFilters.purity.push(purity);
+                    } else {
+                        currentFilters.purity = currentFilters.purity.filter(p => p !== purity);
+                    }
+                    updateAppliedFilters();
+                    filterProducts();
+                });
+            });
+
+            // Price filter
+            document.querySelectorAll('#price input[type="radio"]').forEach(radio => {
+                radio.addEventListener('change', function () {
+                    if (this.checked) {
+                        currentFilters.priceRange = this.id;
+                        updateAppliedFilters();
+                        filterProducts();
+                    }
+                });
+            });
+
+            // Weight filter - fixed implementation
+            document.querySelectorAll('#size .size-check').forEach(size => {
+                size.addEventListener('click', function () {
+                    // Get weight value from data-value attribute or text content
+                    const weightValue = this.getAttribute('data-value') ||
+                        this.textContent.trim().replace('g', '').trim();
+
+                    if (this.classList.contains('active')) {
+                        this.classList.remove('active');
+                        currentFilters.weights = currentFilters.weights.filter(w => w !== weightValue);
+                    } else {
+                        this.classList.add('active');
+                        currentFilters.weights.push(weightValue);
+                    }
+                    updateAppliedFilters();
+                    filterProducts();
+                });
+            });
+        }
+
+        // Update applied filters display
+        function updateAppliedFilters() {
+            appliedFiltersContainer.innerHTML = '';
+
+            // Add category filters
+            currentFilters.categories.forEach(category => {
+                const filter = document.createElement('span');
+                filter.className = 'applied-filter';
+                filter.textContent = `Category: ${category.charAt(0).toUpperCase() + category.slice(1)}`;
+                appliedFiltersContainer.appendChild(filter);
+            });
+
+            // Add purity filters
+            currentFilters.purity.forEach(purity => {
+                const filter = document.createElement('span');
+                filter.className = 'applied-filter';
+                filter.textContent = `Purity: ${purity.toUpperCase()}`;
+                appliedFiltersContainer.appendChild(filter);
+            });
+
+            // Add price filter
+            if (currentFilters.priceRange) {
+                const priceText = document.querySelector(`label[for="${currentFilters.priceRange}"] span`).textContent;
+                const filter = document.createElement('span');
+                filter.className = 'applied-filter';
+                filter.textContent = `Price: ${priceText}`;
+                appliedFiltersContainer.appendChild(filter);
+            }
+
+            // Add weight filters
+            currentFilters.weights.forEach(weight => {
+                const filter = document.createElement('span');
+                filter.className = 'applied-filter';
+                filter.textContent = `Weight: ${weight}g`;
+                appliedFiltersContainer.appendChild(filter);
+            });
+
+            // Update count text
+            const totalFilters = currentFilters.categories.length + currentFilters.purity.length +
+                (currentFilters.priceRange ? 1 : 0) + currentFilters.weights.length;
+            productCountElement.textContent = totalFilters > 0 ? `${totalFilters} Filters Applied` : 'No Filter Selected';
+        }
+
+        // Filter products based on current filters
+        function filterProducts() {
+            const productCards = productGrid.querySelectorAll('.loadItem.card_product--V01');
+            let visibleCount = 0;
+
+            productCards.forEach(card => {
+                const category = card.dataset.category;
+                const purity = card.dataset.purity;
+                const price = parseFloat(card.dataset.price) || 0;
+                const weight = card.dataset.weight;
+
+                // Check category filter
+                const categoryMatch = currentFilters.categories.length === 0 ||
+                    currentFilters.categories.includes(category);
+
+                // Check purity filter
+                const purityMatch = currentFilters.purity.length === 0 ||
+                    currentFilters.purity.includes(purity);
+
+                // Check price filter
+                let priceMatch = true;
+                if (currentFilters.priceRange) {
+                    switch (currentFilters.priceRange) {
+                        case 'u-10k': priceMatch = price < 10000; break;
+                        case '10k-20k': priceMatch = price >= 10000 && price < 20000; break;
+                        case '20k-30k': priceMatch = price >= 20000 && price < 30000; break;
+                        case '30k-40k': priceMatch = price >= 30000 && price < 40000; break;
+                        case '40k-50k': priceMatch = price >= 40000 && price < 50000; break;
+                        case '50k-up': priceMatch = price >= 50000; break;
+                    }
+                }
+
+                // Check weight filter - fixed comparison
+                const weightMatch = currentFilters.weights.length === 0 ||
+                    currentFilters.weights.some(filterWeight => {
+                        // Convert both values to numbers for comparison
+                        const cardWeightNum = parseFloat(weight);
+                        const filterWeightNum = parseFloat(filterWeight);
+                        return cardWeightNum === filterWeightNum;
+                    });
+
+                // Show/hide based on filters
+                if (categoryMatch && purityMatch && priceMatch && weightMatch) {
+                    card.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Update product count in apply button
+            applyFilterBtn.querySelector('span').textContent = `APPLY [${visibleCount}]`;
+
+            // Update collection counts if needed
+            updateCollectionCounts();
+        }
+
+        // Update collection counts
+        function updateCollectionCounts() {
+            const coins22kt = document.querySelectorAll('.card_product--V01[data-category="coins"][data-purity="22kt"]:not([style*="display: none"])').length;
+            const biscuits24kt = document.querySelectorAll('.card_product--V01[data-category="biscuits"][data-purity="24kt"]:not([style*="display: none"])').length;
+
+            document.querySelectorAll('.collection-count').forEach(el => {
+                if (el.dataset.category === 'coins' && el.dataset.purity === '22kt') {
+                    el.textContent = coins22kt;
+                }
+                if (el.dataset.category === 'biscuits' && el.dataset.purity === '24kt') {
+                    el.textContent = biscuits24kt;
+                }
+            });
+        }
+
+        // Reset all filters
+        resetFilterBtn.addEventListener('click', function () {
+            // Uncheck all checkboxes
+            document.querySelectorAll('.tf-check').forEach(checkbox => {
+                checkbox.checked = false;
+            });
+
+            // Clear size selections
+            document.querySelectorAll('#size .size-check').forEach(size => {
+                size.classList.remove('active');
+            });
+
+            // Reset current filters
+            currentFilters = {
+                categories: [],
+                purity: [],
+                priceRange: null,
+                weights: []
+            };
+
+            updateAppliedFilters();
+            filterProducts();
+        });
+
+        // Collection item click handlers
+        document.querySelectorAll('.filter-trigger').forEach(item => {
+            item.addEventListener('click', function () {
+                const category = this.getAttribute('data-filter-category');
+                const purity = this.getAttribute('data-filter-purity');
+
+                // Set the filter checkboxes
+                document.getElementById(category).checked = true;
+                document.getElementById(purity).checked = true;
+
+                // Trigger change events
+                document.getElementById(category).dispatchEvent(new Event('change'));
+                document.getElementById(purity).dispatchEvent(new Event('change'));
+
+                // Open filter panel
+                const filterOffcanvas = new bootstrap.Offcanvas(document.getElementById('filterShop'));
+                filterOffcanvas.show();
+
+                // Scroll to products
+                document.querySelector('.wrapper-shop').scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Initialize filters
+        initFilters();
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        // Filter elements
+        const filterShop = document.getElementById('filterShop');
+        const appliedFiltersContainer = document.getElementById('applied-filters');
+        const productCountElement = document.getElementById('product-count-grid');
+        const resetFilterBtn = document.getElementById('reset-filter');
+        const applyFilterBtn = document.querySelector('.canvas-bottom .btn-fill');
+        const productGrid = document.getElementById('gridLayout') || document.querySelector('.wrapper-shop');
+
+        let currentFilters = {
+            categories: [],
+            purity: [],
+            priceRange: null,
+            weights: []
+        };
+
+        // Initialize filters
+        function initFilters() {
+            // Category filter
+            document.querySelectorAll('#categories input[type="checkbox"]').forEach(checkbox => {
+                checkbox.addEventListener('change', function () {
+                    const category = this.id;
+                    if (this.checked) {
+                        if (!currentFilters.categories.includes(category)) {
+                            currentFilters.categories.push(category);
+                        }
+                    } else {
+                        currentFilters.categories = currentFilters.categories.filter(c => c !== category);
+                    }
+                    updateAppliedFilters();
+                    filterProducts();
+                });
+            });
+
+            // Purity filter
+            document.querySelectorAll('#materials input[type="checkbox"]').forEach(checkbox => {
+                checkbox.addEventListener('change', function () {
+                    const purity = this.id;
+                    if (this.checked) {
+                        if (!currentFilters.purity.includes(purity)) {
+                            currentFilters.purity.push(purity);
+                        }
+                    } else {
+                        currentFilters.purity = currentFilters.purity.filter(p => p !== purity);
+                    }
+                    updateAppliedFilters();
+                    filterProducts();
+                });
+            });
+
+            // Price filter
+            document.querySelectorAll('#price input[type="radio"]').forEach(radio => {
+                radio.addEventListener('change', function () {
+                    if (this.checked) {
+                        currentFilters.priceRange = this.id;
+                        updateAppliedFilters();
+                        filterProducts();
+                    }
+                });
+            });
+
+            // Weight filter
+            document.querySelectorAll('#size .size-check').forEach(size => {
+                size.addEventListener('click', function () {
+                    const weightValue = this.getAttribute('data-value') ||
+                        this.textContent.trim().replace(/g|GM/i, '').trim();
+
+                    if (this.classList.contains('active')) {
+                        this.classList.remove('active');
+                        currentFilters.weights = currentFilters.weights.filter(w => w !== weightValue);
+                    } else {
+                        this.classList.add('active');
+                        if (!currentFilters.weights.includes(weightValue)) {
+                            currentFilters.weights.push(weightValue);
+                        }
+                    }
+                    updateAppliedFilters();
+                    filterProducts();
+                });
+            });
+        }
+
+        // Update applied filters display
+        function updateAppliedFilters() {
+            if (!appliedFiltersContainer) return;
+            appliedFiltersContainer.innerHTML = '';
+
+            // Add category filters
+            currentFilters.categories.forEach(category => {
+                const filter = document.createElement('span');
+                filter.className = 'applied-filter';
+                filter.textContent = `Category: ${category.charAt(0).toUpperCase() + category.slice(1)}`;
+                appliedFiltersContainer.appendChild(filter);
+            });
+
+            // Add purity filters
+            currentFilters.purity.forEach(purity => {
+                const filter = document.createElement('span');
+                filter.className = 'applied-filter';
+                filter.textContent = `Purity: ${purity.toUpperCase()}`;
+                appliedFiltersContainer.appendChild(filter);
+            });
+
+            // Add price filter
+            if (currentFilters.priceRange) {
+                const priceLabel = document.querySelector(`label[for="${currentFilters.priceRange}"] span`);
+                const priceText = priceLabel ? priceLabel.textContent : '';
+                const filter = document.createElement('span');
+                filter.className = 'applied-filter';
+                filter.textContent = `Price: ${priceText}`;
+                appliedFiltersContainer.appendChild(filter);
+            }
+
+            // Add weight filters
+            currentFilters.weights.forEach(weight => {
+                const filter = document.createElement('span');
+                filter.className = 'applied-filter';
+                filter.textContent = `Weight: ${weight}g`;
+                appliedFiltersContainer.appendChild(filter);
+            });
+
+            // Update count text
+            if (productCountElement) {
+                const totalFilters = currentFilters.categories.length + currentFilters.purity.length +
+                    (currentFilters.priceRange ? 1 : 0) + currentFilters.weights.length;
+                productCountElement.textContent = totalFilters > 0 ? `${totalFilters} Filters Applied` : 'No Filter Selected';
+            }
+        }
+
+        // Filter products based on current filters
+        function filterProducts() {
+            if (!productGrid) return;
+            const productCards = productGrid.querySelectorAll('.loadItem.card_product--V01');
+            let visibleCount = 0;
+
+            productCards.forEach(card => {
+                const category = card.dataset.category;
+                const purity = card.dataset.purity;
+                const price = parseFloat(card.dataset.price) || 0;
+                const weight = card.dataset.weight;
+
+                // Check category filter
+                const categoryMatch = currentFilters.categories.length === 0 ||
+                    currentFilters.categories.includes(category);
+
+                // Check purity filter
+                const purityMatch = currentFilters.purity.length === 0 ||
+                    currentFilters.purity.includes(purity);
+
+                // Check price filter
+                let priceMatch = true;
+                if (currentFilters.priceRange) {
+                    switch (currentFilters.priceRange) {
+                        case 'u-10k': priceMatch = price < 10000; break;
+                        case '10k-20k': priceMatch = price >= 10000 && price < 20000; break;
+                        case '20k-30k': priceMatch = price >= 20000 && price < 30000; break;
+                        case '30k-40k': priceMatch = price >= 30000 && price < 40000; break;
+                        case '40k-50k': priceMatch = price >= 40000 && price < 50000; break;
+                        case '50k-up': priceMatch = price >= 50000; break;
+                    }
+                }
+
+                // Check weight filter
+                const weightMatch = currentFilters.weights.length === 0 ||
+                    currentFilters.weights.some(filterWeight => {
+                        const cardWeightNum = parseFloat((weight || '').replace(/g|GM/i, '').trim());
+                        const filterWeightNum = parseFloat((filterWeight || '').replace(/g|GM/i, '').trim());
+                        return cardWeightNum === filterWeightNum;
+                    });
+
+                // Show/hide based on filters
+                if (categoryMatch && purityMatch && priceMatch && weightMatch) {
+                    card.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Update product count in apply button
+            if (applyFilterBtn && applyFilterBtn.querySelector('span')) {
+                applyFilterBtn.querySelector('span').textContent = `APPLY [${visibleCount}]`;
+            }
+
+            // Update collection counts if needed
+            updateCollectionCounts();
+        }
+
+        // Update collection counts
+        function updateCollectionCounts() {
+            const coins22kt = document.querySelectorAll('.card_product--V01[data-category="coins"][data-purity="22kt"]:not([style*="display: none"])').length;
+            const biscuits24kt = document.querySelectorAll('.card_product--V01[data-category="biscuits"][data-purity="24kt"]:not([style*="display: none"])').length;
+
+            document.querySelectorAll('.collection-count').forEach(el => {
+                if (el.dataset.category === 'coins' && el.dataset.purity === '22kt') {
+                    el.textContent = coins22kt;
+                }
+                if (el.dataset.category === 'biscuits' && el.dataset.purity === '24kt') {
+                    el.textContent = biscuits24kt;
+                }
+            });
+        }
+
+        // Reset all filters
+        if (resetFilterBtn) {
+            resetFilterBtn.addEventListener('click', function () {
+                // Uncheck all checkboxes
+                document.querySelectorAll('.tf-check').forEach(checkbox => {
+                    checkbox.checked = false;
+                });
+
+                // Clear size selections
+                document.querySelectorAll('#size .size-check').forEach(size => {
+                    size.classList.remove('active');
+                });
+
+                // Reset current filters
+                currentFilters = {
+                    categories: [],
+                    purity: [],
+                    priceRange: null,
+                    weights: []
+                };
+
+                updateAppliedFilters();
+                filterProducts();
+            });
+        }
+
+        // Collection item click handlers
+        document.querySelectorAll('.filter-trigger').forEach(item => {
+            item.addEventListener('click', function () {
+                const category = this.getAttribute('data-filter-category');
+                const purity = this.getAttribute('data-filter-purity');
+
+                // Set the filter checkboxes
+                const catEl = document.getElementById(category);
+                const purEl = document.getElementById(purity);
+                if (catEl) {
+                    catEl.checked = true;
+                    catEl.dispatchEvent(new Event('change'));
+                }
+                if (purEl) {
+                    purEl.checked = true;
+                    purEl.dispatchEvent(new Event('change'));
+                }
+
+                // Open filter panel
+                if (filterShop && typeof bootstrap !== "undefined" && bootstrap.Offcanvas) {
+                    const filterOffcanvas = new bootstrap.Offcanvas(filterShop);
+                    filterOffcanvas.show();
+                }
+
+                // Scroll to products
+                const shopWrap = document.querySelector('.wrapper-shop');
+                if (shopWrap) {
+                    shopWrap.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Initialize filters
+        initFilters();
+    });
+
+
+    // Function to apply filters from URL parameters
+    function applyFiltersFromURL() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const category = urlParams.get('filter_category');
+        const purity = urlParams.get('filter_purity');
+
+        if (category && purity) {
+            // Check the corresponding checkboxes
+            $(`#${category}`).prop('checked', true);
+            $(`#${purity}`).prop('checked', true);
+
+            // Trigger filter change
+            filterProducts();
+
+            // Highlight active filter buttons
+            $(`.filter-trigger[data-filter-category="${category}"][data-filter-purity="${purity}"]`)
+                .addClass('active');
+
+            // Scroll to products after a short delay
+            setTimeout(() => {
+                $('html, body').animate({
+                    scrollTop: $('.wrapper-shop').offset().top - 100
+                }, 500);
+            }, 300);
+        }
+    }
+
+    // Modified filterProducts function (update your existing one)
+    function filterProducts() {
+        const $productCards = $('.loadItem.card_product--V01');
+        const activeCategory = $('input[name="category"]:checked').attr('id');
+        const activePurity = $('input[name="purity"]:checked').attr('id');
+
+        let visibleCount = 0;
+
+        $productCards.each(function () {
+            const $card = $(this);
+            const cardCategory = $card.data('category');
+            const cardPurity = $card.data('purity');
+
+            const categoryMatch = !activeCategory || cardCategory === activeCategory;
+            const purityMatch = !activePurity || cardPurity === activePurity;
+
+            if (categoryMatch && purityMatch) {
+                $card.show();
+                visibleCount++;
+            } else {
+                $card.hide();
+            }
+        });
+
+        // Update product count display
+        $('.product-count').text(visibleCount);
+    }
+
+    // Initialize on page load
+    $(document).ready(function () {
+        // Apply filters from URL if present
+        if (window.location.search.includes('filter_category')) {
+            applyFiltersFromURL();
+        }
+
+        // Your existing filter initialization
+        $('.filter-checkbox').on('change', filterProducts);
+
+        // Handle filter trigger clicks
+        $('.filter-trigger').on('click', function () {
+            $('.filter-trigger').removeClass('active');
+            $(this).addClass('active');
+
+            const category = $(this).data('filter-category');
+            const purity = $(this).data('filter-purity');
+
+            $(`#${category}`).prop('checked', true).trigger('change');
+            $(`#${purity}`).prop('checked', true).trigger('change');
+        });
+    });
 
     // Dom Ready
     $(function () {
