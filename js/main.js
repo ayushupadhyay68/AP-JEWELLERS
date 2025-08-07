@@ -1,51 +1,12 @@
-/**
- *Select Image
- *Button Quantity
- *Delete File
- *Go Top
- *Variant Picker
- *Change Value
- *Sidebar Mobile
- *Check Active
- *Button Loading
- *Stagger Wrap
- *Modal Second
- *Header Sticky
- *Auto Popup
- *Toggle Control
- *Total Price Variant
- *Scroll Grid Product
- *Hover Image Cursor
- *Handle Progress
- *Handle Footer
- *Infinite Slide
- *Video Popup
- *Update Bundle Total
- *Add Wishlist
- *Handle Sidebar Filter
- *Estimate Shipping
- *Countdown Custom
- *Coupon Copy
- *Height Table
- *Animation Custom
- *Parallaxie
- *Update Compare Empty
- *Delete Wishlist
- *Preloader 
-
- */
-
 (function ($) {
     "use strict";
 
-    /* Select Image
-    -------------------------------------------------------------------------*/
+    /* Select Image */
     var dropdownSelect = function () {
         $(".tf-dropdown-select").selectpicker();
     };
 
-    /* Button Quantity
-    -------------------------------------------------------------------------*/
+    /* Button Quantity */
     var btnQuantity = function () {
         $(".minus-btn").on("click", function (e) {
             e.preventDefault();
@@ -72,8 +33,7 @@
         });
     };
 
-    /* Delete File 
-    -------------------------------------------------------------------------*/
+    /* Delete File */
     var deleteFile = function (e) {
         function updateCount() {
             var count = $(".list-file-delete .file-delete").length;
@@ -198,8 +158,7 @@
         updateTotalPriceEach();
     };
 
-    /* Go Top
-    -------------------------------------------------------------------------*/
+    /* Go Top */
     var goTop = function () {
         var $goTop = $("#goTop");
         var $borderProgress = $(".border-progress");
@@ -224,8 +183,7 @@
         });
     };
 
-    /* Variant Picker
-    -------------------------------------------------------------------------*/
+    /* Variant Picker */
     var variantPicker = function () {
         if ($(".variant-picker-item").length) {
             $(".color-btn").on("click", function (e) {
@@ -248,8 +206,7 @@
         }
     };
 
-    /* Change Value
-    -------------------------------------------------------------------------*/
+    /* Change Value */
     var changeValue = function () {
         if ($(".tf-dropdown-sort").length > 0) {
             $(".select-item").on("click", function () {
@@ -268,8 +225,7 @@
         }
     };
 
-    /* Sidebar Mobile
-    -------------------------------------------------------------------------*/
+    /* Sidebar Mobile */
     var sidebarMobile = function () {
         if ($(".sidebar-content-wrap").length > 0) {
             var sidebar = $(".sidebar-content-wrap").html();
@@ -277,8 +233,7 @@
         }
     };
 
-    /* Check Active 
-    -------------------------------------------------------------------------*/
+    /* Check Active */
     var checkClick = function () {
         $(".flat-check-list").on("click", ".check-item", function () {
             $(this).closest(".flat-check-list").find(".check-item").removeClass("active");
@@ -286,8 +241,7 @@
         });
     };
 
-    /* Button Loading
-    -------------------------------------------------------------------------*/
+    /* Button Loading */
     var btnLoading = function () {
         if ($(".tf-loading").length) {
             $(".tf-loading").on("click", function (e) {
@@ -300,8 +254,7 @@
         }
     };
 
-    /* Stagger Wrap
-    -------------------------------------------------------------------------*/
+    /* Stagger Wrap */
     var staggerWrap = function () {
         if ($(".stagger-wrap").length) {
             var count = $(".stagger-item").length;
@@ -313,8 +266,7 @@
         }
     };
 
-    /* Modal Second
-    -------------------------------------------------------------------------*/
+    /* Modal Second */
     var clickModalSecond = function () {
         $(".show-size-guide").on("click", function () {
             $("#size-guide").modal("show");
@@ -353,8 +305,7 @@
         });
     };
 
-    /* Header Sticky
-  -------------------------------------------------------------------------*/
+    /* Header Sticky */
     var headerSticky = function () {
         let lastScrollTop = 0;
         let delta = 5;
@@ -390,8 +341,7 @@
         }, 250);
     };
 
-    /* Auto Popup
-    -------------------------------------------------------------------------*/
+    /* Auto Popup */
     var autoPopup = function () {
         if ($(".auto-popup").length > 0) {
             let showPopup = sessionStorage.getItem("showPopup");
@@ -406,8 +356,7 @@
         });
     };
 
-    /* Toggle Control
-    -------------------------------------------------------------------------*/
+    /* Toggle Control */
     var clickControl = function () {
         const $showForm = $(".show-form-address");
         const $editForm = $(".edit-form-address");
@@ -458,8 +407,7 @@
         });
     };
 
-    /* Total Price Variant
-    -------------------------------------------------------------------------*/
+    /* Total Price Variant */
     var totalPriceVariant = function () {
         $(".tf-product-info-list,.tf-cart-item").each(function () {
             var productItem = $(this);
@@ -514,8 +462,7 @@
         });
     };
 
-    /* Scroll Grid Product
-    -------------------------------------------------------------------------*/
+    /* Scroll Grid Product */
     var scrollGridProduct = function () {
         var scrollContainer = $(".wrapper-gallery-scroll");
         var activescrollBtn = null;
@@ -580,8 +527,7 @@
         });
     };
 
-    /* Hover Image Cursor
-    -------------------------------------------------------------------------*/
+    /* Hover Image Cursor */
     var hoverImgCursor = function () {
         let offsetX = 20;
         let offsetY = 20;
@@ -610,8 +556,7 @@
         });
     };
 
-    /* Handle Progress
-    -------------------------------------------------------------------------*/
+    /* Handle Progress */
     var handleProgress = function () {
         if ($(".progress-cart").length > 0) {
             var progressValue = $(".progress-cart .value").data("progress");
@@ -642,8 +587,7 @@
         }
     };
 
-    /* Handle Footer
-    -------------------------------------------------------------------------*/
+    /* Handle Footer */
     var handleFooter = function () {
         var footerAccordion = function () {
             var args = { duration: 250 };
@@ -675,8 +619,7 @@
         });
     };
 
-    /* Infinite Slide 
-    -------------------------------------------------------------------------*/
+    /* Infinite Slide */
     var infiniteSlide = function () {
         if ($(".infiniteSlide").length > 0) {
             $(".infiniteSlide").each(function () {
@@ -693,8 +636,7 @@
         }
     };
 
-    /* Video Popup 
-    -------------------------------------------------------------------------*/
+    /* Video Popup */
     var videoPopup = function () {
         if ($("div").hasClass("video-wrap")) {
             $(".popup-youtube").magnificPopup({
@@ -702,8 +644,8 @@
             });
         }
     };
-    /* Update Bundle Total 
-    -------------------------------------------------------------------------*/
+
+    /* Update Bundle Total */
     var updateBundleTotal = function () {
         var $bundleItems = $(".tf-bundle-product-item");
         var $firstCheck = $bundleItems.first().find(".tf-check");
@@ -731,8 +673,7 @@
         });
     };
 
-    /* Add Wishlist
-    -------------------------------------------------------------------------*/
+    /* Add Wishlist */
     var addWishList = function () {
         $(".btn-add-wishlist, .card_product--V01 .wishlist").on("click", function () {
             let $this = $(this);
@@ -750,8 +691,8 @@
             }
         });
     };
-    /* Handle Sidebar Filter 
-    -------------------------------------------------------------------------*/
+
+    /* Handle Sidebar Filter */
     var handleSidebarFilter = function () {
         $(".tf-btn-filter ,.sidebar-btn").on("click", function () {
             if ($(window).width() <= 1200) {
@@ -762,8 +703,8 @@
             $(".sidebar-filter,.overlay-filter").removeClass("show");
         });
     };
-    /* Estimate Shipping
-    -------------------------------------------------------------------------*/
+
+    /* Estimate Shipping */
     var estimateShipping = function () {
         if ($(".estimate-shipping").length) {
             const countrySelect = document.getElementById("shipping-country-form");
@@ -881,8 +822,7 @@
         }
     };
 
-    /* Coupon Copy
-    -------------------------------------------------------------------------*/
+    /* Coupon Copy */
     var couponCopy = function () {
         $(".coupon-copy-wrap").on("click", function () {
             const couponCode = $(this).find(".coupon-code").text().trim();
@@ -906,8 +846,8 @@
             }
         });
     };
-    /* Height Table 
-    -------------------------------------------------------------------------*/
+
+    /* Height Table */
     var heightTable = function () {
         function updateTableHeight() {
             const $originalModal = $("#orderDetail");
@@ -946,8 +886,8 @@
 
         $(window).on("resize", updateTableHeight);
     };
-    /* Animation Custom 
-    -------------------------------------------------------------------------*/
+
+    /* Animation Custom */
     var animeCustom = function () {
         if ($(".text-color-change").length) {
             let animatedTextElements = document.querySelectorAll(".text-color-change");
@@ -1183,8 +1123,7 @@
         $(window).on("resize", setupDodger);
     };
 
-    /* Parallaxie 
-    -------------------------------------------------------------------------*/
+    /* Parallaxie */
     var parallaxie = function () {
         var $window = $(window);
 
@@ -1207,8 +1146,8 @@
             });
         }
     };
-    /* Update Compare Empty
-    -------------------------------------------------------------------------*/
+
+    /* Update Compare Empty */
     var tableCompareRemove = function () {
         $(".remove").on("click", function () {
             let $clickedCol = $(this).closest(".compare-col");
@@ -1233,8 +1172,8 @@
             }
         });
     };
-    /* Delete Wishlist
-    ----------------------------------------------------------------------------*/
+
+    /* Delete Wishlist */
     var deleteWishList = function () {
         function checkEmpty() {
             var $wishlistInner = $(".wrapper-wishlist");
@@ -1269,15 +1208,15 @@
 
         checkEmpty();
     };
-    /* Preloader
-    -------------------------------------------------------------------------*/
+
+    /* Preloader */
     var preloader = function () {
         $("#preload").fadeOut("slow", function () {
             $(this).remove();
         });
     };
-    /* Preloader
-    -------------------------------------------------------------------------*/
+
+    /* Handle Rate */
     var handleRate = function () {
         let selectedRating = 0;
 
@@ -1306,8 +1245,8 @@
             paintStars(selectedRating);
         });
     };
-    /* Update Layout Title Vertical
-    -------------------------------------------------------------------------*/
+
+    /* Update Layout Title Vertical */
     var updateWid = function () {
         function updatePadding() {
             var titleWidth = $(".title-left").outerWidth();
@@ -1326,8 +1265,8 @@
         updatePadding();
         $(window).on("resize", updatePadding);
     };
-    /* Check Box Transfer Checkout Page
-    -------------------------------------------------------------------------*/
+
+    /* Check Box Transfer Checkout Page */
     var checkOut = function () {
         $("#checkout-btn").on("click", function () {
             if ($("#agree-term").is(":checked")) {
@@ -1338,8 +1277,7 @@
         });
     };
 
-    /* Handle Result Form
-    -------------------------------------------------------------------------*/
+    /* Handle Result Form */
     var handleResultIP = function () {
         $(".form-feedback button").on("click", function (e) {
             e.preventDefault();
@@ -1413,8 +1351,8 @@
             }
         });
     };
-    /* Delete Count Number 
-    -------------------------------------------------------------------------*/
+
+    /* Delete Count Number */
     var delCountText = function () {
         function updateCountText() {
             var count = $("#updateCountMain .count_item").length;
@@ -1428,9 +1366,7 @@
         });
     };
 
-
-    /* Subscribe Form 
-    -------------------------------------------------------------------------*/
+    /* Subscribe Form */
     var ajaxSubscribe = {
         obj: {
             subscribeEmail: $("#subscribe-email"),
@@ -1527,8 +1463,7 @@
         },
     };
 
-    /* Show Password 
-    -------------------------------------------------------------------------*/
+    /* Show Password */
     var showPassword = function () {
         $(".toggle-pass").on("click", function () {
             const wrapper = $(this).closest(".password-wrapper");
@@ -1544,8 +1479,8 @@
             }
         });
     };
-    /* Bottom Sticky
-  --------------------------------------------------------------------------------------*/
+
+    /* Bottom Sticky */
     var scrollBottomSticky = function () {
         $(window).on("scroll", function () {
             var scrollPosition = $(this).scrollTop();
@@ -1561,839 +1496,489 @@
         });
     };
 
+    // AP JEWELLERS PRODUCT FILTER & SIDEBAR SYSTEM - CLEANED, ERROR FREE
 
-    // Ap Jewellers Promsie section
+    const API_BASE_URL = 'http://127.0.0.1:8000/api';
 
-    document.addEventListener("DOMContentLoaded", () => {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("visible");
-                }
-            });
-        }, {
-            threshold: 0.4
-        });
+    // --- FILTER STATE ---
+    let goldRate = null;
+    let currentCategoryIds = [];
+    let currentPurities = [];
+    let currentWeight = [];
+    let currentPrice = null;
+    let sortBy = 'name';
+    let sortOrder = 'asc';
 
-        const animatedSection = document.querySelector('.animate-on-scroll');
-        if (animatedSection) {
-            observer.observe(animatedSection);
-        }
-    });
+    // --- DOM ELEMENTS ---
+    const productsGrid = document.getElementById('productsGrid');
+    const loadingElement = document.getElementById('loading');
+    const productsTitle = document.getElementById('productsTitle');
+    const goldRateElement = document.getElementById('goldRate');
+    const visibleProductCountElement = document.getElementById('visible-product-count');
+    const appliedFiltersDiv = document.getElementById('applied-filters');
+    const productCountGrid = document.getElementById('product-count-grid');
+    const categoryListElm = document.getElementById('filter-category-list');
+    const purityListElm = document.getElementById('filter-purity-list');
+    const weightListElm = document.getElementById('filter-weight-list');
+    const priceListElm = document.getElementById('filter-price-list');
+    const resetFilterBtn = document.getElementById('reset-filter');
+    const applyFilterBtn = document.getElementById('apply-filter-btn');
 
+    // --- Load Categories dynamically ---
+    async function loadCategories() {
+        try {
+            const response = await fetch(`${API_BASE_URL}/categories`);
+            const categories = await response.json();
 
-    document.addEventListener('DOMContentLoaded', function () {
-        // Password toggle functionality
-        document.querySelectorAll('.toggle-pass').forEach(toggle => {
-            toggle.addEventListener('click', function () {
-                const passwordField = this.parentElement.querySelector('.password-field');
-                const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
-                passwordField.setAttribute('type', type);
-                this.classList.toggle('show-password');
-            });
-        });
-
-        // Form submission
-        document.getElementById('registerForm').addEventListener('submit', async function (e) {
-            e.preventDefault();
-
-            // Clear previous errors
-            document.querySelectorAll('.error-message').forEach(el => {
-                el.textContent = '';
-                el.style.display = 'none';
-            });
-            // document.getElementById('register-success').style.display = 'none';
-
-            // Get form values
-            const formData = {
-                name: document.getElementById('name').value.trim(),
-                email: document.getElementById('email').value.trim(),
-                password: document.getElementById('password').value,
-                password_confirmation: document.getElementById('confirm_password').value,
-                tc: document.getElementById('tc').checked
-            };
-
-            // Client-side validation
-            let isValid = true;
-
-            if (!formData.name) {
-                showError('nameError', 'Name is required');
-                isValid = false;
-            }
-
-            if (!formData.email) {
-                showError('emailError', 'Email is required');
-                isValid = false;
-            } else if (!/^\S+@\S+\.\S+$/.test(formData.email)) {
-                showError('emailError', 'Please enter a valid email');
-                isValid = false;
-            }
-
-            if (!formData.password) {
-                showError('passwordError', 'Password is required');
-                isValid = false;
-            } else if (formData.password.length < 6) {
-                showError('passwordError', 'Password must be at least 6 characters');
-                isValid = false;
-            }
-
-            if (formData.password !== formData.password_confirmation) {
-                showError('passwordError', 'Passwords do not match');
-                isValid = false;
-            }
-
-            if (!formData.tc) {
-                showError('tcError', 'You must accept the terms');
-                isValid = false;
-            }
-
-            if (!isValid) return;
-
-            try {
-                const response = await fetch('http://127.0.0.1:8000/api/register', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    },
-                    body: JSON.stringify(formData)
+            categoryListElm.innerHTML = '';
+            if (Array.isArray(categories)) {
+                categories.forEach(cat => {
+                    const li = document.createElement('li');
+                    li.className = 'list-item';
+                    const cid = `cat-${cat.id}`;
+                    li.innerHTML = `
+          <input type="checkbox" class="tf-check style-2" id="${cid}" name="category"
+                 data-filter="category" value="${cat.id}">
+          <label for="${cid}" class="label">
+            <span>${cat.name}</span>
+          </label>
+        `;
+                    categoryListElm.appendChild(li);
                 });
-
-                const data = await response.json();
-
-                if (!response.ok) {
-                    // Handle validation errors from server
-                    if (data.errors) {
-                        for (const [field, messages] of Object.entries(data.errors)) {
-                            const errorElement = document.getElementById(`${field}Error`);
-                            if (errorElement) {
-                                showError(`${field}Error`, messages.join(', '));
-                            }
-                        }
-                    }
-                    throw new Error(data.message || 'Registration failed');
-                }
-
-                // Success case
-                showSuccess('Registration successful!');
-
-                // Store token if available
-                if (data.token) {
-                    localStorage.setItem('authToken', data.token);
-                }
-
-                // Reset form
-                document.getElementById('registerForm').reset();
-
-                // Optionally redirect after delay
-                setTimeout(() => {
-                    const modal = bootstrap.Modal.getInstance(document.getElementById('register'));
-                    if (modal) modal.hide();
-                }, 1500);
-
-            } catch (error) {
-                console.error('Error:', error);
-                showError('register-success', error.message);
             }
-        });
-
-        function showError(elementId, message) {
-            const element = document.getElementById(elementId);
-            if (element) {
-                element.textContent = message;
-                element.style.display = 'block';
-                element.style.color = 'red';
-            }
+        } catch (error) {
+            categoryListElm.innerHTML = '<li>Error loading categories</li>';
+            console.error('Error loading categories:', error);
         }
+    }
 
-        function showSuccess(message) {
-            const element = document.getElementById('register-success');
-            element.textContent = message;
-            element.style.display = 'block';
-            element.style.color = 'green';
-        }
-    });
-
-    // login api
-    document.addEventListener('DOMContentLoaded', function () {
-        // Password toggle functionality
-        document.querySelectorAll('.toggle-pass').forEach(toggle => {
-            toggle.addEventListener('click', function () {
-                const passwordField = this.parentElement.querySelector('.password-field');
-                const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
-                passwordField.setAttribute('type', type);
-                this.classList.toggle('icon-show-password');
-                this.classList.toggle('icon-hide-password');
-            });
-        });
-
-        // Login form submission
-        document.getElementById('loginForm').addEventListener('submit', async function (e) {
-            e.preventDefault();
-
-            // Clear previous errors
-            document.querySelectorAll('.error-message').forEach(el => {
-                el.textContent = '';
-                el.style.display = 'none';
-            });
-            document.getElementById('loginMessage').style.display = 'none';
-
-            // Get form values
-            const email = document.getElementById('loginEmail').value.trim();
-            const password = document.getElementById('loginPassword').value;
-            const rememberMe = document.getElementById('remember').checked;
-
-            // Client-side validation
-            let isValid = true;
-
-            if (!email) {
-                showError('emailError', 'Email is required');
-                isValid = false;
-            } else if (!/^\S+@\S+\.\S+$/.test(email)) {
-                showError('emailError', 'Please enter a valid email');
-                isValid = false;
-            }
-
-            if (!password) {
-                showError('passwordError', 'Password is required');
-                isValid = false;
-            }
-
-            if (!isValid) return;
-
-            try {
-                // Show loading state
-                const submitBtn = document.querySelector('#loginForm button[type="submit"]');
-                submitBtn.disabled = true;
-                submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Logging in...';
-
-                // Call login function
-                const data = await login(email, password);
-
-                // Handle remember me functionality
-                if (rememberMe) {
-                    localStorage.setItem('rememberedEmail', email);
+    // --- Setup Weight filter clicks ---
+    function setupWeightFilterClicks() {
+        weightListElm.querySelectorAll('.check-item.size-check').forEach(div => {
+            div.addEventListener('click', function () {
+                div.classList.toggle('selected');
+                const v = Number(div.dataset.value);
+                const idx = currentWeight.indexOf(v);
+                if (div.classList.contains('selected')) {
+                    if (idx === -1) currentWeight.push(v);
                 } else {
-                    localStorage.removeItem('rememberedEmail');
+                    if (idx !== -1) currentWeight.splice(idx, 1);
                 }
-
-                // Show success message
-                showMessage('loginMessage', 'Login successful! Redirecting...', 'success');
-
-                // Redirect after delay
-                setTimeout(() => {
-                    window.location.href = '/dashboard.html'; // Change to your desired redirect URL
-                }, 1500);
-
-            } catch (error) {
-                console.error('Login error:', error);
-                showMessage('loginMessage', error.message || 'Login failed. Please try again.', 'error');
-
-                // Reset button state
-                const submitBtn = document.querySelector('#loginForm button[type="submit"]');
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'LOG IN';
-            }
+            });
         });
+    }
 
-        // Pre-fill remembered email if exists
-        const rememberedEmail = localStorage.getItem('rememberedEmail');
-        if (rememberedEmail) {
-            document.getElementById('loginEmail').value = rememberedEmail;
-            document.getElementById('remember').checked = true;
+    // --- Gather filter states ---
+    function getCurrentFilterState() {
+        // Categories
+        currentCategoryIds = Array.from(categoryListElm.querySelectorAll('input[type="checkbox"]:checked'))
+            .map(cb => Number(cb.value));
+        // Purities
+        currentPurities = Array.from(purityListElm.querySelectorAll('input[type="checkbox"]:checked'))
+            .map(cb => Number(cb.value));
+        // Weights - from selected divs
+        currentWeight = Array.from(weightListElm.querySelectorAll('.check-item.size-check.selected'))
+            .map(div => Number(div.dataset.value));
+        // Price
+        const checkedPrice = priceListElm.querySelector('input[type="radio"]:checked');
+        if (checkedPrice) {
+            const [min, max] = checkedPrice.value.split('-').map(Number);
+            currentPrice = { min, max };
+        } else {
+            currentPrice = null;
+        }
+        // TODO: Extend for sort if sort selects exist, e.g.:
+        // if(sortBySelect) sortBy = sortBySelect.value;
+        // if(sortOrderSelect) sortOrder = sortOrderSelect.value;
+    }
+
+    // --- Display applied filters as badges & count ---
+    function updateAppliedFiltersDisplay() {
+        let chips = [];
+        if (currentCategoryIds.length > 0) chips.push('Category');
+        if (currentPurities.length > 0) chips.push('Purity');
+        if (currentWeight.length > 0) chips.push('Weight');
+        if (currentPrice) chips.push('Price');
+
+        if (chips.length === 0) {
+            appliedFiltersDiv.innerHTML = '';
+            productCountGrid.textContent = 'No Filter Selected';
+            return;
         }
 
-        // Helper functions
-        function showError(elementId, message) {
-            const element = document.getElementById(elementId);
-            if (element) {
-                element.textContent = message;
-                element.style.display = 'block';
-                element.style.color = 'red';
+        appliedFiltersDiv.innerHTML = chips.map(f => `<span class="badge bg-primary me-1">${f}</span>`).join('');
+        productCountGrid.textContent = chips.join(', ');
+    }
+
+    // --- Load current gold rate from API ---
+    async function loadGoldRate() {
+        try {
+            const response = await fetch(`${API_BASE_URL}/gold-rate`);
+            const data = await response.json();
+            goldRate = data.gold_rate_per_gram || null;
+            goldRateElement.textContent = goldRate
+                ? `Current Gold Rate: ₹${formatPrice(goldRate)} / g`
+                : 'Gold rate not available';
+        } catch (error) {
+            goldRate = null;
+            goldRateElement.textContent = 'Gold rate not available';
+            console.error('Error loading gold rate:', error);
+        }
+    }
+
+    // --- Fetch products based on filters & render ---
+    async function loadProducts() {
+        loadingElement.style.display = 'block';
+        productsGrid.innerHTML = '';
+
+        const params = new URLSearchParams();
+
+        if (currentCategoryIds.length > 0)
+            currentCategoryIds.forEach(id => params.append('category_id[]', id));
+
+        if (currentPurities.length > 0) {
+            params.append('min_kt', Math.min(...currentPurities));
+            params.append('max_kt', Math.max(...currentPurities));
+        }
+
+        if (currentWeight.length > 0) {
+            params.append('min_gram', Math.min(...currentWeight));
+            params.append('max_gram', Math.max(...currentWeight));
+        }
+
+        if (currentPrice) {
+            if (currentPrice.min != null) params.append('min_price', currentPrice.min);
+            if (currentPrice.max != null) params.append('max_price', currentPrice.max);
+        }
+
+        params.append('sort_by', sortBy);
+        params.append('sort_order', sortOrder);
+
+        try {
+            const response = await fetch(`${API_BASE_URL}/products?${params.toString()}`);
+            if (!response.ok) {
+                const errData = await response.json().catch(() => ({}));
+                throw new Error(errData.message || 'Failed to load products');
             }
-        }
+            const data = await response.json();
 
-        function showMessage(elementId, message, type) {
-            const element = document.getElementById(elementId);
-            if (element) {
-                element.textContent = message;
-                element.style.display = 'block';
-                element.style.color = type === 'success' ? 'green' : 'red';
-            }
-        }
+            visibleProductCountElement.textContent = data.data ? data.data.length : 0;
 
-        // Authentication functions (from your provided code)
-        async function login(email, password) {
-            try {
-                const response = await fetch('http://127.0.0.1:8000/api/login', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    },
-                    body: JSON.stringify({ email, password })
+            if (data.data && data.data.length > 0) {
+                data.data.forEach(product => {
+                    const gram = parseFloat(product.gram) || 0;
+                    const livePrice = goldRate && gram > 0 ? (gram * goldRate).toFixed(2) : null;
+                    const finalPrice = (parseFloat(product.final_price) || 0).toFixed(2);
+                    const displayPrice = livePrice || finalPrice;
+                    const discount = (product.discount_percent > 0 || product.discount_amount > 0)
+                        ? `<span class="product-discount"> ($${(parseFloat(product.price) || 0).toFixed(2)})</span>`
+                        : '';
+                    const productHTML = `
+          <div class="product-card">
+            <div class="product-image" style="background-image: url('${product.primary_image || 'https://via.placeholder.com/250'}')"></div>
+            <h3>${product.name}</h3>
+            <div>${product.kt}K • ${product.gram}g</div>
+            <div class="product-price">$${displayPrice}${discount}</div>
+            <div>${product.quantity > 0 ? 'In Stock' : 'Out of Stock'}</div>
+          </div>
+        `;
+                    productsGrid.insertAdjacentHTML('beforeend', productHTML);
                 });
-
-                const data = await response.json();
-
-                if (!response.ok) throw new Error(data.message || 'Login failed');
-
-                localStorage.setItem('authToken', data.token);
-                return data;
-            } catch (error) {
-                console.error('Login error:', error);
-                throw error;
-            }
-        }
-
-        // Other auth functions (getLoggedInUser, logout, changePassword) remain the same
-        // as in your provided code - they can be used elsewhere in your application
-    });
-
-    // javascript for cart funtionality
-    document.addEventListener('DOMContentLoaded', function () {
-        // Quantity adjustment functionality
-        document.querySelectorAll('.quantity-selector').forEach(selector => {
-            const minusBtn = selector.querySelector('.minus-btn');
-            const plusBtn = selector.querySelector('.plus-btn');
-            const input = selector.querySelector('.quantity-input');
-            const priceElement = selector.closest('.row').querySelector('.item-price');
-            const basePrice = parseFloat(priceElement.textContent.replace('₹', ''));
-
-            minusBtn.addEventListener('click', () => {
-                let value = parseInt(input.value);
-                if (value > 1) {
-                    input.value = value - 1;
-                    updatePrice();
-                    updateCartTotal();
-                }
-            });
-
-            plusBtn.addEventListener('click', () => {
-                let value = parseInt(input.value);
-                input.value = value + 1;
-                updatePrice();
-                updateCartTotal();
-            });
-
-            input.addEventListener('change', () => {
-                if (input.value < 1) input.value = 1;
-                updatePrice();
-                updateCartTotal();
-            });
-
-            function updatePrice() {
-                const total = basePrice * parseInt(input.value);
-                priceElement.textContent = '₹' + total.toFixed(2);
-            }
-        });
-
-        // Empty cart functionality
-        document.querySelector('.empty-cart-btn').addEventListener('click', function () {
-            if (confirm('Are you sure you want to empty your cart?')) {
-                document.querySelector('.cart-items').innerHTML = '<div class="p-4 text-center"><p>Your cart is empty</p></div>';
-                document.querySelector('.cart-subtotal').textContent = '₹0.00';
-                document.querySelector('.offcanvas-title').textContent = 'Your Cart (0)';
-                // You would also need to update the free shipping progress here
-            }
-        });
-
-        // Remove item functionality
-        document.querySelectorAll('.remove-item').forEach(btn => {
-            btn.addEventListener('click', function () {
-                this.closest('.border-bottom').remove();
-                updateCartCount();
-                updateCartTotal();
-            });
-        });
-
-        // Helper functions
-        function updateCartTotal() {
-            let subtotal = 0;
-            document.querySelectorAll('.item-price').forEach(priceEl => {
-                subtotal += parseFloat(priceEl.textContent.replace('₹', ''));
-            });
-            document.querySelector('.cart-subtotal').textContent = '₹' + subtotal.toFixed(2);
-
-            // Update free shipping progress (example)
-            const progress = document.querySelector('.progress-bar');
-            const newWidth = Math.min((subtotal / 500) * 100, 100);
-            progress.style.width = newWidth + '%';
-
-            // Update the text
-            const remaining = 500 - subtotal;
-            if (remaining > 0) {
-                document.querySelector('.bg-light .fw-medium').textContent = `₹${subtotal.toFixed(2)}/₹500`;
-                document.querySelector('.bg-light span:first-child').textContent =
-                    `Only ₹${remaining.toFixed(2)} away from free shipping!`;
             } else {
-                document.querySelector('.bg-light .fw-medium').textContent = `₹${subtotal.toFixed(2)}/₹500`;
-                document.querySelector('.bg-light span:first-child').textContent = 'You qualify for free shipping!';
+                productsGrid.innerHTML = '<div>No products found</div>';
             }
+        } catch (error) {
+            productsGrid.innerHTML = `<div>Error loading products: ${error.message}</div>`;
+            console.error('Error loading products:', error);
+        } finally {
+            loadingElement.style.display = 'none';
         }
+    }
 
-        function updateCartCount() {
-            const count = document.querySelectorAll('.border-bottom').length - 3; // subtract non-item borders
-            document.querySelector('.offcanvas-title').textContent = `Your Cart (${count})`;
-        }
-    });
+    // --- Event listeners for buttons ---
+    if (applyFilterBtn) {
+        applyFilterBtn.addEventListener('click', () => {
+            getCurrentFilterState();
+            updateAppliedFiltersDisplay();
+            loadProducts();
+        });
+    }
 
-    document.addEventListener('DOMContentLoaded', function () {
-        // Cart functionality
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    if (resetFilterBtn) {
+        resetFilterBtn.addEventListener('click', () => {
+            categoryListElm.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+            purityListElm.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+            priceListElm.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+            weightListElm.querySelectorAll('.check-item.size-check').forEach(div => div.classList.remove('selected'));
 
-        // Update cart count
-        function updateCartCount() {
-            const count = cart.reduce((total, item) => total + item.quantity, 0);
-            document.querySelectorAll('.cart-count').forEach(el => {
-                el.textContent = count;
-                el.style.display = count > 0 ? 'block' : 'none';
-            });
-        }
+            currentCategoryIds = [];
+            currentPurities = [];
+            currentWeight = [];
+            currentPrice = null;
 
-        // Save cart
-        function saveCart() {
-            localStorage.setItem('cart', JSON.stringify(cart));
-            updateCartCount();
-        }
+            updateAppliedFiltersDisplay();
+            visibleProductCountElement.textContent = '0';
+            loadProducts();
+        });
+    }
 
-        // Add to cart
-        document.addEventListener('click', function (e) {
-            if (e.target.closest('.add-to-cart-btn')) {
-                const btn = e.target.closest('.add-to-cart-btn');
-                const product = {
-                    id: btn.dataset.id,
-                    name: btn.dataset.name,
-                    price: parseFloat(btn.dataset.price),
-                    image: btn.dataset.image,
-                    quantity: 1
-                };
-
-                const existingItem = cart.find(item => item.id === product.id);
-                if (existingItem) {
-                    existingItem.quantity += 1;
-                } else {
-                    cart.push(product);
-                }
-
-                btn.closest('.cart-control').classList.add('active');
-                saveCart();
-            }
-
-            // Quantity controls
-            if (e.target.closest('.plus-qty')) {
-                const controls = e.target.closest('.quantity-controls');
-                const productId = controls.closest('.cart-control').querySelector('.add-to-cart-btn').dataset.id;
-                const item = cart.find(item => item.id === productId);
-                if (item) {
-                    item.quantity += 1;
-                    controls.querySelector('.quantity').textContent = item.quantity;
-                    saveCart();
-                }
-            }
-
-            if (e.target.closest('.minus-qty')) {
-                const controls = e.target.closest('.quantity-controls');
-                const productId = controls.closest('.cart-control').querySelector('.add-to-cart-btn').dataset.id;
-                const item = cart.find(item => item.id === productId);
-                if (item) {
-                    item.quantity = Math.max(1, item.quantity - 1);
-                    controls.querySelector('.quantity').textContent = item.quantity;
-                    saveCart();
-                }
-            }
-
-            if (e.target.closest('.btn-remove')) {
-                const controls = e.target.closest('.quantity-controls');
-                const productId = controls.closest('.cart-control').querySelector('.add-to-cart-btn').dataset.id;
-                cart = cart.filter(item => item.id !== productId);
-                controls.closest('.cart-control').classList.remove('active');
-                saveCart();
+    if (weightListElm) {
+        weightListElm.addEventListener('click', (e) => {
+            if (e.target.closest('.check-item.size-check')) {
+                setupWeightFilterClicks();
             }
         });
+    }
 
-        // Initialize cart buttons
-        function initCartButtons() {
-            document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
-                const productId = btn.dataset.id;
-                const cartItem = cart.find(item => item.id === productId);
-                const cartControl = btn.closest('.cart-control');
-
-                if (cartItem) {
-                    cartControl.classList.add('active');
-                    cartControl.querySelector('.quantity').textContent = cartItem.quantity;
-                }
-            });
-            updateCartCount();
-        }
-
-        initCartButtons();
+    document.addEventListener('DOMContentLoaded', async () => {
+        await loadGoldRate();
+        await loadCategories();
+        setupWeightFilterClicks();
+        updateAppliedFiltersDisplay();
+        loadProducts();
     });
 
-    document.addEventListener('DOMContentLoaded', function () {
-        // Configuration
-        const API_BASE_URL = 'http://127.0.0.1:8000/api/products'; // Updated with your API endpoint
-        const DEBOUNCE_DELAY = 300; // ms delay for debouncing API calls
+    function formatPrice(price) {
+        const num = typeof price === 'string' ? parseFloat(price.replace(/[^0-9.-]/g, '')) : Number(price);
+        return isNaN(num) ? '0.00' : num.toFixed(2);
+    }
 
-        // DOM Elements
-        const filterShop = document.getElementById('filterShop');
-        const appliedFiltersContainer = document.getElementById('applied-filters');
-        const productCountElement = document.getElementById('product-count-grid');
+
+    (() => {
+        "use strict";
+
+        const API_BASE_URL = 'http://127.0.0.1:8000/api';
+
+        // DOM Elements: adjust these IDs/selectors to match your HTML
+        const productsGrid = document.getElementById('productsGrid');
+        const loadingElement = document.getElementById('loading');
+        const goldRateElement = document.getElementById('goldRate');
+        const visibleProductCountElement = document.getElementById('visible-product-count');
+        const appliedFiltersDiv = document.getElementById('applied-filters');
+        const productCountGrid = document.getElementById('product-count-grid');
+
+        const categoryListElm = document.getElementById('filter-category-list'); // container for categories checkboxes
+        const purityListElm = document.getElementById('filter-purity-list');     // container for purity checkboxes
+        const weightListElm = document.getElementById('filter-weight-list');     // container for weight checkbox/divs
+        const priceListElm = document.getElementById('filter-price-list');       // container for price radio inputs
+
         const resetFilterBtn = document.getElementById('reset-filter');
-        const applyFilterBtn = document.querySelector('.canvas-bottom .btn-fill');
-        const productGrid = document.querySelector('.wrapper-shop') || document.getElementById('gridLayout');
-        const loadingIndicator = document.createElement('div');
-        loadingIndicator.className = 'loading-indicator';
-        loadingIndicator.innerHTML = '<div class="spinner"></div><p>Loading products...</p>';
+        const applyFilterBtn = document.getElementById('apply-filter-btn');
 
-        // Current filter state
-        let currentFilters = {
+        // Selected filters state (just for UI)
+        let selectedFilters = {
             categories: [],
             purity: [],
-            priceRange: null,
             weights: [],
-            sortBy: 'default',
-            sortOrder: 'asc'
+            price: null,
+            sortBy: 'name',
+            sortOrder: 'asc',
         };
-        let debounceTimer;
 
-        // Initialize filters
-        function initFilters() {
-            // Category filter
-            document.querySelectorAll('#categories input[type="checkbox"]').forEach(checkbox => {
-                checkbox.addEventListener('change', function () {
-                    const category = this.id;
-                    if (this.checked) {
-                        if (!currentFilters.categories.includes(category)) {
-                            currentFilters.categories.push(category);
-                        }
-                    } else {
-                        currentFilters.categories = currentFilters.categories.filter(c => c !== category);
-                    }
-                    updateAppliedFilters();
-                    fetchProductsWithDebounce();
-                });
-            });
-
-            // Purity filter
-            document.querySelectorAll('#materials input[type="checkbox"]').forEach(checkbox => {
-                checkbox.addEventListener('change', function () {
-                    const purity = this.id;
-                    if (this.checked) {
-                        if (!currentFilters.purity.includes(purity)) {
-                            currentFilters.purity.push(purity);
-                        }
-                    } else {
-                        currentFilters.purity = currentFilters.purity.filter(p => p !== purity);
-                    }
-                    updateAppliedFilters();
-                    fetchProductsWithDebounce();
-                });
-            });
-
-            // Price filter
-            document.querySelectorAll('#price input[type="radio"]').forEach(radio => {
-                radio.addEventListener('change', function () {
-                    if (this.checked) {
-                        currentFilters.priceRange = this.id;
-                        updateAppliedFilters();
-                        fetchProductsWithDebounce();
-                    }
-                });
-            });
-
-            // Weight filter
-            document.querySelectorAll('#size .size-check').forEach(size => {
-                size.addEventListener('click', function () {
-                    const weightValue = this.getAttribute('data-value') ||
-                        this.textContent.trim().replace(/g|GM/i, '').trim();
-
-                    if (this.classList.contains('active')) {
-                        this.classList.remove('active');
-                        currentFilters.weights = currentFilters.weights.filter(w => w !== weightValue);
-                    } else {
-                        this.classList.add('active');
-                        if (!currentFilters.weights.includes(weightValue)) {
-                            currentFilters.weights.push(weightValue);
-                        }
-                    }
-                    updateAppliedFilters();
-                    fetchProductsWithDebounce();
-                });
-            });
-
-            // Sort options
-            const sortSelect = document.querySelector('#sortBy');
-            if (sortSelect) {
-                sortSelect.addEventListener('change', function () {
-                    currentFilters.sortBy = this.value;
-                    fetchProductsWithDebounce();
-                });
-            }
-
-            // Reset all filters
-            if (resetFilterBtn) {
-                resetFilterBtn.addEventListener('click', resetAllFilters);
-            }
-
-            // Apply button
-            if (applyFilterBtn) {
-                applyFilterBtn.addEventListener('click', function () {
-                    // In API-based filtering, changes are immediate so this just closes the panel
-                    const filterOffcanvas = bootstrap.Offcanvas.getInstance(filterShop);
-                    if (filterOffcanvas) filterOffcanvas.hide();
-                });
-            }
-        }
-
-        // Debounce API calls to prevent excessive requests
-        function fetchProductsWithDebounce() {
-            clearTimeout(debounceTimer);
-            debounceTimer = setTimeout(fetchFilteredProducts, DEBOUNCE_DELAY);
-        }
-
-        // Fetch products from API with current filters
-        async function fetchFilteredProducts() {
+        // Load gold rate for display (optional)
+        async function loadGoldRate() {
             try {
-                // Show loading indicator
-                productGrid.appendChild(loadingIndicator);
-
-                // Build query parameters
-                const params = new URLSearchParams();
-
-                // Add category filters
-                if (currentFilters.categories.length > 0) {
-                    params.append('categories', currentFilters.categories.join(','));
+                const res = await fetch(`${API_BASE_URL}/gold-rate`);
+                const data = await res.json();
+                if (data.gold_rate_per_gram) {
+                    goldRateElement.textContent = `Current Gold Rate: ₹${Number(data.gold_rate_per_gram).toFixed(2)} / g`;
+                } else {
+                    goldRateElement.textContent = 'Gold rate not available';
                 }
-
-                // Add purity filters
-                if (currentFilters.purity.length > 0) {
-                    params.append('purity', currentFilters.purity.join(','));
-                }
-
-                // Add price range filter
-                if (currentFilters.priceRange) {
-                    const priceRange = getPriceRangeValues(currentFilters.priceRange);
-                    if (priceRange.min !== null) params.append('min_price', priceRange.min);
-                    if (priceRange.max !== null) params.append('max_price', priceRange.max);
-                }
-
-                // Add weight filters
-                if (currentFilters.weights.length > 0) {
-                    params.append('weights', currentFilters.weights.join(','));
-                }
-
-                // Add sorting
-                if (currentFilters.sortBy && currentFilters.sortBy !== 'default') {
-                    params.append('sort_by', currentFilters.sortBy);
-                    params.append('sort_order', currentFilters.sortOrder);
-                }
-
-                // Make API request
-                const response = await fetch(`${API_BASE_URL}?${params.toString()}`, {
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    }
-                });
-
-                if (!response.ok) {
-                    throw new Error(`API request failed with status ${response.status}`);
-                }
-
-                const { data: products, meta } = await response.json();
-
-                // Render products
-                renderProducts(products);
-
-                // Update product count
-                if (productCountElement) {
-                    productCountElement.textContent = `${meta?.total || products.length} Products Found`;
-                }
-
-                // Update apply button count
-                if (applyFilterBtn && applyFilterBtn.querySelector('span')) {
-                    applyFilterBtn.querySelector('span').textContent = `APPLY [${meta?.total || products.length}]`;
-                }
-
-            } catch (error) {
-                console.error('Error fetching filtered products:', error);
-                productGrid.innerHTML = `<div class="error-message">Error loading products. Please try again.</div>`;
-            } finally {
-                // Remove loading indicator
-                if (productGrid.contains(loadingIndicator)) {
-                    productGrid.removeChild(loadingIndicator);
-                }
+            } catch {
+                goldRateElement.textContent = 'Gold rate not available';
             }
         }
 
-        // Convert price range ID to min/max values
-        function getPriceRangeValues(priceRangeId) {
-            const ranges = {
-                'u-10k': { min: null, max: 10000 },
-                '10k-20k': { min: 10000, max: 20000 },
-                '20k-30k': { min: 20000, max: 30000 },
-                '30k-40k': { min: 30000, max: 40000 },
-                '40k-50k': { min: 40000, max: 50000 },
-                '50k-up': { min: 50000, max: null }
-            };
-            return ranges[priceRangeId] || { min: null, max: null };
+        // Load categories dynamically into sidebar filter
+        async function loadCategories() {
+            try {
+                const res = await fetch(`${API_BASE_URL}/categories`);
+                const categories = await res.json();
+                if (!Array.isArray(categories)) throw new Error('Invalid categories response');
+                categoryListElm.innerHTML = categories.map(cat => `
+        <li class="list-item">
+          <input type="checkbox" class="tf-check style-2" id="cat-${cat.id}" value="${cat.id}" name="category">
+          <label for="cat-${cat.id}"><span>${cat.name}</span></label>
+        </li>`).join('');
+            } catch (e) {
+                categoryListElm.innerHTML = '<li>Error loading categories</li>';
+                console.error('Error loading categories:', e);
+            }
         }
 
-        // Render products from API response
-        function renderProducts(products) {
-            productGrid.innerHTML = '';
+        // Collect filters from UI inputs
+        function collectFilters() {
+            const categoryChecks = Array.from(categoryListElm.querySelectorAll('input[name="category"]:checked'))
+                .map(cb => cb.value);
+            const purityChecks = Array.from(purityListElm.querySelectorAll('input[type="checkbox"]:checked'))
+                .map(cb => cb.value);
+            // For weights, if checkboxes or divs with selected class
+            let weights;
+            if (weightListElm.querySelectorAll('input[type="checkbox"]').length) {
+                weights = Array.from(weightListElm.querySelectorAll('input[type="checkbox"]:checked')).map(cb => cb.value);
+            } else {
+                // If divs toggled by class "selected"
+                weights = Array.from(weightListElm.querySelectorAll('.check-item.size-check.selected'))
+                    .map(div => div.dataset.value);
+            }
 
-            if (products.length === 0) {
-                productGrid.innerHTML = '<div class="no-products">No products match your filters</div>';
+            const priceRadio = priceListElm.querySelector('input[type="radio"]:checked');
+            const priceVal = priceRadio ? priceRadio.value : null;
+
+            selectedFilters.categories = categoryChecks;
+            selectedFilters.purity = purityChecks;
+            selectedFilters.weights = weights;
+            selectedFilters.price = priceVal;
+            // sort can be added if UI sorting inputs exist and wired up
+        }
+
+        // Build query string for API call from selectedFilters
+        function buildQueryParams() {
+            const params = new URLSearchParams();
+
+            if (selectedFilters.categories.length > 0) params.append('category_id[]', selectedFilters.categories.join(','));
+            if (selectedFilters.purity.length > 0) params.append('purity', selectedFilters.purity.join(','));
+            if (selectedFilters.weights.length > 0) params.append('weight', selectedFilters.weights.join(','));
+            if (selectedFilters.price) {
+                // For price, expected value format e.g. "0-10000"
+                let [min, max] = selectedFilters.price.split('-');
+                if (min) params.append('min_price', min);
+                if (max) params.append('max_price', max);
+            }
+            if (selectedFilters.sortBy) params.append('sort_by', selectedFilters.sortBy);
+            if (selectedFilters.sortOrder) params.append('sort_order', selectedFilters.sortOrder);
+
+            return params.toString();
+        }
+
+        // Fetch filtered products from API and render
+        async function fetchFilteredProducts() {
+            if (loadingElement) loadingElement.style.display = 'block';
+            productsGrid.innerHTML = '';
+
+            try {
+                const queryStr = buildQueryParams();
+                const res = await fetch(`${API_BASE_URL}/products?${queryStr}`, { headers: { 'Accept': 'application/json' } });
+                if (!res.ok) throw new Error(`API error: ${res.status}`);
+                const data = await res.json();
+
+                const products = data.data || [];
+                visibleProductCountElement.textContent = `${products.length} Products Found`;
+                productCountGrid.textContent = `${products.length} Products Found`;
+
+                if (applyFilterBtn && applyFilterBtn.querySelector('span')) {
+                    applyFilterBtn.querySelector('span').textContent = `APPLY [${products.length}]`;
+                }
+
+                if (products.length === 0) {
+                    productsGrid.innerHTML = '<div>No products found</div>';
+                    return;
+                }
+                productsGrid.innerHTML = products.map(product => {
+                    const price = (product.final_price) ? parseFloat(product.final_price).toFixed(2) : '0.00';
+                    return `
+          <div class="product-card">
+            <div class="product-image" style="background-image: url('${product.primary_image || 'https://via.placeholder.com/250'}')"></div>
+            <h3>${product.name}</h3>
+            <div>${product.kt}K • ${product.gram}g</div>
+            <div class="product-price">₹${price}</div>
+            <div>${product.quantity > 0 ? 'In Stock' : 'Out of Stock'}</div>
+          </div>
+        `;
+                }).join('');
+            } catch (err) {
+                productsGrid.innerHTML = `<div>Error fetching products: ${err.message}</div>`;
+                console.error(err);
+            } finally {
+                if (loadingElement) loadingElement.style.display = 'none';
+            }
+        }
+
+        // Show currently applied filters badges
+        function updateAppliedFiltersDisplay() {
+            const chips = [];
+
+            if (selectedFilters.categories.length) chips.push('Category');
+            if (selectedFilters.purity.length) chips.push('Purity');
+            if (selectedFilters.weights.length) chips.push('Weight');
+            if (selectedFilters.price) chips.push('Price');
+
+            if (chips.length === 0) {
+                appliedFiltersDiv.innerHTML = '';
+                productCountGrid.textContent = 'No Filter Selected';
                 return;
             }
 
-            products.forEach(product => {
-                const productCard = document.createElement('div');
-                productCard.className = 'loadItem card_product--V01';
-                productCard.dataset.id = product.id;
-
-                // Build product card HTML - customize this based on your API response structure
-                productCard.innerHTML = `
-                <div class="product-image">
-                    <img src="${product.image_url || 'placeholder.jpg'}" alt="${product.name}">
-                </div>
-                <div class="product-details">
-                    <h3 class="product-name">${product.name}</h3>
-                    <div class="product-meta">
-                        <span class="purity">${product.purity || ''}</span>
-                        <span class="weight">${product.weight || ''}g</span>
-                    </div>
-                    <div class="product-price">₹${product.price?.toFixed(2) || '0.00'}</div>
-                    ${product.original_price ? `<div class="original-price">₹${product.original_price.toFixed(2)}</div>` : ''}
-                </div>
-            `;
-
-                productGrid.appendChild(productCard);
-            });
+            appliedFiltersDiv.innerHTML = chips.map(ch => `<span class="badge bg-primary me-1">${ch}</span>`).join('');
+            productCountGrid.textContent = chips.join(', ');
         }
 
-        // Update applied filters display
-        function updateAppliedFilters() {
-            if (!appliedFiltersContainer) return;
-
-            appliedFiltersContainer.innerHTML = '';
-
-            // Add category filters
-            currentFilters.categories.forEach(category => {
-                const filter = document.createElement('span');
-                filter.className = 'applied-filter';
-                filter.textContent = `Category: ${category.charAt(0).toUpperCase() + category.slice(1)}`;
-                appliedFiltersContainer.appendChild(filter);
-            });
-
-            // Add purity filters
-            currentFilters.purity.forEach(purity => {
-                const filter = document.createElement('span');
-                filter.className = 'applied-filter';
-                filter.textContent = `Purity: ${purity.toUpperCase()}`;
-                appliedFiltersContainer.appendChild(filter);
-            });
-
-            // Add price filter
-            if (currentFilters.priceRange) {
-                const priceText = document.querySelector(`label[for="${currentFilters.priceRange}"] span`)?.textContent || '';
-                const filter = document.createElement('span');
-                filter.className = 'applied-filter';
-                filter.textContent = `Price: ${priceText}`;
-                appliedFiltersContainer.appendChild(filter);
-            }
-
-            // Add weight filters
-            currentFilters.weights.forEach(weight => {
-                const filter = document.createElement('span');
-                filter.className = 'applied-filter';
-                filter.textContent = `Weight: ${weight}g`;
-                appliedFiltersContainer.appendChild(filter);
-            });
-
-            // Update count text
-            if (productCountElement) {
-                const totalFilters = currentFilters.categories.length + currentFilters.purity.length +
-                    (currentFilters.priceRange ? 1 : 0) + currentFilters.weights.length;
-                productCountElement.textContent = totalFilters > 0 ? `${totalFilters} Filters Applied` : 'No Filter Selected';
-            }
-        }
-
-        // Reset all filters
+        // Reset all filter inputs (checkboxes, radios, selected divs)
         function resetAllFilters() {
-            // Uncheck all checkboxes
-            document.querySelectorAll('.tf-check').forEach(checkbox => {
-                checkbox.checked = false;
+            categoryListElm.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+            purityListElm.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+            priceListElm.querySelectorAll('input[type="radio"]').forEach(rb => rb.checked = false);
+            weightListElm.querySelectorAll('.check-item.size-check.selected').forEach(div => div.classList.remove('selected'));
+
+            selectedFilters = { categories: [], purity: [], weights: [], price: null, sortBy: 'name', sortOrder: 'asc' };
+            updateAppliedFiltersDisplay();
+        }
+
+        // Attach event listeners to filters for collect + fetch call
+        function bindFilterEvents() {
+            // Category checkboxes
+            categoryListElm.addEventListener('change', e => {
+                if (e.target && e.target.name === 'category') {
+                    collectFilters();
+                    updateAppliedFiltersDisplay();
+                }
             });
-
-            // Clear size selections
-            document.querySelectorAll('#size .size-check').forEach(size => {
-                size.classList.remove('active');
+            // Purity checkboxes
+            purityListElm.addEventListener('change', e => {
+                if (e.target && e.target.type === 'checkbox') {
+                    collectFilters();
+                    updateAppliedFiltersDisplay();
+                }
             });
-
-            // Uncheck price radios
-            document.querySelectorAll('#price input[type="radio"]').forEach(radio => {
-                radio.checked = false;
+            // Price radios
+            priceListElm.addEventListener('change', e => {
+                if (e.target && e.target.type === 'radio') {
+                    collectFilters();
+                    updateAppliedFiltersDisplay();
+                }
             });
+            // Weight div toggles - toggle 'selected' class
+            weightListElm.addEventListener('click', e => {
+                const checkItem = e.target.closest('.check-item.size-check');
+                if (checkItem) {
+                    checkItem.classList.toggle('selected');
+                    collectFilters();
+                    updateAppliedFiltersDisplay();
+                }
+            });
+            // Apply button triggers fetch
+            applyFilterBtn.addEventListener('click', fetchFilteredProducts);
+            // Reset button clears filters and fetches all products
+            resetFilterBtn.addEventListener('click', () => {
+                resetAllFilters();
+                fetchFilteredProducts();
+            });
+        }
 
-            // Reset current filters
-            currentFilters = {
-                categories: [],
-                purity: [],
-                priceRange: null,
-                weights: [],
-                sortBy: 'default',
-                sortOrder: 'asc'
-            };
-
-            // Reset sort dropdown
-            const sortSelect = document.querySelector('#sortBy');
-            if (sortSelect) sortSelect.value = 'default';
-
-            updateAppliedFilters();
+        // Initialize function when DOM is ready
+        async function initialize() {
+            await loadGoldRate();
+            await loadCategories();
+            collectFilters();
+            updateAppliedFiltersDisplay();
+            bindFilterEvents();
             fetchFilteredProducts();
         }
 
-        // Handle collection item clicks
-        document.querySelectorAll('.filter-trigger').forEach(item => {
-            item.addEventListener('click', function () {
-                const category = this.getAttribute('data-filter-category');
-                const purity = this.getAttribute('data-filter-purity');
+        document.addEventListener('DOMContentLoaded', initialize);
+    })();
 
-                // Set the filter checkboxes
-                const catEl = document.getElementById(category);
-                const purEl = document.getElementById(purity);
-                if (catEl) {
-                    catEl.checked = true;
-                    catEl.dispatchEvent(new Event('change'));
-                }
-                if (purEl) {
-                    purEl.checked = true;
-                    purEl.dispatchEvent(new Event('change'));
-                }
-
-                // Open filter panel
-                if (filterShop && typeof bootstrap !== "undefined" && bootstrap.Offcanvas) {
-                    const filterOffcanvas = new bootstrap.Offcanvas(filterShop);
-                    filterOffcanvas.show();
-                }
-
-                // Scroll to products
-                const shopWrap = document.querySelector('.wrapper-shop');
-                if (shopWrap) {
-                    shopWrap.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-
-        // Initialize filters and load initial products
-        initFilters();
-        fetchFilteredProducts();
-    });
-
-    // Dom Ready
     $(function () {
         dropdownSelect();
         btnQuantity();
@@ -2437,7 +2022,3 @@
         preloader();
     });
 })(jQuery);
-
-
-
-
