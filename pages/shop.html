@@ -2764,6 +2764,34 @@
 
         var AUTOHIDE = Boolean(0);
     </script>
+    <script>
+        fetch("http://127.0.0.1:8000/api/products")
+            .then(res => res.json())
+            .then(products => {
+                const container = document.getElementById("product-list");
+                container.innerHTML = ""; // Clear old content
+                products.forEach(p => {
+                    container.innerHTML += `
+        <div class="card_product--V01">
+          <a href="product.html?id=${p.id}" class="product-img">
+            <img src="${p.image || 'images/products/sample.jpg'}" alt="${p.name}">
+          </a>
+          <div class="card_product-info">
+            <a href="product.html?id=${p.id}" class="name-product h5 fw-normal link">${p.name}</a>
+            <div class="price-wrap">
+              <span class="price-new h5">₹ ${p.price}</span>
+              <span class="price fw-normal">${p.kt} KT</span>
+            </div>
+          </div>
+        </div>
+      `;
+                });
+            })
+            .catch(err => {
+                console.error("Error fetching products:", err);
+                document.getElementById("product-list").innerHTML = "<p>Error loading products.</p>";
+            });
+    </script>
 </body>
 
 </html>
