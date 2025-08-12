@@ -48,7 +48,7 @@
     <!-- /preload -->
 
     <div id="wrapper">
-        
+
         <!-- Header -->
         <header class="tf-header">
             <div class="container">
@@ -3030,6 +3030,37 @@
     <script src="../js/photoswipe-lightbox.umd.min.js"></script>
     <script src="../js/photoswipe.umd.min.js"></script>
     <script src="../js/zoom.js"></script>
+    <script>
+        function getQueryParam(param) {
+            return new URLSearchParams(window.location.search).get(param);
+        }
+
+        const productId = getQueryParam("id");
+
+        if (productId) {
+            fetch(`http://127.0.0.1:8000/api/products/${productId}`)
+                .then(res => res.json())
+                .then(p => {
+                    document.querySelector(".product-info-name").textContent = p.name;
+                    document.querySelector(".price-new").textContent = `₹ ${p.price}`;
+                    document.querySelector(".variant-picker-label-value").textContent = `${p.kt} KT`;
+                    document.querySelector(".value-currentWeight").textContent = `${p.grame} gm`;
+                    document.querySelector("#description .accordion-body h6").textContent = p.description;
+
+                    if (p.image) {
+                        document.querySelector(".tf-image-zoom").src = p.image;
+                    } else {
+                        document.querySelector(".tf-image-zoom").src = "images/products/sample.jpg";
+                    }
+                })
+                .catch(err => {
+                    console.error("Error loading product:", err);
+                    document.querySelector(".product-info-name").textContent = "Product not found.";
+                });
+        } else {
+            document.querySelector(".product-info-name").textContent = "Invalid product ID in URL.";
+        }
+    </script>
 </body>
 
 </html>
