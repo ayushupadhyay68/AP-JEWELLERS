@@ -19543,4 +19543,25 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
   margin-top: 20px;
 }
 
+.error-field {
+  border-color: #ff0000 !important;
+  animation: shake 0.5s;
+}
 
+@keyframes shake {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  20%,
+  60% {
+    transform: translateX(-5px);
+  }
+
+  40%,
+  80% {
+    transform: translateX(5px);
+  }
+}

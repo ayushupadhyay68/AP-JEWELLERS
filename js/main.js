@@ -1547,8 +1547,8 @@
                 });
             }
         } catch (error) {
-            categoryListElm.innerHTML = '<li>Error loading categories</li>';
-            console.error('Error loading categories:', error);
+            // categoryListElm.innerHTML = '<li>Error loading categories</li>';
+            // console.error('Error loading categories:', error);
         }
     }
 
@@ -1610,21 +1610,7 @@
         productCountGrid.textContent = chips.join(', ');
     }
 
-    // --- Load current gold rate from API ---
-    async function loadGoldRate() {
-        try {
-            const response = await fetch(`${API_BASE_URL}/gold-rate`);
-            const data = await response.json();
-            goldRate = data.gold_rate_per_gram || null;
-            goldRateElement.textContent = goldRate
-                ? `Current Gold Rate: ₹${formatPrice(goldRate)} / g`
-                : 'Gold rate not available';
-        } catch (error) {
-            goldRate = null;
-            goldRateElement.textContent = 'Gold rate not available';
-            console.error('Error loading gold rate:', error);
-        }
-    }
+
 
     // --- Fetch products based on filters & render ---
     async function loadProducts() {
@@ -1731,8 +1717,7 @@
     }
 
     document.addEventListener('DOMContentLoaded', async () => {
-        await loadGoldRate();
-        await loadCategories();
+
         setupWeightFilterClicks();
         updateAppliedFiltersDisplay();
         loadProducts();
@@ -1924,6 +1909,98 @@
             selectedFilters = { categories: [], purity: [], weights: [], price: null, sortBy: 'name', sortOrder: 'asc' };
             updateAppliedFiltersDisplay();
         }
+
+        // ===== FORM VALIDATION & API SUBMISSION =====
+        // document.getElementById('checkoutForm').addEventListener('submit', async function (e) {
+        //     e.preventDefault();
+
+        //     // 1. VALIDATE REQUIRED FIELDS FIRST
+        //     if (!validateForm()) return;
+
+        //     // 2. PREPARE DATA FOR API
+        //     const formData = {
+        //         shipping_address: formatFullAddress(),
+        //         billing_address: formatFullAddress(), // Same as shipping by default
+        //         payment_method: document.querySelector('input[name="payment_method"]:checked').value,
+        //         email: document.getElementById('email').value.trim(),
+        //         customer_mobile: document.getElementById('customer_mobile').value.trim(),
+        //         first_name: document.getElementById('first_name').value.trim(), // Optional
+        //         last_name: document.getElementById('last_name').value.trim()   // Optional
+        //     };
+
+        //     // 3. SUBMIT TO API
+        //     try {
+        //         const submitBtn = document.querySelector('.tf-btn.submit');
+        //         submitBtn.disabled = true;
+        //         submitBtn.textContent = 'Processing...';
+
+        //         const response = await fetch('http://127.0.0.1:8000/api/checkout', {
+        //             method: 'POST',
+        //             headers: { 'Content-Type': 'application/json' },
+        //             body: JSON.stringify(formData)
+        //         });
+
+        //         if (!response.ok) throw new Error(await response.text());
+
+        //         // Success - Redirect or show message
+        //         alert('Order placed successfully!');
+        //         // window.location.href = "/thank-you"; // Uncomment to redirect
+
+        //     } catch (error) {
+        //         console.error('Checkout Error:', error);
+        //         alert(`Failed: ${error.message || 'Server error'}`);
+        //     } finally {
+        //         const submitBtn = document.querySelector('.tf-btn.submit');
+        //         submitBtn.disabled = false;
+        //         submitBtn.textContent = 'Place Order';
+        //     }
+        // });
+
+        // ===== HELPER FUNCTIONS =====
+        function validateForm() {
+            const fields = [
+                { id: 'shipping_address', name: 'Address' },
+                { id: 'email', name: 'Email', validate: v => /^\S+@\S+\.\S+$/.test(v) || "Invalid email" },
+                { id: 'customer_mobile', name: 'Phone', validate: v => v.length >= 10 || "Too short (min 10 digits)" }
+            ];
+
+            for (const field of fields) {
+                const input = document.getElementById(field.id);
+                const value = input.value.trim();
+
+                if (!value) {
+                    showError(input, `${field.name} is required`);
+                    return false;
+                }
+
+                if (field.validate) {
+                    const validation = field.validate(value);
+                    if (typeof validation === 'string') {
+                        showError(input, validation);
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
+        function formatFullAddress() {
+            return [
+                document.getElementById('shipping_address').value.trim(),
+                document.getElementById('apartment').value.trim(),
+                document.getElementById('city').value.trim(),
+                document.getElementById('zipcode').value.trim()
+            ].filter(Boolean).join(', ');
+        }
+
+        function showError(input, message) {
+            alert(message); // Replace with UI error display if needed
+            input.focus();
+            input.classList.add('error-field'); // Add CSS class for red border
+        }
+
+
+
 
         // Attach event listeners to filters for collect + fetch call
         function bindFilterEvents() {
